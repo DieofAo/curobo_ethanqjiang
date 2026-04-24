@@ -17,7 +17,7 @@
 		<parent link="world" />
 		<child link="base_x_link" />
 		<axis xyz="1 0 0" />
-		<limit lower="-0.05" upper="0.05" effort="100" velocity="1.0" />
+		<limit lower="-0.08" upper="0.08" effort="100" velocity="1.0" />
 	</joint>
 
 	<joint name="base_y" type="prismatic">
@@ -25,7 +25,7 @@
 		<parent link="base_x_link" />
 		<child link="base_y_link" />
 		<axis xyz="0 1 0" />
-		<limit lower="-0.05" upper="0.05" effort="100" velocity="1.0" />
+		<limit lower="-0.08" upper="0.08" effort="100" velocity="1.0" />
 	</joint>
 
 	<joint name="base_yaw" type="revolute">

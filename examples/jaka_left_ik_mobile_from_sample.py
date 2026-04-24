@@ -44,6 +44,7 @@ RViz 可视化前置步骤:
 """
 
 import os
+import re
 import time
 import argparse
 
@@ -53,7 +54,7 @@ import numpy as np
 from curobo.types.base import TensorDeviceType
 from curobo.types.math import Pose
 from curobo.types.robot import RobotConfig
-from curobo.util_file import get_robot_configs_path, join_path, load_yaml
+from curobo.util_file import get_robot_configs_path, join_path, load_yaml, get_assets_path
 from curobo.wrap.reacher.ik_solver import IKSolver, IKSolverConfig
 
 torch.backends.cudnn.benchmark = True
@@ -67,6 +68,287 @@ MOBILE_JOINT_NAMES = [
 ]
 BASE_DOF = 3
 ARM_DOF = 7
+
+# 7-DOF 纯机械臂配置（用于自适应底盘控制中的 LOCKED 分支）
+ARM_ROBOT_FILE = "jaka.yml"
+ARM_URDF_REL_PATH = "robot/jaka_description/left_jaka.urdf"
+ARM_JOINT_NAMES = ["J_1", "J_2", "J_3", "J_4", "J_5", "J_6", "J_7"]
+
+
+def _parse_joint_limits_from_urdf(urdf_path, joint_names):
+    """从 URDF 文本里解析指定关节的 (lower, upper)。
+
+    返回 shape=(len(joint_names), 2) 的 numpy 数组。
+    简单的正则解析，足以处理形如:
+        <joint name="J_1" type="revolute">
+            ...
+            <limit lower="-6.1927" upper="6.1927" .../>
+        </joint>
+    """
+    with open(urdf_path, "r") as f:
+        text = f.read()
+    limits = np.zeros((len(joint_names), 2), dtype=np.float32)
+    for k, jn in enumerate(joint_names):
+        pattern = (
+            r'<joint\s+name="' + re.escape(jn) + r'"[^>]*>'
+            r'(.*?)</joint>'
+        )
+        m = re.search(pattern, text, re.DOTALL)
+        if not m:
+            raise ValueError(f"URDF 中找不到关节 {jn}: {urdf_path}")
+        body = m.group(1)
+        ml = re.search(r'<limit\s+lower="([-0-9.eE+]+)"\s+upper="([-0-9.eE+]+)"', body)
+        if not ml:
+            raise ValueError(f"关节 {jn} 未找到 <limit lower=... upper=...>")
+        limits[k, 0] = float(ml.group(1))
+        limits[k, 1] = float(ml.group(2))
+    return limits
+
+
+def _world_pose_to_linkbase_pose(pos_world, quat_world_wxyz, base_xyyaw):
+    """把 world 系下的目标 pose 变换到 LINK_BASE 系下。
+
+    base_xyyaw: [bx, by, byaw] 描述 world→LINK_BASE 的 SE(2) 变换
+        (LINK_BASE 相对 world 的位置/朝向)
+
+    返回 (pos_base[3], quat_base_wxyz[4])，都是 numpy。
+    """
+    bx, by, byaw = float(base_xyyaw[0]), float(base_xyyaw[1]), float(base_xyyaw[2])
+    c, s = np.cos(byaw), np.sin(byaw)
+    # 位置：先平移再绕 Z 逆旋转
+    dx = pos_world[0] - bx
+    dy = pos_world[1] - by
+    px = c * dx + s * dy
+    py = -s * dx + c * dy
+    pz = pos_world[2]
+    pos_base = np.array([px, py, pz], dtype=np.float32)
+
+    # 四元数：world→base 的逆旋转 = 绕 Z -byaw
+    # q_base = q_zinv(byaw) * q_world  (wxyz 顺序, 四元数 Hamilton 乘法)
+    qw_b = np.cos(-byaw / 2.0)
+    qz_b = np.sin(-byaw / 2.0)
+    # q_world
+    qw_w = float(quat_world_wxyz[0])
+    qx_w = float(quat_world_wxyz[1])
+    qy_w = float(quat_world_wxyz[2])
+    qz_w = float(quat_world_wxyz[3])
+    # (w1,0,0,z1) * (w2,x2,y2,z2)
+    ow = qw_b * qw_w - qz_b * qz_w
+    ox = qw_b * qx_w - qz_b * qy_w
+    oy = qw_b * qy_w + qz_b * qx_w
+    oz = qw_b * qz_w + qz_b * qw_w
+    quat_base = np.array([ow, ox, oy, oz], dtype=np.float32)
+    return pos_base, quat_base
+
+
+class AdaptiveBaseController:
+    """自适应底盘控制器（状态机 + 双 IK 求解器）。
+
+    LOCKED: 只用 7-DOF IK，base 冻结在 prev_base（初始 0）。
+    ACTIVE: 走 10-DOF IK，base 自由。
+
+    触发 LOCKED → ACTIVE 的条件（任一满足）:
+      - 7-DOF IK 失败
+      - 7-DOF 成功但关节距任意限位 < margin_trigger
+      - 7-DOF 成功但 |J_5| < singular_j5 或 |J_3| < singular_j3（启发式奇异）
+
+    ACTIVE → LOCKED 的条件（全部满足）:
+      - 10-DOF 成功
+      - 关节距任意限位 > margin_release
+      - 远离奇异
+      - 连续满足 >= release_hold 帧
+    """
+
+    def __init__(
+        self,
+        ik_solver_full,
+        ik_solver_arm,
+        arm_joint_limits,      # np.array shape=(7,2)
+        tensor_args,
+        margin_trigger=np.deg2rad(5.0),
+        margin_release=np.deg2rad(15.0),
+        release_hold=10,
+        singular_j5=np.deg2rad(3.0),
+        singular_j3=np.deg2rad(5.0),
+    ):
+        self.ik_full = ik_solver_full
+        self.ik_arm = ik_solver_arm
+        self.limits = arm_joint_limits  # (7,2)
+        self.tensor_args = tensor_args
+
+        self.margin_trigger = float(margin_trigger)
+        self.margin_release = float(margin_release)
+        self.release_hold = int(release_hold)
+        self.singular_j5 = float(singular_j5)
+        self.singular_j3 = float(singular_j3)
+
+        self.state = "LOCKED"
+        self.prev_base = np.zeros(BASE_DOF, dtype=np.float32)
+        self.safe_cnt = 0
+
+        # 统计
+        self.n_locked = 0
+        self.n_active = 0
+        self.n_switches = 0
+        self.switch_log = []  # [(frame_idx, from, to, reason)]
+
+    # ---- 工具方法 ----
+    def _min_joint_margin(self, q_arm):
+        """返回 7 关节中距离任一端的最小裕度 (rad)。q_arm: np.ndarray shape=(7,)"""
+        lo = self.limits[:, 0]
+        up = self.limits[:, 1]
+        d_lo = q_arm - lo
+        d_up = up - q_arm
+        return float(min(d_lo.min(), d_up.min()))
+
+    def _is_singular(self, q_arm):
+        """启发式奇异检测：J_5 接近 0 (腕奇异) 或 J_3 接近 0 (肘奇异)。"""
+        if abs(float(q_arm[4])) < self.singular_j5:  # J_5 index=4
+            return True, "wrist_singular(J5~0)"
+        if abs(float(q_arm[2])) < self.singular_j3:  # J_3 index=2
+            return True, "elbow_singular(J3~0)"
+        return False, ""
+
+    def _solve_arm_7dof(self, pos_world, quat_world, seed_arm_7):
+        """在 LINK_BASE 系下用 7-DOF IK 求解。返回 (success, q_arm_7, pos_err, rot_err)。"""
+        pos_base, quat_base = _world_pose_to_linkbase_pose(
+            pos_world, quat_world, self.prev_base
+        )
+        pos_t = torch.tensor(
+            pos_base.reshape(1, 3),
+            device=self.tensor_args.device, dtype=self.tensor_args.dtype,
+        )
+        quat_t = torch.tensor(
+            quat_base.reshape(1, 4),
+            device=self.tensor_args.device, dtype=self.tensor_args.dtype,
+        )
+        seed_t = torch.tensor(
+            np.asarray(seed_arm_7, dtype=np.float32).reshape(1, 1, ARM_DOF),
+            device=self.tensor_args.device, dtype=self.tensor_args.dtype,
+        )
+        res = self.ik_arm.solve_single(Pose(pos_t, quat_t), seed_config=seed_t)
+        torch.cuda.synchronize()
+        ok = bool(res.success.item())
+        pe = float(res.position_error.item())
+        re_ = float(res.rotation_error.item())
+        if ok:
+            q_arm = res.js_solution.position.cpu().numpy().flatten()  # (7,)
+        else:
+            q_arm = None
+        return ok, q_arm, pe, re_
+
+    def _solve_full_10dof(self, pos_world, quat_world, seed_full_10):
+        """10-DOF IK 求解（world 系）。返回 (success, q_full_10, pos_err, rot_err)。"""
+        pos_t = torch.tensor(
+            np.asarray(pos_world, dtype=np.float32).reshape(1, 3),
+            device=self.tensor_args.device, dtype=self.tensor_args.dtype,
+        )
+        quat_t = torch.tensor(
+            np.asarray(quat_world, dtype=np.float32).reshape(1, 4),
+            device=self.tensor_args.device, dtype=self.tensor_args.dtype,
+        )
+        seed_t = torch.tensor(
+            np.asarray(seed_full_10, dtype=np.float32).reshape(1, 1, BASE_DOF + ARM_DOF),
+            device=self.tensor_args.device, dtype=self.tensor_args.dtype,
+        )
+        res = self.ik_full.solve_single(Pose(pos_t, quat_t), seed_config=seed_t)
+        torch.cuda.synchronize()
+        ok = bool(res.success.item())
+        pe = float(res.position_error.item())
+        re_ = float(res.rotation_error.item())
+        if ok:
+            q_full = res.js_solution.position.cpu().numpy().flatten()  # (10,)
+        else:
+            q_full = None
+        return ok, q_full, pe, re_
+
+    def _switch(self, new_state, frame_idx, reason):
+        if new_state != self.state:
+            self.switch_log.append((frame_idx, self.state, new_state, reason))
+            self.n_switches += 1
+            print(f"  [frame {frame_idx+1}] {self.state}→{new_state}  reason={reason}")
+            self.state = new_state
+            self.safe_cnt = 0
+
+    # ---- 对外主入口 ----
+    def step(self, frame_idx, pos_world, quat_world, seed_arm_7):
+        """处理单帧。
+
+        Returns:
+            sol_full_10: np.ndarray(10,) 或 None
+            success: bool
+            state: 'LOCKED'/'ACTIVE'
+            pos_err, rot_err: float (用于统计)
+            solve_time: float
+        """
+        t0 = time.time()
+
+        if self.state == "LOCKED":
+            ok, q_arm, pe, re_ = self._solve_arm_7dof(pos_world, quat_world, seed_arm_7)
+            trigger_reason = None
+            if not ok:
+                trigger_reason = f"arm_ik_failed(pe={pe*1000:.1f}mm,re={re_:.3f})"
+            else:
+                margin = self._min_joint_margin(q_arm)
+                is_sg, sg_name = self._is_singular(q_arm)
+                if margin < self.margin_trigger:
+                    trigger_reason = (
+                        f"limit_margin={np.rad2deg(margin):.2f}deg"
+                        f"<trigger={np.rad2deg(self.margin_trigger):.1f}deg"
+                    )
+                elif is_sg:
+                    trigger_reason = sg_name
+
+            if trigger_reason is None:
+                # 保持 LOCKED
+                self.n_locked += 1
+                sol_full = np.concatenate([self.prev_base, q_arm]).astype(np.float32)
+                return sol_full, True, "LOCKED", pe, re_, time.time() - t0
+
+            # 触发 → 切到 ACTIVE，继续走下面 ACTIVE 分支
+            self._switch("ACTIVE", frame_idx, trigger_reason)
+
+        # state == "ACTIVE"
+        seed_full = np.concatenate(
+            [self.prev_base, np.asarray(seed_arm_7, dtype=np.float32)]
+        ).astype(np.float32)
+        ok, q_full, pe, re_ = self._solve_full_10dof(pos_world, quat_world, seed_full)
+
+        if not ok:
+            self.safe_cnt = 0
+            self.n_active += 1
+            return None, False, "ACTIVE", pe, re_, time.time() - t0
+
+        # 成功：更新 prev_base + 判断能否回 LOCKED
+        q_arm = q_full[BASE_DOF:]
+        margin = self._min_joint_margin(q_arm)
+        is_sg, _ = self._is_singular(q_arm)
+        very_safe = (margin > self.margin_release) and (not is_sg)
+        if very_safe:
+            self.safe_cnt += 1
+            if self.safe_cnt >= self.release_hold:
+                # 先记录新的 base，再切回 LOCKED
+                self.prev_base = q_full[:BASE_DOF].copy().astype(np.float32)
+                self._switch("LOCKED", frame_idx,
+                             f"safe_hold_reached(cnt={self.safe_cnt})")
+                self.n_locked += 1
+                return q_full.astype(np.float32), True, "LOCKED", pe, re_, time.time() - t0
+        else:
+            self.safe_cnt = 0
+
+        self.prev_base = q_full[:BASE_DOF].copy().astype(np.float32)
+        self.n_active += 1
+        return q_full.astype(np.float32), True, "ACTIVE", pe, re_, time.time() - t0
+
+    def summary_str(self):
+        total = self.n_locked + self.n_active
+        if total == 0:
+            return "[自适应底盘] 无数据"
+        return (
+            f"[自适应底盘] LOCKED={self.n_locked}/{total} ({self.n_locked/total*100:.1f}%)  "
+            f"ACTIVE={self.n_active}/{total} ({self.n_active/total*100:.1f}%)  "
+            f"切换次数={self.n_switches}"
+        )
 
 
 def parse_sample_file(filepath: str):
@@ -161,6 +443,31 @@ def main():
         "--freeze-base-eps-rot", type=float, default=0.01,
         help="末端转角小于此值(rad)视为静止 (默认 0.01rad ≈ 0.57°)"
     )
+    # --- 自适应底盘 (分层控制) ---
+    parser.add_argument(
+        "--adaptive-base", action="store_true",
+        help="启用自适应底盘：平时用 7-DOF (base 锁死)，接近限位/奇异/IK失败时切到 10-DOF"
+    )
+    parser.add_argument(
+        "--adaptive-margin-trigger", type=float, default=5.0,
+        help="LOCKED→ACTIVE 触发阈值：关节距限位裕度(度) 默认 5°"
+    )
+    parser.add_argument(
+        "--adaptive-margin-release", type=float, default=15.0,
+        help="ACTIVE→LOCKED 释放阈值：关节距限位裕度(度) 默认 15°"
+    )
+    parser.add_argument(
+        "--adaptive-release-hold", type=int, default=10,
+        help="释放条件连续满足的帧数 默认 10"
+    )
+    parser.add_argument(
+        "--adaptive-singular-j5", type=float, default=3.0,
+        help="腕奇异阈值(度)：|J_5|<此值时触发 ACTIVE 默认 3°"
+    )
+    parser.add_argument(
+        "--adaptive-singular-j3", type=float, default=5.0,
+        help="肘奇异阈值(度)：|J_3|<此值时触发 ACTIVE 默认 5°"
+    )
     args = parser.parse_args()
 
     warm_start = not args.no_warm_start
@@ -212,6 +519,68 @@ def main():
     print(f"IK 求解器初始化完成，关节顺序: {ik_solver.joint_names}")
     print(f"总自由度: {len(ik_solver.joint_names)} "
           f"(base={BASE_DOF}, arm={ARM_DOF})")
+
+    # ---- 可选：初始化 7-DOF IK 求解器 (供自适应底盘使用) ----
+    adaptive_ctrl = None
+    if args.adaptive_base:
+        print("\n[自适应底盘] 初始化 7-DOF IK 求解器 (jaka.yml)...")
+        arm_robot_cfg = RobotConfig.from_dict(
+            load_yaml(join_path(get_robot_configs_path(), ARM_ROBOT_FILE))["robot_cfg"]
+        )
+        arm_ik_config = IKSolverConfig.load_from_robot_config(
+            arm_robot_cfg,
+            None,
+            rotation_threshold=0.05,
+            position_threshold=0.005,
+            num_seeds=args.num_seeds,
+            self_collision_check=args.self_collision,
+            self_collision_opt=args.self_collision,
+            tensor_args=tensor_args,
+            use_cuda_graph=True,
+        )
+        ik_solver_arm = IKSolver(arm_ik_config)
+        print(f"  7-DOF 关节顺序: {ik_solver_arm.joint_names}")
+
+        # 从 URDF 读取真实关节限位
+        urdf_abs = join_path(get_assets_path(), ARM_URDF_REL_PATH)
+        arm_limits = _parse_joint_limits_from_urdf(urdf_abs, ARM_JOINT_NAMES)
+        print(f"  从 URDF 读取关节限位 ({ARM_URDF_REL_PATH}):")
+        for jn, (lo, up) in zip(ARM_JOINT_NAMES, arm_limits):
+            print(f"    {jn}: [{lo:+.4f}, {up:+.4f}] rad")
+
+        adaptive_ctrl = AdaptiveBaseController(
+            ik_solver_full=ik_solver,
+            ik_solver_arm=ik_solver_arm,
+            arm_joint_limits=arm_limits,
+            tensor_args=tensor_args,
+            margin_trigger=np.deg2rad(args.adaptive_margin_trigger),
+            margin_release=np.deg2rad(args.adaptive_margin_release),
+            release_hold=args.adaptive_release_hold,
+            singular_j5=np.deg2rad(args.adaptive_singular_j5),
+            singular_j3=np.deg2rad(args.adaptive_singular_j3),
+        )
+        print(
+            f"  阈值: trigger={args.adaptive_margin_trigger}°  "
+            f"release={args.adaptive_margin_release}°  "
+            f"hold={args.adaptive_release_hold}帧  "
+            f"|J5|<{args.adaptive_singular_j5}°  |J3|<{args.adaptive_singular_j3}°"
+        )
+
+        # 预热 7-DOF CUDA Graph
+        pos_b0, quat_b0 = _world_pose_to_linkbase_pose(
+            positions[0], quaternions[0], np.zeros(3, dtype=np.float32)
+        )
+        _pos0 = torch.tensor(pos_b0.reshape(1, 3),
+                             device=tensor_args.device, dtype=tensor_args.dtype)
+        _quat0 = torch.tensor(quat_b0.reshape(1, 4),
+                              device=tensor_args.device, dtype=tensor_args.dtype)
+        _seed0 = torch.tensor(
+            seed_joints[0:1].reshape(1, 1, ARM_DOF),
+            device=tensor_args.device, dtype=tensor_args.dtype,
+        )
+        _ = ik_solver_arm.solve_single(Pose(_pos0, _quat0), seed_config=_seed0)
+        torch.cuda.synchronize()
+        print("  7-DOF CUDA Graph 预热完成")
 
     # 校验：确保 CuRobo 内部顺序与我们假设的 MOBILE_JOINT_NAMES 一致
     if list(ik_solver.joint_names) != MOBILE_JOINT_NAMES:
@@ -295,33 +664,65 @@ def main():
 
         seed = seed_vec.unsqueeze(0).unsqueeze(0)  # (1, 1, 10)
 
-        st = time.time()
-        result = ik_solver.solve_single(goal, seed_config=seed)
-        torch.cuda.synchronize()
-        solve_t = time.time() - st
-
-        success = result.success.item()
-        pos_err = result.position_error.item()
-        rot_err = result.rotation_error.item()
-
-        results_success.append(success)
-        results_pos_error.append(pos_err)
-        results_rot_error.append(rot_err)
-        results_solve_time.append(solve_t)
-
-        if success:
-            sol = result.js_solution.position.cpu().numpy().flatten()  # (10,)
-            # ---- 冻结底盘：末端几乎没动时，强制复用上一帧底盘 ----
-            if freeze_base and end_stationary and prev_base is not None:
-                sol[:BASE_DOF] = prev_base
-                freeze_count += 1
-            results_full_solutions.append(sol)
-            results_base_xyyaw.append(sol[:BASE_DOF].copy())
-            prev_base = sol[:BASE_DOF].copy()
+        # =========================
+        # 分支：自适应底盘 vs 原 10-DOF 流程
+        # =========================
+        if adaptive_ctrl is not None:
+            # 用 7-DOF 书写的 seed（原始不变）；prev_base 由控制器内部维护
+            seed_arm_7_np = seed_joints[i]  # shape (7,)
+            sol_full, success, _state, pos_err, rot_err, solve_t = adaptive_ctrl.step(
+                frame_idx=i,
+                pos_world=positions[i],
+                quat_world=quaternions[i],
+                seed_arm_7=seed_arm_7_np,
+            )
+            results_success.append(bool(success))
+            results_pos_error.append(float(pos_err))
+            results_rot_error.append(float(rot_err))
+            results_solve_time.append(float(solve_t))
+            if success and sol_full is not None:
+                sol = np.asarray(sol_full, dtype=np.float32).copy()
+                # 冻结底盘：仅在 ACTIVE 状态下有意义，LOCKED 本身 base 已然不动
+                if (freeze_base and end_stationary and prev_base is not None
+                        and _state == "ACTIVE"):
+                    sol[:BASE_DOF] = prev_base
+                    freeze_count += 1
+                    # 同步更新控制器内部 prev_base，保持一致
+                    adaptive_ctrl.prev_base = sol[:BASE_DOF].copy().astype(np.float32)
+                results_full_solutions.append(sol)
+                results_base_xyyaw.append(sol[:BASE_DOF].copy())
+                prev_base = sol[:BASE_DOF].copy()
+            else:
+                results_full_solutions.append(None)
+                results_base_xyyaw.append(None)
         else:
-            results_full_solutions.append(None)
-            results_base_xyyaw.append(None)
-            # 失败帧不更新 prev_base，保留上一次成功解作为锚点
+            st = time.time()
+            result = ik_solver.solve_single(goal, seed_config=seed)
+            torch.cuda.synchronize()
+            solve_t = time.time() - st
+
+            success = result.success.item()
+            pos_err = result.position_error.item()
+            rot_err = result.rotation_error.item()
+
+            results_success.append(success)
+            results_pos_error.append(pos_err)
+            results_rot_error.append(rot_err)
+            results_solve_time.append(solve_t)
+
+            if success:
+                sol = result.js_solution.position.cpu().numpy().flatten()  # (10,)
+                # ---- 冻结底盘：末端几乎没动时，强制复用上一帧底盘 ----
+                if freeze_base and end_stationary and prev_base is not None:
+                    sol[:BASE_DOF] = prev_base
+                    freeze_count += 1
+                results_full_solutions.append(sol)
+                results_base_xyyaw.append(sol[:BASE_DOF].copy())
+                prev_base = sol[:BASE_DOF].copy()
+            else:
+                results_full_solutions.append(None)
+                results_base_xyyaw.append(None)
+                # 失败帧不更新 prev_base，保留上一次成功解作为锚点
 
         # 更新末端参考 (不论成功与否，都基于“目标”做差分)
         prev_pos = positions[i].copy()
@@ -340,6 +741,14 @@ def main():
     print("\n" + "=" * 70)
     print("        JAKA Left Arm IK (Mobile Base, 10 DOF) 求解统计")
     print("=" * 70)
+
+    # 自适应底盘汇总
+    if adaptive_ctrl is not None:
+        print(f"\n{adaptive_ctrl.summary_str()}")
+        if adaptive_ctrl.switch_log:
+            print(f"  切换记录 (共 {len(adaptive_ctrl.switch_log)} 次):")
+            for (fi, s_from, s_to, reason) in adaptive_ctrl.switch_log:
+                print(f"    [frame {fi+1}] {s_from}→{s_to}  {reason}")
 
     success_count = sum(results_success)
     fail_count = total_count - success_count
