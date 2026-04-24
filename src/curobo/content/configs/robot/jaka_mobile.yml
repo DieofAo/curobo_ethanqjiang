@@ -1,0 +1,84 @@
+##
+## JAKA 7-DOF with 3 Virtual Base DOFs (mobile platform) - CuRobo 配置
+## 自由度顺序: base_x, base_y, base_yaw, J_1 ~ J_7  (共 10 DOF)
+##
+
+robot_cfg:
+  kinematics:
+    use_usd_kinematics: False
+    urdf_path: "robot/jaka_description/left_jaka_mobile.urdf"
+    asset_root_path: "robot/jaka_description"
+    base_link: "world"
+    ee_link: "LINK_7"
+    link_names: null
+
+    collision_link_names:
+      [
+        "LINK_BASE",
+        "LINK_1",
+        "LINK_2",
+        "LINK_3",
+        "LINK_4",
+        "LINK_5",
+        "LINK_6",
+        "LINK_7",
+      ]
+
+    collision_spheres: "spheres/jaka.yml"
+    collision_sphere_buffer: 0.005
+
+    self_collision_ignore:
+      {
+        "LINK_BASE": ["LINK_1", "LINK_2"],
+        "LINK_1": ["LINK_2", "LINK_3"],
+        "LINK_2": ["LINK_3", "LINK_4"],
+        "LINK_3": ["LINK_4", "LINK_5"],
+        "LINK_4": ["LINK_5", "LINK_6"],
+        "LINK_5": ["LINK_6", "LINK_7"],
+        "LINK_6": ["LINK_7"],
+      }
+
+    self_collision_buffer:
+      {
+        "LINK_BASE": 0.08,
+        "LINK_1": 0.05,
+        "LINK_2": 0.0,
+        "LINK_3": 0.0,
+        "LINK_4": 0.0,
+        "LINK_5": 0.0,
+        "LINK_6": 0.0,
+        "LINK_7": 0.02,
+      }
+
+    mesh_link_names:
+      [
+        "LINK_BASE",
+        "LINK_1",
+        "LINK_2",
+        "LINK_3",
+        "LINK_4",
+        "LINK_5",
+        "LINK_6",
+        "LINK_7",
+      ]
+
+    lock_joints: null
+
+    cspace:
+      joint_names:
+        - "base_x"
+        - "base_y"
+        - "base_yaw"
+        - "J_1"
+        - "J_2"
+        - "J_3"
+        - "J_4"
+        - "J_5"
+        - "J_6"
+        - "J_7"
+      # 前 3 维为底盘自由度，初始居中；后 7 维沿用原 jaka.yml 的 retract
+      retract_config: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0]
+      null_space_weight: [100000.0, 100000.0, 100000.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+      cspace_distance_weight: [50.0, 50.0, 50.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+      max_jerk: 500.0
+      max_acceleration: 15.0

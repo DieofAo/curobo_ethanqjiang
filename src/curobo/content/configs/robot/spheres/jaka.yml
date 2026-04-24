@@ -1,0 +1,81 @@
+##
+## JAKA 7-DOF 机器人碰撞球体配置
+## 球体参数根据 URDF 中各连杆的惯性参数和几何尺寸估算
+##
+
+collision_spheres:
+  LINK_BASE:
+    - "center": [0.0, 0.0, 0.0]
+      "radius": 0.08
+    - "center": [0.0, 0.0, -0.001]
+      "radius": 0.055
+
+  LINK_1:
+    - "center": [0.0, 0.0, 0.08]
+      "radius": 0.055
+    - "center": [0.0, 0.0, 0.164]
+      "radius": 0.055
+    - "center": [0.0, 0.0, 0.12]
+      "radius": 0.05
+
+  LINK_2:
+    - "center": [0.0, 0.0, 0.0]
+      "radius": 0.08
+    - "center": [0.0, -0.023, 0.0]
+      "radius": 0.06
+    - "center": [0.0, -0.045, 0.0]
+      "radius": 0.06
+
+  LINK_3:
+    - "center": [0.0, 0.0, 0.0]
+      "radius": 0.06
+    - "center": [0.0, 0.0, 0.1]
+      "radius": 0.06
+    - "center": [0.0, 0.0, 0.17]
+      "radius": 0.055
+    - "center": [0.007, 0.0, 0.237]
+      "radius": 0.055
+    - "center": [0.0, 0.0, 0.30]
+      "radius": 0.055
+
+  LINK_4:
+    - "center": [0.0, 0.0, 0.0]
+      "radius": 0.06
+    - "center": [0.005, -0.016, 0.0]
+      "radius": 0.045
+    - "center": [0.005, -0.032, 0.0]
+      "radius": 0.055
+
+  LINK_5:
+    - "center": [0.0, 0.0, 0.0]
+      "radius": 0.06
+    - "center": [0.0, -0.004, 0.06]
+      "radius": 0.05
+    - "center": [0.0, -0.004, 0.12]
+      "radius": 0.05
+    - "center": [0.0, -0.004, 0.184]
+      "radius": 0.055
+
+  LINK_6:
+    - "center": [0.0, 0.0, 0.0]
+      "radius": 0.05
+    - "center": [0.0, -0.044, 0.0]
+      "radius": 0.048
+    - "center": [0.0, -0.087, 0.0]
+      "radius": 0.045
+    - "center": [0.0, -0.13, 0.0]
+      "radius": 0.05
+    - "center": [0.0, -0.18, 0.0]
+      "radius": 0.04
+
+  LINK_7:
+    - "center": [0.0, 0.0, -0.02]
+      "radius": 0.04
+    - "center": [0.0, 0.0, 0.0]
+      "radius": 0.04
+    - "center": [0.0, 0.0, 0.06]
+      "radius": 0.038
+    - "center": [0.0, 0.0, 0.12]
+      "radius": 0.035
+    - "center": [0.0, 0.0, 0.177]
+      "radius": 0.055
