@@ -184,6 +184,8 @@ class AdaptiveBaseController:
 
         self.state = "LOCKED"
         self.prev_base = np.zeros(BASE_DOF, dtype=np.float32)
+        # 上一帧 7-DOF IK 解出的 arm (warm-start 用，降低多解跳变带来的 arm 抖动)
+        self.prev_arm_q = None
         self.safe_cnt = 0
 
         # 统计
@@ -191,6 +193,9 @@ class AdaptiveBaseController:
         self.n_active = 0
         self.n_switches = 0
         self.switch_log = []  # [(frame_idx, from, to, reason)]
+        # freeze 降级 (ACTIVE 下末端静止时尝试 7-DOF 数学正确地冻结 base)
+        self.n_freeze_downgrade_ok = 0
+        self.n_freeze_downgrade_fail = 0
 
     # ---- 工具方法 ----
     def _min_joint_margin(self, q_arm):
@@ -271,8 +276,19 @@ class AdaptiveBaseController:
             self.safe_cnt = 0
 
     # ---- 对外主入口 ----
-    def step(self, frame_idx, pos_world, quat_world, seed_arm_7):
+    def step(self, frame_idx, pos_world, quat_world, seed_arm_7,
+             freeze_if_stationary=False, end_stationary=False):
         """处理单帧。
+
+        关键不变量（严禁违反）：
+          - LOCKED 分支输出 [prev_base, q_arm_7dof]，其中 7-DOF IK 的 pose 变换用的
+            就是 self.prev_base。base 与 arm 一一匹配。
+          - ACTIVE 分支输出 10-DOF IK 原始解 [bx_new, by_new, byaw_new, q_arm_new]，
+            绝不允许事后替换 base。
+          - freeze 降级：ACTIVE 下若 end_stationary 且 freeze_if_stationary，
+            先试 7-DOF（用 prev_base 做 world→LINK_BASE 变换），成功则按 LOCKED
+            的方式输出（数学正确地冻结 base）；失败则退回 10-DOF 正常求解。
+            该帧 state 标签保持 ACTIVE，不影响 safe_cnt / release_hold 节奏。
 
         Returns:
             sol_full_10: np.ndarray(10,) 或 None
@@ -283,8 +299,16 @@ class AdaptiveBaseController:
         """
         t0 = time.time()
 
+        # arm warm-start：优先用上一帧 7-DOF 解，降低 multi-seed 选解跳变
+        seed_arm_eff = (
+            self.prev_arm_q if self.prev_arm_q is not None
+            else np.asarray(seed_arm_7, dtype=np.float32)
+        )
+
         if self.state == "LOCKED":
-            ok, q_arm, pe, re_ = self._solve_arm_7dof(pos_world, quat_world, seed_arm_7)
+            ok, q_arm, pe, re_ = self._solve_arm_7dof(
+                pos_world, quat_world, seed_arm_eff
+            )
             trigger_reason = None
             if not ok:
                 trigger_reason = f"arm_ik_failed(pe={pe*1000:.1f}mm,re={re_:.3f})"
@@ -300,8 +324,9 @@ class AdaptiveBaseController:
                     trigger_reason = sg_name
 
             if trigger_reason is None:
-                # 保持 LOCKED
+                # 保持 LOCKED，base 锁在 prev_base，两者匹配
                 self.n_locked += 1
+                self.prev_arm_q = q_arm.astype(np.float32).copy()
                 sol_full = np.concatenate([self.prev_base, q_arm]).astype(np.float32)
                 return sol_full, True, "LOCKED", pe, re_, time.time() - t0
 
@@ -309,8 +334,26 @@ class AdaptiveBaseController:
             self._switch("ACTIVE", frame_idx, trigger_reason)
 
         # state == "ACTIVE"
+        # ---- freeze 降级：末端静止时优先尝试 7-DOF 冻结 base (数学正确) ----
+        if freeze_if_stationary and end_stationary:
+            ok7, q_arm7, pe7, re7 = self._solve_arm_7dof(
+                pos_world, quat_world, seed_arm_eff
+            )
+            if ok7:
+                # 输出 [prev_base, q_arm7]，base/arm 严格匹配，无 FK 漂移
+                self.n_freeze_downgrade_ok += 1
+                self.n_active += 1
+                self.safe_cnt = 0  # 本帧未走 10-DOF，不累计 release 节奏
+                self.prev_arm_q = q_arm7.astype(np.float32).copy()
+                sol_full = np.concatenate(
+                    [self.prev_base, q_arm7]
+                ).astype(np.float32)
+                return sol_full, True, "ACTIVE", pe7, re7, time.time() - t0
+            # 降级失败，回退到正常 10-DOF
+            self.n_freeze_downgrade_fail += 1
+
         seed_full = np.concatenate(
-            [self.prev_base, np.asarray(seed_arm_7, dtype=np.float32)]
+            [self.prev_base, seed_arm_eff.astype(np.float32)]
         ).astype(np.float32)
         ok, q_full, pe, re_ = self._solve_full_10dof(pos_world, quat_world, seed_full)
 
@@ -329,6 +372,7 @@ class AdaptiveBaseController:
             if self.safe_cnt >= self.release_hold:
                 # 先记录新的 base，再切回 LOCKED
                 self.prev_base = q_full[:BASE_DOF].copy().astype(np.float32)
+                self.prev_arm_q = q_arm.astype(np.float32).copy()
                 self._switch("LOCKED", frame_idx,
                              f"safe_hold_reached(cnt={self.safe_cnt})")
                 self.n_locked += 1
@@ -337,6 +381,7 @@ class AdaptiveBaseController:
             self.safe_cnt = 0
 
         self.prev_base = q_full[:BASE_DOF].copy().astype(np.float32)
+        self.prev_arm_q = q_arm.astype(np.float32).copy()
         self.n_active += 1
         return q_full.astype(np.float32), True, "ACTIVE", pe, re_, time.time() - t0
 
@@ -347,7 +392,8 @@ class AdaptiveBaseController:
         return (
             f"[自适应底盘] LOCKED={self.n_locked}/{total} ({self.n_locked/total*100:.1f}%)  "
             f"ACTIVE={self.n_active}/{total} ({self.n_active/total*100:.1f}%)  "
-            f"切换次数={self.n_switches}"
+            f"切换次数={self.n_switches}  "
+            f"freeze降级 ok/fail={self.n_freeze_downgrade_ok}/{self.n_freeze_downgrade_fail}"
         )
 
 
@@ -669,12 +715,16 @@ def main():
         # =========================
         if adaptive_ctrl is not None:
             # 用 7-DOF 书写的 seed（原始不变）；prev_base 由控制器内部维护
+            # freeze 语义由控制器内部接管：ACTIVE 下末端静止优先走 7-DOF 降级，
+            # 成功则输出 [prev_base, q_arm7]，保证 base/arm 数学匹配 (无 FK 漂移)
             seed_arm_7_np = seed_joints[i]  # shape (7,)
             sol_full, success, _state, pos_err, rot_err, solve_t = adaptive_ctrl.step(
                 frame_idx=i,
                 pos_world=positions[i],
                 quat_world=quaternions[i],
                 seed_arm_7=seed_arm_7_np,
+                freeze_if_stationary=freeze_base,
+                end_stationary=end_stationary,
             )
             results_success.append(bool(success))
             results_pos_error.append(float(pos_err))
@@ -682,13 +732,8 @@ def main():
             results_solve_time.append(float(solve_t))
             if success and sol_full is not None:
                 sol = np.asarray(sol_full, dtype=np.float32).copy()
-                # 冻结底盘：仅在 ACTIVE 状态下有意义，LOCKED 本身 base 已然不动
-                if (freeze_base and end_stationary and prev_base is not None
-                        and _state == "ACTIVE"):
-                    sol[:BASE_DOF] = prev_base
-                    freeze_count += 1
-                    # 同步更新控制器内部 prev_base，保持一致
-                    adaptive_ctrl.prev_base = sol[:BASE_DOF].copy().astype(np.float32)
+                # 注：绝不在这里事后替换 base。控制器已保证返回的 [base, arm]
+                # 是严格匹配的，如果这里再改 base 会直接破坏末端精度。
                 results_full_solutions.append(sol)
                 results_base_xyyaw.append(sol[:BASE_DOF].copy())
                 prev_base = sol[:BASE_DOF].copy()
@@ -712,10 +757,10 @@ def main():
 
             if success:
                 sol = result.js_solution.position.cpu().numpy().flatten()  # (10,)
-                # ---- 冻结底盘：末端几乎没动时，强制复用上一帧底盘 ----
-                if freeze_base and end_stationary and prev_base is not None:
-                    sol[:BASE_DOF] = prev_base
-                    freeze_count += 1
+                # 注：原来这里有“末端静止时强制把 sol[:3] 改为 prev_base”的逻辑，
+                # 但这会造成 base 与 arm 不匹配 (arm 是在 base_new 下优化出的)，
+                # 直接导致末端 FK 偏移。已删除。warm_start 仍然会引导 IK
+                # 自己选择“少动 base”的解，起到类似的抗抖动效果。
                 results_full_solutions.append(sol)
                 results_base_xyyaw.append(sol[:BASE_DOF].copy())
                 prev_base = sol[:BASE_DOF].copy()
@@ -812,7 +857,14 @@ def main():
                 f"max_dy={np.max(diffs_arr[:,1])*1000:.2f}mm  "
                 f"max_dyaw={np.degrees(np.max(diffs_arr[:,2])):.3f}°"
             )
-        print(f"  底盘被冻结次数 (末端静止时强制复用上一帧底盘): {freeze_count}")
+        if adaptive_ctrl is not None:
+            print(
+                f"  底盘freeze降级 (ACTIVE下末端静止→7DOF,base/arm严格匹配): "
+                f"成功={adaptive_ctrl.n_freeze_downgrade_ok}  "
+                f"回退10DOF={adaptive_ctrl.n_freeze_downgrade_fail}"
+            )
+        else:
+            print(f"  底盘被冻结次数 (旧逻辑已移除, 始终为 0): {freeze_count}")
 
     # 误差统计（与 7-DOF 脚本一致的格式）
     ok_idx = [j for j in range(total_count) if results_success[j]]
