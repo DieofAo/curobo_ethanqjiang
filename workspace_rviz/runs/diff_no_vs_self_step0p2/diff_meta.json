@@ -1,0 +1,24 @@
+{
+  "baseline": "runs/no_collision_step0p2/workspace_data.npz",
+  "target": "runs/self_collision_step0p2/workspace_data.npz",
+  "dims": [
+    300,
+    300,
+    300
+  ],
+  "voxel": 0.009999999776482582,
+  "bbox": [
+    -1.5,
+    -1.5,
+    -1.5,
+    1.5,
+    1.5,
+    1.5
+  ],
+  "n_baseline": 3599197,
+  "n_target": 3554751,
+  "n_common": 3554751,
+  "n_only_baseline": 44446,
+  "n_only_target": 0,
+  "shrink_ratio": 0.012348865594186704
+}

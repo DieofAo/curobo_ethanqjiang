@@ -1,0 +1,15 @@
+# Large generated data (regeneratable by sample_workspace.py)
+*.npz
+*.pcd
+
+# Run logs
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Override repo-root .gitignore which globally ignores *.json:
+# small json files here are run metadata and MUST be tracked.
+!*.json
+!**/*.json
