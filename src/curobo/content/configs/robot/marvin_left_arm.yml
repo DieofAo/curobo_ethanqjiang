@@ -1,0 +1,80 @@
+##
+## Marvin M6 双臂机器人 - 左臂 CuRobo 配置文件 (curobo 标准位置版本)
+## - urdf_path/asset_root_path 相对 curobo assets 根: src/curobo/content/assets
+## - collision_spheres 相对 curobo robot configs 根: src/curobo/content/configs/robot
+##
+robot_cfg:
+  kinematics:
+    use_usd_kinematics: false
+    urdf_path: robot/marvin_description/urdf/marvin_robot.urdf
+    asset_root_path: robot/marvin_description
+    base_link: robot_stand
+    ee_link: Link7_L
+    link_names: null
+    lock_joints: null
+    extra_links: null
+    collision_link_names:
+    - Base_L
+    - Link1_L
+    - Link2_L
+    - Link3_L
+    - Link4_L
+    - Link5_L
+    - Link7_L
+    collision_spheres: spheres/marvin_left_arm.yml
+    collision_sphere_buffer: 0.005
+    self_collision_ignore:
+     {
+      "Base_L":["Link1_L","Link2_L"],
+      "Link1_L":[ "Link2_L","Link3_L"],
+      "Link2_L":  ["Link3_L", "Link4_L"],
+      "Link3_L": ["Link4_L", "Link5_L"],
+      "Link4_L": ["Link5_L"],
+      "Link5_L": ["Link7_L"],
+      }
+    self_collision_buffer:
+      robot_stand: 0.005
+      Base_L: 0.005
+      Link1_L: 0.005
+      Link2_L: 0.005
+      Link3_L: 0.005
+      Link4_L: 0.005
+      Link5_L: 0.005
+      Link7_L: 0.005
+    use_global_cumul: true
+    mesh_link_names: null
+    cspace:
+      joint_names:
+      - Joint1_L
+      - Joint2_L
+      - Joint3_L
+      - Joint4_L
+      - Joint5_L
+      - Joint6_L
+      - Joint7_L
+      retract_config:
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      - 0.0
+      null_space_weight:
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      cspace_distance_weight:
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      max_jerk: 500.0
+      max_acceleration: 15.0
