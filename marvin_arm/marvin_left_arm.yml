@@ -29,6 +29,7 @@ robot_cfg:
       "Link1_L":[ "Link2_L","Link3_L"],
       "Link2_L":  ["Link3_L", "Link4_L"],
       "Link3_L": ["Link4_L", "Link5_L"],
+      "Link4_L": ["Link5_L"],
       "Link5_L": ["Link7_L"],
       }
     self_collision_buffer:
