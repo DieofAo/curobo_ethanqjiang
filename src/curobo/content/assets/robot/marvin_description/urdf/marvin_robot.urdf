@@ -503,4 +503,10 @@
       effort="18"
       velocity="3.1416" />
   </joint>
+  <link name="gripper_link"/>
+  <joint name="gripper_joint" type="fixed">
+    <parent link="Link7_L"/>
+    <child link="gripper_link"/>
+    <origin xyz="0 -0.25 0" rpy="1.57 0 0"/>
+  </joint>
 </robot>

@@ -9,7 +9,7 @@ robot_cfg:
     urdf_path: robot/marvin_description/urdf/marvin_robot.urdf
     asset_root_path: robot/marvin_description
     base_link: robot_stand
-    ee_link: Link7_L
+    ee_link: gripper_link
     link_names: null
     lock_joints: null
     extra_links: null

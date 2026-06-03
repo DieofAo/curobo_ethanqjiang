@@ -93,7 +93,7 @@ def main():
     ap.add_argument("--bbox", type=float, nargs=6,
                     default=[-1.0, -0.5, -0.2, 1.0, 1.5, 2.0])
     ap.add_argument("--batch", type=int, default=1 << 22)
-    ap.add_argument("--ee-link", type=str, default="Link7_L")
+    ap.add_argument("--ee-link", type=str, default="gripper_link")
     ap.add_argument("--robot", type=str, default="marvin_left_arm.yml")
     ap.add_argument("--out-dir", type=str,
                     default="/data/workspace/curobo_ethanqjiang/marvin_arm/workspace_out")
@@ -143,6 +143,9 @@ def main():
     jl = km.get_joint_limits().position
     lower = jl[0].cpu().numpy()
     upper = jl[1].cpu().numpy()
+    base_link = km.generator_config.base_link if km.generator_config else "unknown"
+    ee_link = km.generator_config.ee_link if km.generator_config else args.ee_link
+    print(f"[OK] FK chain: {base_link} --> {ee_link}")
     print(f"[OK] dof={dof}, joints={km.joint_names}")
     print(f"[OK] lower={lower}")
     print(f"[OK] upper={upper}")
@@ -259,7 +262,7 @@ def main():
             t_ck = time.time()
             so3_hit_3d_ck = so3_hit.view(V, NPIX)
             so3_cov_ck = torch.zeros(V, dtype=torch.int32, device=dev)
-            chunk_ck = 1 << 20
+            chunk_ck = 1 << 16  # 64K 体素一块, 避免 nside>=6 时 sum 临时张量 OOM
             for cs in range(0, V, chunk_ck):
                 ce = min(cs + chunk_ck, V)
                 so3_cov_ck[cs:ce] = so3_hit_3d_ck[cs:ce].sum(dim=1, dtype=torch.int32)
@@ -299,7 +302,7 @@ def main():
     # 分块求和: 避免 (V,NPIX) bool->int64 一次性临时分配撑爆显存
     so3_hit_3d = so3_hit.view(V, NPIX)
     so3_cov = torch.zeros(V, dtype=torch.int32, device=dev)
-    chunk = 1 << 20  # 1M 体素一块
+    chunk = 1 << 16  # 64K 体素一块, 避免 nside>=6 时 sum 临时张量 OOM
     for cs in range(0, V, chunk):
         ce = min(cs + chunk, V)
         so3_cov[cs:ce] = so3_hit_3d[cs:ce].sum(dim=1, dtype=torch.int32)
