@@ -78,3 +78,12 @@ robot_cfg:
       - 1.0
       max_jerk: 500.0
       max_acceleration: 15.0
+      ## position_limit_clip: 按各关节总范围的 5% 向内收缩
+      position_limit_clip:
+      - 0.1107
+      - 0.1094
+      - 0.1107
+      - 0.0889
+      - 0.1107
+      - 0.0347
+      - 0.07571
