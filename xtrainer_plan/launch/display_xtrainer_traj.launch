@@ -1,0 +1,154 @@
+<launch>
+  <!-- ===================================================================
+       XTrainer 轨迹播放 (ROS1 / rviz)
+
+       用法:
+         roslaunch display_xtrainer_traj.launch traj:=/abs/path/to/results/20260828_120000
+         roslaunch display_xtrainer_traj.launch traj:=<dir> speed:=0.5 loop:=true
+
+       推荐直接用 ../run_rviz.sh, 它会自动挑最新轨迹并按需拉起 roscore。
+       =================================================================== -->
+
+  <arg name="repo_root" default="$(eval env('HOME') + '/workspace/curobo')"/>
+  <arg name="task_root" default="$(arg repo_root)/xtrainer_plan"/>
+
+  <!-- 轨迹目录 (plan_trajectory.py 的输出). 必填 -->
+  <arg name="traj" default="$(arg task_root)/results/latest"/>
+
+  <arg name="urdf_file"
+       default="$(arg repo_root)/src/curobo/content/assets/robot/ur_description/xtrainer.urdf"/>
+  <arg name="mesh_dir"
+       default="file://$(arg repo_root)/src/curobo/content/assets/robot/ur_description/meshes"/>
+  <arg name="rviz_config" default="$(arg task_root)/config/xtrainer_traj.rviz"/>
+
+  <!-- ================ 料台场景 (table.STEP) ================
+       show_scene=true 时把料台装配体 + 另一条静态展示臂一起加载进 robot_description。
+       挂载位姿见 config/cad_mounts.yaml (由 scripts/extract_cad_mounts.py 提取)。
+       active_arm 决定哪条臂由 /joint_states 驱动: 它的基座就是 LINK_0,
+       因此 rviz 的 Fixed Frame 仍然是 LINK_0, 其余可视化完全不受影响。 -->
+  <arg name="show_scene" default="true"/>
+  <arg name="active_arm" default="left"/>
+  <arg name="show_static_arm" default="true"/>
+  <!-- active_both=true 时第二条臂保留活动关节(前缀 second_)。
+       6-DOF 旧轨迹由播放器追加同值 second_J_*;
+       轨迹本身已含 second_* 时则直接发布 12-DOF，不再镜像。 -->
+  <arg name="active_both" default="false"/>
+  <arg name="second_prefix" default="second_"/>
+  <arg name="mounts_file" default="$(arg task_root)/config/cad_mounts.yaml"/>
+  <arg name="table_mesh"
+       default="file://$(arg repo_root)/src/curobo/content/assets/robot/ur_description/meshes/xtrainer/table.stl"/>
+  <!-- roslaunch 的 arg 值都是字符串, 'false' 也是真值, 因此必须显式比较 -->
+  <arg name="static_arm_flag"
+       default="$(eval '' if str(arg('show_static_arm')).lower() == 'true' else '--no-static-arm')"/>
+  <arg name="both_arms_flag"
+       default="$(eval '--active-both --second-prefix ' + arg('second_prefix') if str(arg('active_both')).lower() == 'true' else '')"/>
+  <arg name="mirror_flag"
+       default="$(eval '--mirror-joint-prefix ' + arg('second_prefix') if str(arg('active_both')).lower() == 'true' else '')"/>
+
+  <arg name="base_frame" default="LINK_0"/>
+  <arg name="joint_topic" default="/joint_states"/>
+  <arg name="speed" default="1.0"/>
+  <arg name="rate_hz" default="0.0"/>
+  <arg name="loop" default="false"/>
+  <arg name="hold" default="2.0"/>
+  <arg name="start_hold" default="1.5"/>
+  <arg name="wall_alpha" default="0.12"/>
+
+  <arg name="start_rviz" default="true"/>
+  <arg name="start_player" default="true"/>
+  <arg name="player_extra_args" default=""/>
+
+  <!-- 不播放轨迹时，从双臂配置读取 mounts/base/place。配置加载顺序与规划
+       一致：pick_place_default -> dual_pick_place_default -> 自定义差异配置。 -->
+  <arg name="dual_config"
+       default="$(arg task_root)/config/dual_pick_place_default.yaml"/>
+
+  <!-- ================ place 扫描点云 ================
+       scan_dir 非空时, 把该次扫描 top1 的成功 grasp/place 点发布为
+       /place_scan/top1_points (PointCloud2, frame=base_frame, 不分颜色)。 -->
+  <arg name="scan_dir" default=""/>
+  <arg name="scan_extra_args" default=""/>
+
+  <!-- 公共参数. loop 由下面两个互斥的 node 分别追加 -->
+  <arg name="player_common"
+       value="--traj $(arg traj)
+              --base-frame $(arg base_frame)
+              --joint-topic $(arg joint_topic)
+              --speed $(arg speed)
+              --rate-hz $(arg rate_hz)
+              --hold $(arg hold)
+              --start-hold $(arg start_hold)
+              --wall-alpha $(arg wall_alpha)
+              $(arg mirror_flag)
+              $(arg player_extra_args)"/>
+
+  <!-- URDF 里的 mesh 是 package://robotics/... 无法解析, 替换成本地绝对路径 -->
+  <param name="robot_description" unless="$(arg show_scene)"
+         command="sed -e 's|package://robotics/drivers/dobot/description/meshes|$(arg mesh_dir)|g' $(arg urdf_file)"/>
+
+  <!-- 带料台场景: 由 build_scene_urdf.py 在原 xtrainer.urdf 基础上拼出
+       LINK_0 -> scene_root -> {workbench, 静态展示臂} -->
+  <param name="robot_description" if="$(arg show_scene)"
+         command="python3 $(arg task_root)/scripts/build_scene_urdf.py
+                  --urdf $(arg urdf_file)
+                  --mounts $(arg mounts_file)
+                  --mesh-dir $(arg mesh_dir)
+                  --table-mesh $(arg table_mesh)
+                  --active-arm $(arg active_arm)
+                  $(arg static_arm_flag)
+                  $(arg both_arms_flag)"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+        output="screen">
+    <param name="publish_frequency" value="50"/>
+  </node>
+
+  <!-- start_player=false 时没有轨迹播放器发布 /joint_states。由 JSP 以零位
+       持续发布所有活动关节，使主臂和 active_both 下的第二臂完整显示。 -->
+  <node name="xtrainer_static_joint_state"
+        pkg="joint_state_publisher" type="joint_state_publisher"
+        unless="$(arg start_player)" output="screen">
+    <param name="rate" value="30"/>
+  </node>
+
+  <!-- 与播放器一样使用普通 /tf 持续发布，避免 ROS1 /tf_static latch 冲突。 -->
+  <node name="xtrainer_dual_place_tf"
+        pkg="robot_state_publisher" type="robot_state_publisher"
+        unless="$(arg start_player)" output="screen" required="true"
+        launch-prefix="python3 $(arg task_root)/scripts/publish_dual_place_tf_ros.py --config $(arg dual_config)"/>
+
+  <!-- robot_state_publisher 仅作为可解析的占位 node; launch-prefix 实际运行播放脚本。
+       roslaunch 的 launch-prefix 属性里不支持 $(eval ...), 因此用 if/unless 拆成两个 node。 -->
+  <group if="$(arg start_player)">
+    <node name="xtrainer_traj_player"
+          pkg="robot_state_publisher"
+          type="robot_state_publisher"
+          unless="$(arg loop)"
+          output="screen"
+          required="true"
+          launch-prefix="python3 $(arg task_root)/scripts/play_trajectory_ros.py $(arg player_common)"/>
+
+    <node name="xtrainer_traj_player"
+          pkg="robot_state_publisher"
+          type="robot_state_publisher"
+          if="$(arg loop)"
+          output="screen"
+          required="true"
+          launch-prefix="python3 $(arg task_root)/scripts/play_trajectory_ros.py $(arg player_common) --loop"/>
+  </group>
+
+  <!-- 与播放器相同的占位 node 写法: launch-prefix 真正执行发布脚本 -->
+  <node name="place_scan_cloud"
+        pkg="robot_state_publisher"
+        type="robot_state_publisher"
+        if="$(eval arg('scan_dir') != '')"
+        output="screen"
+        launch-prefix="python3 $(arg task_root)/scripts/publish_scan_top1_cloud.py
+                       --scan-dir $(arg scan_dir)
+                       --base-frame $(arg base_frame)
+                       $(arg scan_extra_args)"/>
+
+  <node name="rviz" pkg="rviz" type="rviz"
+        if="$(arg start_rviz)"
+        args="-d $(arg rviz_config)" output="screen"/>
+</launch>

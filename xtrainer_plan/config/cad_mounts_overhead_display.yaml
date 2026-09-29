@@ -1,0 +1,17 @@
+# 上置单臂 RViz 专用的原装配体显示坐标，不参与规划。
+# left_arm 恢复 cad_mounts.yaml 的原始挂载：去掉额外 Y +0.257146 m 平移，
+# 并将 yaw 从 2.9687592653589793 恢复为 pi，去掉约 -9.903 度额外旋转。
+# right_arm 保留旧显示配置的数值，但上置单臂场景不绘制第二臂。
+# 不改变上置机械臂已确认的 mount_transform / RPY=[90, 0, 90] 度。
+# 需要复现旧显示时可传 --assembly-mounts config/cad_mounts_right_y_plus_0p4.yaml。
+
+left_arm:
+  xyz: [-0.478775, 0.250794, 0.456503]
+  rpy: [3.141592653589793, 0.0, 3.141592653589793]
+
+right_arm:
+  xyz: [0.321225, -0.239794, 0.456503]
+  rpy: [3.141592653589793, 0.0, 0.0]
+
+step_filter:
+  excluded_name_contains: "DOBOT Nova 2"

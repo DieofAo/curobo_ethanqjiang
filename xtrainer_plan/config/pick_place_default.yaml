@@ -1,0 +1,411 @@
+# =============================================================================
+# XTrainer 多物料上下料（pick & place）循环轨迹配置
+#
+# 场景:
+#   第一阶段 = 在给定范围内布一个物料阵列（横向 x 竖向），逐个抓取
+#   第二阶段 = 全部搬到同一个固定放置点
+#   每次放置后返回下一个上料位，最终拼成一条完整长轨迹
+#
+# 姿态搜索:
+#   抓取姿态 = base_rpy.grasp 右乘（绕 grasp.axis 转 ng 度）
+#   放置姿态 = base_rpy.place 右乘（绕 place.axis 转 np 度）
+#   默认两侧做笛卡尔积搜索，取第一个满足全部判据的 (ng, np) 组合。
+#   置 couple_place_to_grasp=true 则只搜 ng，np 由 ng 决定（详见该项注释）。
+#
+# 判据: 每一段内 J1~J4 中最大的关节变化 <= max_joint_delta_deg
+#
+# 所有位姿相对机器人 base（LINK_0）；rpy 单位度，约定 = ROS/URDF 固定轴 XYZ 外旋。
+#
+# 用法:
+#   ./run_pick_place.sh
+#   ./run_pick_place.sh --config config/my_pick_place.yaml
+#   ./run_pick_place.sh --rows 2 --cols 3
+#
+# -----------------------------------------------------------------------------
+# 常用改动速查（键的完整路径 -> 作用）
+#
+#   pick_place.grasp_grid.rows / cols        点阵密度
+#   pick_place.grasp_grid.x_range / y_range  框选区域
+#   pick_place.grasp_grid.order              遍历顺序 row_major/snake/ring
+#   pick_place.grasp_grid.perimeter_only     true=只扫最外围一圈
+#   pick_place.on_fail.mode                  stop=遇错中断 / skip=跳过继续
+#   pick_place.angle_search.grasp.min_deg    第一阶段角度范围下界（还决定耦合符号）
+#   pick_place.angle_search.couple_place_to_grasp   放置角是否由抓取角决定
+#   pick_place.angle_search.stage2.enable    是否开启第二阶段角度搜索
+#   pick_place.linear_move.kinds             哪些段做垂直插拔（直线约束）
+#   pick_place.link0_target_transform        单/双臂 LINK_0 目标的公共左乘轴角刚体变换
+#
+# 注意缩进层级：上面这些都在 pick_place: 之下。
+#   pick_place:            <- 0 空格
+#     grasp_grid:          <- 2 空格
+#       order: ring        <- 4 空格
+# 若误写成顶层键（0 空格），YAML 解析不报错但脚本读不到，会静默失效。
+#
+# 命令行参数优先级高于本文件，可临时覆盖而不改文件，例如：
+#   ./run_pick_place.sh --perimeter --order ring --on-fail skip
+#   ./run_pick_place.sh --no-perimeter --order snake --on-fail stop
+# -----------------------------------------------------------------------------
+# =============================================================================
+
+robot:
+  # 单臂 pick & place：只加载主臂，不把第二臂以 mimic 方式带入规划/自碰撞。
+  # 双臂独立规划由 ./run_pick_place.sh --dual 使用 dual_pick_place_default.yaml。
+  robot_yml: xtrainer.yml
+  dual_arm_prefix: null
+  base_link: LINK_0
+  # yaml 里所有 position / rpy_deg 都是 TCP（工具中心点）的位姿。
+  # TCP_LINK 在 URDF 里定义为: LINK_6 沿局部 +Z 平移 0.19m，无旋转。
+  # 因此 TCP 姿态 == LINK_6 姿态，位置比法兰面沿工具 +Z 前移 0.19m。
+  ee_link: TCP_LINK
+  # 碰撞球所在的法兰 link。TCP_LINK 是纯坐标系（无碰撞几何），
+  # 夹爪范围报告与 workspace.wall.collision_link_names 都要用这个 link。
+  flange_link: LINK_6
+  urdf: src/curobo/content/assets/robot/ur_description/xtrainer.urdf
+  retract_config: null
+  collision_sphere_buffer: 0.0
+  # 相对 URDF 原始下/上限分别 +0.15/-0.15 rad，IK 与规划共用，不叠加旧余量。
+  joint_limit_clip: 0.15
+  cspace_distance_weight: [5.0, 5.0, 5.0, 5.0, 5.0, 5.0]
+
+
+pick_place:
+  # ---------------- LINK_0 任务坐标修正 ----------------
+  # 单臂和双臂入口中所有 LINK_0 下的目标位姿统一左乘此刚体变换：
+  # T_effective = C @ T_current，其中 C 即 link0_target_transform。
+  # position 和 rotation.axis 都在规划 root/LINK_0 中表达；position 是
+  # 平移向量（米），angle_deg 是绕 axis 按右手定则旋转的角度（度）。
+  # axis 会自动归一化。单臂使用 C；双臂一号臂使用 C，二号臂使用
+  # C @ T12。它不会
+  # 改变两臂的物理安装关系、机器人模型或碰撞场景。开启 Cartesian
+  # 直线插拔时，C 必须把本地自由轴映射到规划 root 的 x/y/z 之一。
+  link0_target_transform:
+    position: [0.0, 0.0, 0.0]
+    rotation:
+      axis: [0.0, 0.0, 1.0]
+      angle_deg: 0.0
+
+  # ---------------- home：整条轨迹的起点 ----------------
+  # 从 home 出发；最后停在最后一次放置点（不回 home）
+  home:
+    # joint_deg 优先；若为 null 则用 position + rpy_deg 做 IK
+    joint_deg: null
+    # 单臂 home IK 的分支种子（不是直接使用的起点）。当前值对应下面位姿
+    # 经 -17deg LINK_0 修正后的连续构型，避免随机选到 J1≈+164deg 的反支。
+    # 最终 home 仍由带自碰撞/世界碰撞检查的 IK 求解和验收。
+    # 若修改 home 位姿或 LINK_0 修正，请同步更新此值，或设为 null 使用全局搜索。
+    ik_seed_joint_deg: [-57.4657, 7.6839, 130.5749, -48.2588, -90.0, 49.5343]
+    position: [-0.31, 0.11, 0.030]
+    rpy_deg: [-180, 0, 0]
+
+  # ---------------- 第一阶段：抓取点阵列 ----------------
+  # 在 x/y 范围内均匀布点（含端点）。rows 沿 x 方向，cols 沿 y 方向。
+  # rows=1 或 cols=1 时取该范围的中点。
+  grasp_grid:
+    x_range: [-0.62, -0.2]
+    y_range: [-0.2, 0.4]
+    z: 0.03 # 0.03
+    rows: 20          # 沿 x 的点数（竖向）
+    cols: 20        # 沿 y 的点数（横向）
+
+    # ===== 遍历顺序 =====
+    # 【怎么改】把 order 的值换成下面三者之一：
+    #   row_major = 先走完一行再下一行
+    #   snake     = 蛇形（每行反向，减少空行程）。扫「完整网格」时用这个
+    #   ring      = 沿外围闭环走一圈（上行->右列->下行->左列）。
+    #               只在 perimeter_only=true 时有意义，此时相邻点始终相邻、
+    #               空行程最短；若 perimeter_only=false 用 ring 会退化成 row_major
+    order: ring
+    # order: snake
+
+    # ===== 是否只扫最外围一圈 =====
+    # 【怎么改】true / false
+    #   false = 扫完整网格，rows*cols 个点全跑（8x5 = 40 个）
+    #   true  = 只保留最外围一圈，丢弃内部点（8x5 -> 22 个，省掉内部 18 个）
+    #
+    # 为什么有用：外围最难到达，内部点能到的概率更高。所以扫一圈就能快速摸清
+    #             整个框选区域是否可用，不必把所有点都跑一遍。
+    #
+    # 【重要】开 true 时务必把下面的 on_fail.mode 一起改成 skip！
+    #         外围点最难到达，用默认的 stop 会在第一个到不了的点直接中断，
+    #         扫不完整圈。脚本启动时会检测这一点并给出提示。
+    #
+    # rows<=2 或 cols<=2 时所有点本来就在外围，该选项无效果（日志会说明）。
+    perimeter_only: false
+
+  # ---------------- 第二阶段：固定放置点 ----------------
+  place:
+    position: [-0.16, -0.23, 0.1]
+
+  # ---------------- 姿态基准 ----------------
+  # 抓取/放置的基准姿态，搜索得到的角度在此基础上右乘
+  base_rpy:
+    grasp: [-180, 0, -180]
+    # grasp: [-180, 0, -90] # 横向布置
+    place: [-90, 0, -150]
+
+
+  # ---------------- 姿态角搜索（抓取 / 放置） ----------------
+  # 默认「独立」模式：抓取侧与放置侧各有自己的旋转轴与角度范围，两侧做笛卡尔积搜索：
+  #   for ng in grasp 候选:
+  #     for np in place 候选:
+  #        试 (ng, np) 这一组，取第一个满足全部判据的组合
+  #
+  # 抓取姿态 = base_rpy.grasp 右乘 (绕 grasp.axis 转 ng 度)
+  # 放置姿态 = base_rpy.place 右乘 (绕 place.axis 转 np 度)
+  # 右乘 = 绕工具自身轴（内旋）
+  angle_search:
+    # ===== 抓取角 / 放置角 是否耦合 =====
+    # false（默认）= 独立：ng 与 np 分别搜索，候选 = |grasp| x |place| 的笛卡尔积
+    # true          = 耦合：只搜 ng，np 由 ng 直接决定，候选退化为 |grasp| 组
+    #
+    # 耦合关系由 grasp.min_deg 的符号「整轮」判定（不是逐候选判定）：
+    #     grasp.min_deg <  0  ->  np =  ng   （放置角等于抓取角）
+    #     grasp.min_deg >= 0  ->  np = -ng   （放置角与抓取角相反）
+    # 例：grasp 范围 [-30, 0] -> min_deg=-30 < 0 -> 相等，(g,p) = (-8,-8)
+    #     grasp 范围 [0, 90]  -> min_deg=0  >= 0 -> 相反，(g,p) = (+8,-8)
+    #
+    # 用途：要求「取料与放料的工具转角相互关联」时用 true。
+    # 注意 1: 耦合的是「角度数值」，不是最终姿态 —— 两侧仍各自绕自己的
+    #         angle_search.<side>.axis 旋转、各自叠加在自己的 base_rpy 上。
+    #         因为 base_rpy.grasp/place 本身不同（俯视 vs 侧向），最终姿态依然不同。
+    # 注意 2: 开启后 place 的 min_deg/max_deg/step_deg 全部被忽略（角度只来自 grasp 侧），
+    #         strategy 与 coarse_place 也不再起作用（没有 place 维度可分轮扫）。
+    # 注意 3: 搜索空间小一个数量级、速度快很多，但可行解也少很多 ——
+    #         若某物料两端无法满足该耦合关系，就会直接失败。
+    couple_place_to_grasp: true
+
+    grasp:
+      axis: x
+      min_deg: -30.0
+      max_deg: 0.0
+      step_deg: 2.0
+    place:
+      axis: x
+      # 以下三项仅在 couple_place_to_grasp=false 时有效
+      min_deg: -30.0
+      max_deg: 30.0
+      # step_deg 从 2 放宽到 5: 候选数 31 -> 13。
+      # 实测 place 角对可行性的影响远小于 grasp 角，粗一点不损失什么。
+      step_deg: 5.0
+    # 遍历顺序:
+    #   abs = 按 |角度| 从小到大（优先贴近基准姿态，推荐）
+    #   asc = 从 min_deg 递增
+    order: abs
+
+    # 遍历策略（仅独立模式有效；决定笛卡尔积按什么顺序尝试，只在被 max_trials 截断时才有区别）:
+    #   abs_sum        = 按 |g| + |p| 递增。两边都贴近基准的组合最先试。
+    #                    缺点: 截断时大角度 grasp 可能一次都没试到
+    #                    （实测 max_trials=400 时 ±45~±90° 的 grasp 全成盲区）。
+    #   coarse_to_fine = 分轮次粗扫。第 1 轮让「每个」grasp 角都配 coarse_place
+    #                    个最小的 place 角，于是 grasp 维度在早期就被全程覆盖；
+    #                    后续轮次再逐步补齐剩余 place 角。
+    #                    grasp 角决定手腕分支、影响可行性远大于 place 角，故推荐。
+    strategy: coarse_to_fine
+    # coarse_to_fine 每轮给每个 grasp 角分配多少个 place 角
+    coarse_place: 3
+
+    # 优先复用上一个物料成功的 (ng, np) 组合，失败再走完整搜索
+    reuse_last_success: true
+    # 单个物料最多尝试多少组组合。0/null = 不限（完整遍历）。
+    # 设得足够大即可 100% 覆盖、不留盲区；耦合模式下候选很少，该上限基本不会触发。
+    # 代价: 单物料最坏耗时显著变长（预筛 IK 很快，真正慢的是通过预筛后的 trajopt）。
+    max_trials: 1200
+
+    # ---------------- 第二阶段搜索 ----------------
+    # 在第一阶段结果之上，再转一次。第一阶段恒为「右乘」（绕工具自身 grasp.axis 轴）：
+    #     R1 = R_base @ R(grasp.axis, a1)
+    #
+    # 第二阶段绕哪根轴，由 frame 决定：
+    #
+    #   frame: base （默认）—— 绕 base(LINK_0) 的 axis 轴转
+    #       R2 = R(base_axis, a2) @ R1            （左乘）
+    #     等价写法：取 R1 的逆（=转置）的第三列作为「工具系下的转轴」再右乘，
+    #     因为 R1 @ (R1^T @ ẑ) = ẑ，两种写法数值完全一致（实测误差 ~1e-16）。
+    #     代码用左乘实现，比构造 Rodrigues 更简洁。
+    #     效果：TCP 指向被摆动（相当于绕竖直轴摆一个方位角）。
+    #
+    #   frame: tool —— 绕「第一阶段转完之后」的工具局部 axis 轴转
+    #       R2 = R1 @ R(axis, a2)                 （右乘）
+    #     即绕 R1 旋转矩阵的第三列（当 axis=z）。
+    #     效果：TCP 指向不变，只绕自身轴自转。
+    #
+    # 重要：base_rpy.grasp=[-180,0,0] 时工具 Z 指向 LINK_0 的 -Z（夹爪朝下），
+    #       因此两种 frame 下同一个 a2 的转动方向是「相反」的。
+    #       切换 frame 时角度范围的符号需要重新确认。
+    #
+    # 两种 frame 下 TCP 的「位置」都不变 —— 位置来自 grasp_grid，与姿态无关。
+    # （唯一例外是 lift.axis=tool_z_neg，那时抬升点会跟着姿态动；当前是 base_z。）
+    #
+    # 逐物料流程:
+    #   1) 先跑完整的第一阶段搜索（含 trajopt），得到「该物料自己的」a1*
+    #      （不是全局写死一个值 —— 各物料第一阶段角本来就不同）
+    #   2) 固定 a1*，再搜 a2；grasp 与 place 两侧「不耦合」，各自独立搜（笛卡尔积）
+    #   3) a2 候选首项恒为 (0,0)；若全部 a2 都不可行，回退到第一阶段的轨迹
+    #
+    # 因此开启第二阶段不会让原本可行的物料变失败，只是耗时增加
+    # （第一阶段的完整规划仍会跑一遍，用于确定可信的 a1*）。
+    stage2:
+      # false = 完全保持原有行为（只做第一阶段）
+      enable: false
+      # 转轴所在坐标系: base = 绕 LINK_0 的轴; tool = 绕第一阶段转完后的工具局部轴
+      frame: base
+      # 绕哪个轴。frame=base 时 z 就是 LINK_0 的 Z 轴（竖直方向）
+      axis: z
+      # 角度范围（度）。注意必须 min_deg <= max_deg：
+      # 想要 0 ~ -90 就写 min_deg: -90, max_deg: 0。
+      # 若写反了脚本会自动互换并告警（否则只会生成 1 个候选而静默失效）。
+      min_deg: -90.0
+      max_deg: 0.0
+      # 第二阶段步长。因为是 |a2_g| x |a2_p| 的笛卡尔积，建议配得比第一阶段粗:
+      #   step 10 -> 每侧 10 个候选 -> 100 组
+      #   step 15 -> 每侧  7 个候选 ->  49 组
+      #   step 30 -> 每侧  4 个候选 ->  16 组
+      step_deg: 15.0
+      # 遍历顺序，留空则沿用上面的 order。abs = 按 |角度| 从小到大
+      order: abs
+      # 第二阶段最多尝试的组合数。0/null = 不限
+      max_trials: 0
+
+  # ---------------- 合适判据 ----------------
+  criterion:
+    # 每一段内，joints 里列出的关节中最大的那个变化上限（度）
+    max_joint_delta_deg: 170.0
+    # 参与「变化量」判据的关节（1-based 序号）
+    #
+    # [1,2,3,4]     = 当前默认
+    # [1,2,3,4,5]   = J5 也纳入监控，J6 允许大幅转动
+    # [1,2,3,4,5,6] = 全部关节（实测过严，0~45° 全部无解）
+    #
+    # 为什么把 J6 排除在「变化量」判据外、但保留下面的限位余量约束：
+    # 从抓取姿态到放置姿态的转换只有两条路 ——
+    #   (a) J1 大转（147~150°）绕底座半圈，J6 停在 0° 附近；
+    #   (b) J1 几乎不动，改用 J6 转到 177° 补偿姿态。
+    # 若把 J6 纳入变化量判据，(b) 会因 J6 变化过大被拒、(a) 会因 J1 超限被拒，
+    # 导致全部角度无解。因此放开 J6 的转动幅度，只用 min_limit_margin_deg
+    # 禁止它顶死限位 —— 后者才是真正损害末端精度的原因。
+    joints: [1, 2, 3, 4, 5]
+
+    # 额外硬判据：各关节离限位的最小余量（度）。0 或 null = 关闭。
+    # 贴限位意味着关节转不动，优化器只能牺牲末端精度去凑目标，
+    # 是「规划成功但误差偏大」的首要原因，因此单独设一条门槛。
+    min_limit_margin_deg: 0
+
+    # 判据在「IK 预检」阶段就用关节角快速筛选，避免对每个角度都做完整 trajopt。
+    # true = 先筛后规划（快）；false = 直接规划再校验（慢但更准）
+    prescreen_by_ik: true
+
+  # ---------------- 抬升（接近/离开）----------------
+  # 结构: home -> g_lift_in -> g -> g_lift_out -> p_lift_in -> p -> p_lift_out -> ...
+  lift:
+    grasp_z: 0.03      # 抓取点上方接近高度 (m)
+    place_z: 0.03      # 放置点上方接近高度 (m)
+    # base_z=沿 base +Z; tool_z_neg=沿工具 -Z 后退
+    # 注意: 启用下面的 linear_move 时必须为 base_z，否则抬升点与目标点的 x/y
+    #       不一致，无法构成沿 base Z 轴的直线，curobo 会直接报
+    #       INVALID_PARTIAL_POSE_COST_METRIC。脚本会提前拦下并退出。
+    axis: base_z
+
+  # ---------------- 直线段约束（垂直插拔）----------------
+  # 对 kinds 里列出的路点类型，把「抬升点 -> 目标点」这一段约束为
+  # 「末端只能沿 base(LINK_0) 的 free_axis 轴平移」的直线运动。
+  # 实现: curobo 的 PoseCostMetric.hold_partial_pose —— 锁死除 free_axis 以外的
+  #       位置分量（hold_rotation=true 时连姿态一起锁死）。
+  #
+  # 重要: hold_partial_pose 是 cost（软约束）而非 hard constraint，会残留
+  #       毫米级偏差，因此规划完成后必须用 FK 实测复核；超过下面的阈值即判该
+  #       组角度不合格，换下一组 (ng, np) 重试。
+  #
+  # kinds 可选 grasp / place：
+  #   ['place']          = 只约束放置段（放置精度要求高时的最小配置）
+  #   ['grasp','place']  = 抓取与放置都垂直插拔（当前默认，两端都要求垂直取放）
+  linear_move:
+    enable: true
+    kinds: ['grasp','place']
+    free_axis: z
+    hold_rotation: true
+    # 横向（非 free_axis 方向）偏移上限 (mm)
+    max_deviation_mm: 3.0
+    # 姿态偏差上限 (deg)。实测 place 段残留约 2.9°，故留到 5°；
+    # 收得太紧会让大量角度组合被判不合格。
+    max_rotation_deg: 5.0
+
+  # ---------------- 失败处理 ----------------
+  # 某个物料「所有角度组合都试过仍无可行解」时怎么办。
+  # 【怎么改】stop / skip
+  #   stop = 立即停止，保存已成功部分的轨迹 + plan_failed.json（诊断详情），
+  #          退出码 5。适合「必须全部成功」的正式产线轨迹
+  #   skip = 跳过该物料继续下一个，跑完全部点位，退出码 0，
+  #          被跳过的点位另存 plan_skipped.json。
+  #          适合「摸清哪些点位能到、哪些到不了」的探索场景
+  #
+  # 【重要】上面 grasp_grid.perimeter_only=true 时必须用 skip，
+  #         否则第一个到不了的外围点就会中断，整圈扫不完。
+  on_fail:
+    mode: skip
+
+
+workspace:
+  # bounds = 实际声明的工作空间, 仅用于规划后的软校验(校验 ee 原点)。
+  # x 下界放宽到 -0.62: 抓取阵列 x_range 起点为 -0.5, 加上抬升/过渡段
+  # 实测 ee 原点最小到 -0.563, 旧的 -0.50 会被判越界 57.9mm。
+  bounds:
+    x: [-2, 0.00]
+    y: [-1.30, 1.30]
+    z: [-0.10, 1.70]
+
+  wall:
+    enable: true
+    thickness: 0.05
+    bounds_override:
+      x: [-2, 0.10]
+      y: [-1.30, 1.30]
+      z: [-0.10, 1.70]
+    faces:
+      x_max: true
+      x_min: true
+      y_max: true
+      y_min: true
+      z_max: true
+      z_min: true
+    # 只让这些 link 参与「墙」的碰撞检测（自碰撞始终覆盖全部 link）
+    collision_link_names: ['LINK_6', 'LINK_3']
+    base_clearance:
+      enable: false
+      y_half: 0.09
+      z_max: 0.32
+      x_min: -0.09
+
+  check_after_plan: true
+  check_margin: 0.005
+  fail_on_violation: false
+  report_gripper_extent: true
+
+
+planner:
+  self_collision_check: true
+  self_collision_opt: true
+  collision_activation_distance: 0.015
+  interpolation_dt: 0.02
+  num_ik_seeds: 128
+  # 角度搜索会反复调用规划，种子数适当降低以控制总耗时
+  num_trajopt_seeds: 24
+  num_graph_seeds: 8
+  trajopt_tsteps: 40
+  max_attempts: 30
+  timeout: 20.0
+  enable_graph: false
+  enable_graph_attempt: 3
+  velocity_scale: 0.25
+  acceleration_scale: 0.5
+  jerk_scale: 1.0
+  position_threshold: 0.003
+  rotation_threshold: 0.03
+  collision_checker_type: MESH
+  use_cuda_graph: true
+  # 关节限位余量告警阈值（度）
+  limit_margin_warn_deg: 1.0
+
+
+output:
+  dir: results_pick_place
+  add_timestamp: true

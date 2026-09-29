@@ -1,0 +1,64 @@
+# The robot description defines the generalized coordinates and how to map those
+# to the underlying URDF dofs.
+
+
+# Lula uses collision spheres to define the robot geometry in order to avoid
+# collisions with external obstacles.  If no spheres are specified, Lula will
+# not be able to avoid obstacles.
+robot: 'xtrainer'
+collision_spheres:
+  LINK_0:
+    - center: [0.0, 0.0, 0.033]
+      radius: 0.08
+  LINK_1:
+    - center: [0.0, 0.0, 0.0]
+      radius: 0.08
+    - center: [0.0, 0.0, -0.1]
+      radius: 0.08
+  LINK_2:
+    - center: [-0.008, 0.0, 0.112]
+      radius: 0.07
+    - center: [-0.116, 0.0, 0.12]
+      radius: 0.07
+    - center: [-0.221, 0.0, 0.12]
+      radius: 0.07
+    - center: [-0.292, 0.0, 0.106]
+      radius: 0.06
+  LINK_3:
+    - center: [-0.0, -0.0, 0.009]
+      radius: 0.07
+    - center: [-0.108, 0.0, -0.0]
+      radius: 0.07
+    - center: [-0.217, 0.0, -0.0]
+      radius: 0.07
+  LINK_4:
+    - center: [-0.0, 0.0, -0.015]
+      radius: 0.06
+  LINK_5:
+    - center: [0.0, 0.0, -0.033]
+      radius: 0.03
+    - center: [0.0, -0.048, -0.0]
+      radius: 0.04
+    - center: [-0.016, -0.002, 0.027]
+      radius: 0.04
+    - center: [0.0, 0.0, -0.038]
+      radius: 0.07
+  LINK_6:
+    - center: [0.0, 0.002, -0.013]
+      radius: 0.06
+    - center: [-0.002, -0.069, 0.041]
+      radius: 0.06
+    - center: [-0.05, 0.0, 0.085]
+      radius: 0.04
+    - center: [0.059, -0.0, 0.08]
+      radius: 0.04
+    - center: [-0.0, -0.0, 0.12]
+      radius: 0.04
+    - center: [-0.0, -0.0, 0.187]
+      radius: 0.04
+    - center: [-0.0, -0.0, 0.252]
+      radius: 0.04
+    - center: [-0.051, 0.0, 0.136]
+      radius: 0.04
+    - center: [0.059, -0.0, 0.14]
+      radius: 0.04

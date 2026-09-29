@@ -1,0 +1,238 @@
+# =============================================================================
+# XTrainer 轨迹规划任务配置
+#
+# 所有位姿均相对机器人 base（LINK_0）表达。
+# rpy 单位为「度」，约定 = ROS/URDF 标准固定轴 XYZ 外旋，即 R = Rz(y) * Ry(p) * Rx(r)。
+#
+# 用法:
+#   ./run_plan.sh                                  # 用本文件
+#   ./run_plan.sh --config config/my_task.yaml     # 用自定义配置
+#   ./run_plan.sh --start-position -0.31 -0.05 0.2 # 命令行覆盖（优先级最高）
+# =============================================================================
+
+robot:
+  # curobo robot yml（相对 src/curobo/content/configs/robot/）
+  robot_yml: xtrainer.yml
+  # 方案 A（mimic 耦合双臂，规划期硬保证臂间避碰）启用方法:
+  #   robot_yml: xtrainer_dual.yml
+  #   dual_arm_prefix: second_
+  # 其余配置不变: 规划仍是 6 DOF, workspace.wall.collision_link_names 只写
+  # 主臂 link (第二臂同名 link 会自动补上)。xtrainer_dual.yml /
+  # spheres/xtrainer_dual.yml / xtrainer_dual_mimic.urdf 分别由
+  # scripts/build_dual_robot_yml.py 与 build_scene_urdf.py --emit-planning-urdf 生成。
+  dual_arm_prefix: null
+  # 规划链: base_link -> ee_link
+  base_link: LINK_0
+  # 用户给定的位姿是 TCP（工具中心点）的位姿。
+  # TCP_LINK 在 URDF 里定义为: LINK_6 沿局部 +Z 平移 0.19m，无旋转。
+  # 因此 TCP 的姿态与 LINK_6 完全一致，位置比法兰面沿工具 +Z 前移 0.19m。
+  ee_link: TCP_LINK
+  # 碰撞球所在的法兰 link。TCP_LINK 是纯坐标系（无碰撞几何），
+  # 夹爪范围报告与 wall.collision_link_names 都要用这个 link。
+  flange_link: LINK_6
+  # rviz / 播放用的 URDF（相对仓库根目录）
+  urdf: src/curobo/content/assets/robot/ur_description/xtrainer.urdf
+  # 覆盖 yml 里的 retract_config（IK/规划的零空间偏好）。null = 沿用 yml
+  retract_config: null
+  # 全局碰撞球膨胀量 (m)。正数更保守，可用于给真机留安全余量
+  collision_sphere_buffer: 0.0
+  # 关节限位向内收缩量 (rad)，避免规划贴着硬限位。0 = 不收缩
+  joint_limit_clip: 0.05
+
+  # 关节空间距离权重 [J_1..J_6]，null = 沿用 xtrainer.yml 的 [2.5,1.75,1.5,1.25,0.7,0.4]。
+  # 用途: curobo 在多个 trajopt 种子收敛后，用
+  #       path_length = Σ(|关节速度| × 本权重) 来挑选最优种子
+  #       （evaluator.compute_path_length_cost）。权重越高的关节，越倾向少动。
+  # 注意: 这是覆盖值，不修改共享的 xtrainer.yml（另有两个脚本在用它）。
+  #
+  # 重要局限（实测结论）: 该权重只影响「从已收敛的种子里挑哪一个」，
+  # 无法改变各路点的终点关节角——终点由 IK 在 trajopt 之前就确定了。
+  # 因此若某关节的大幅转动源自 IK 解本身（例如 J6 从 +146.6° 到 -129.0°
+  # 需转 275.7°，且因 J6 限位仅 ±177° 而无法走 ±360° 等价的短边），
+  # 调本权重完全无效。那种情况要改目标姿态或指定 start_joint_state。
+  # 本权重能压缩的是「同一起终点之间的往返绕行」（J2/J3/J4 常见）。
+  cspace_distance_weight: [5.0, 5.0, 5.0, 5.0, 5.0, 5.0]
+
+
+task:
+  # ---------------- 起始位姿 ----------------
+  start:
+    position: [-0.31, -0.05, 0.20]
+    rpy_deg: [-180, 0, 0]
+
+  # ---------------- 目标位姿 ----------------
+  goal:
+    position: [-0.34, -0.09, 0.25]
+    rpy_deg: [-90.0, 0, -90.0]
+
+  # 起始关节角。null = 用 IK 从 start 位姿求解
+  # 若已知真机当前关节角，填 6 个值（rad）可保证起点与真机一致
+  start_joint_state: null
+
+  # ---------------- 姿态变体（批量对比） ----------------
+  # start 与 goal 各自可定义若干旋转增量，两侧做「笛卡尔积」组合，
+  # 每个组合 = 一个独立的 (start, goal) 任务 = 一次独立规划。
+  # 例：start 3 个 × goal 3 个 = 9 次规划。
+  #
+  # mode: right = 右乘，绕「工具自身轴」转（R_new = R_base @ R_delta）
+  #       left  = 左乘，绕「base 固定轴」转（R_new = R_delta @ R_base）
+  # rotations 里每一项是 [droll, dpitch, dyaw]，单位度。
+  #
+  # 注意：start 变体一旦启用（非 base），该组合会强制用 IK 重解起始关节角，
+  #       因为原先的 start_joint_state 已不对应新的起始位姿。
+  start_variants:
+    enable: true
+    mode: right
+    rotations:
+      - [-30, 0, 0]
+      - [30, 0, 0]
+      - [0, 0, 0]
+    position_delta: null
+
+  goal_variants:
+    enable: true
+    mode: right
+    rotations:
+      - [-30, 0, 0]
+      - [30, 0, 0]
+      - [0, 0, 0]
+    # 可选：同时给位置加偏移。null=不偏移；
+    # 给 [dx,dy,dz] = 所有变体共用；给 [[..],[..],[..]] = 每个变体各自的偏移
+    position_delta: null
+
+  # ---------------- 中间路点 ----------------
+  waypoints:
+    # 自动生成"抬升"路点：进入抓取 / 进入放置的接近-离开动作
+    # 段序列: start -> (start+dz) -> (goal+dz) -> goal
+    auto_lift:
+      enable: true
+      # 起点正上方的抬升高度 (m)，沿 base 的 +Z
+      start_lift_z: 0.03
+      # 目标正上方的抬升高度 (m)，沿 base 的 +Z
+      goal_lift_z: 0.03
+      # true: 抬升点沿用各自端点的姿态; false: 用下面的 rpy_deg
+      keep_orientation: true
+      start_lift_rpy_deg: null
+      goal_lift_rpy_deg: null
+      # 抬升方向。'base_z' = base 坐标系 +Z; 'tool_z_neg' = 沿工具 -Z 后退
+      lift_axis: base_z
+
+    # 手工额外路点，按顺序插在 start_lift 与 goal_lift 之间
+    # 例:
+    #   extra:
+    #     - position: [-0.40, 0.00, 0.35]
+    #       rpy_deg: [180.0, 0.0, 0.0]
+    extra: []
+
+
+workspace:
+  # 末端允许活动的笛卡尔范围（相对 base）
+  bounds:
+    x: [-0.50, 0.00]
+    y: [-0.30, 0.30]
+    z: [-0.10, 0.70]
+
+  # ---- 硬约束: 用 6 面 cuboid 墙约束末端 ----
+  wall:
+    enable: true
+    # 墙厚 (m)
+    thickness: 0.05
+
+    # 墙实际使用的盒子。留空则用上面的 bounds。
+    # 为什么需要它: LINK_6 的碰撞球覆盖整个夹爪，沿 LINK_6 局部 +z 一直伸到 0.252m。
+    # 起始姿态 rpy=(-135.56,-0.93,-8.9) 让夹爪朝斜下方，法兰在 z=0.20 时夹爪尖端
+    # 已降到 z≈-0.02，必然戳穿 z=0.1 的盒底 —— 法兰在盒内与夹爪在盒内无法同时满足。
+    # 因此墙用放宽后的盒子（主要是放低 z 下界），bounds 仍保持你声明的真实工作空间用于软校验。
+    # 数值由 scripts/probe_ee_extent.py 探测得出。
+    bounds_override:
+      x: [-1.50, 0.10]
+      y: [-1.30, 1.30]
+      z: [-0.1, 1.70]
+
+    # 逐面开关
+    faces:
+      x_max: true
+      x_min: true
+      y_max: true
+      y_min: true
+      z_max: true
+      z_min: true
+
+    # 只让这些 link 参与「墙」的碰撞检测（自碰撞检测始终覆盖全部 link）。
+    # 实现: 世界碰撞与自碰撞是两个独立的 cost，各自接收碰撞球张量。
+    #       这里只把「世界碰撞」输入中非末端 link 的球半径置为负值，
+    #       curobo 的 sphere_obb kernel 遇到负半径会直接跳过（cost=0），
+    #       而自碰撞 cost 拿到的仍是原始球，因此自碰撞完全不受影响。
+    # 留空 [] 或 null = 全部 link 都受墙约束（会导致 LINK_2/3/5 贴墙，一般规划不出来）
+    collision_link_names: ['LINK_6','LINK_3']
+    # collision_link_names: []
+
+
+    # base 立柱让位孔。
+    # 仅在 collision_link_names 包含 LINK_0/LINK_1 时才需要。
+    # 实测立柱包围盒 x=[-0.08,0.08] y=[-0.08,0.08] z=[-0.047,0.303]（球心都在 J_1 轴上，
+    # 与关节角无关），必然穿过 x=0 与 z=0.1 两个墙面。
+    # 数值由 scripts/probe_base_spheres.py 探测得出，各方向留 10mm 余量。
+    base_clearance:
+      enable: false
+      # 孔在 y 方向的半宽 (m)
+      y_half: 0.09
+      # x_max 面上的孔: z 从 bounds.z[0] 到该值 (m)
+      z_max: 0.32
+      # z_min 面上的孔: x 从该值到 bounds.x[1] (m)
+      x_min: -0.09
+
+  # ---- 软约束: 规划完成后逐点校验 ----
+  check_after_plan: true
+  # 校验容差 (m)，允许的越界量
+  check_margin: 0.005
+  # 越界时是否直接判定失败（false 则只告警）
+  fail_on_violation: false
+  # 额外报告夹爪尖端（LINK_6 全部碰撞球）相对 bounds 的越界量。
+  # 仅作为信息输出写入 meta，不影响成功判定。
+  report_gripper_extent: true
+
+
+planner:
+  self_collision_check: true
+  self_collision_opt: true
+  # 碰撞代价的激活距离 (m)，越大越保守
+  collision_activation_distance: 0.015
+  interpolation_dt: 0.02
+  num_ik_seeds: 128
+  # trajopt 种子数。种子越多 -> 收敛出的候选解越多 -> 按加权关节路径长度挑出的
+  # 最优解越短。实测(3 段、单臂 6 轴): 12->24 总行程 411->409deg，24->48 -> 405deg，
+  # 配合权重均衡后 48 种子可达 400deg，即约 2.7% 改善；耗时增加不明显(<1s)。
+  # 再往上收益趋于饱和，因为剩余行程多为运动学必需。
+  num_trajopt_seeds: 48
+  num_graph_seeds: 8
+  trajopt_tsteps: 40
+  # 单段规划的最大尝试次数 / 超时
+  max_attempts: 60
+  timeout: 30.0
+  # 直线 trajopt 失败时启用图搜索(PRM)找绕行种子
+  enable_graph: false
+  enable_graph_attempt: 3
+  # 速度/加速度/jerk 相对 yml 上限的缩放。播放速度看起来太快就调小
+  velocity_scale: 0.25
+  acceleration_scale: 0.5
+  jerk_scale: 1.0
+  position_threshold: 0.003      # m
+  rotation_threshold: 0.03       # quat 误差
+  collision_checker_type: MESH
+  use_cuda_graph: true
+
+  # 规划前预检各路点的 IK 解, 找出关节跳变过大的段。
+  # 同一笛卡尔位姿有多组 IK 解（肘上/肘下、腕翻转）。若相邻路点的解落在不同分支，
+  # 即使笛卡尔位移只有几厘米，关节也要转上百度，trajopt 几乎必然 FINETUNE_TRAJOPT_FAIL。
+  # 开启后会以上一路点关节角为 IK 种子求解，尽量留在同一分支，并对残余跳变告警。
+  check_ik_branch: true
+  ik_branch_warn_deg: 90.0
+
+
+output:
+  # 相对本任务目录
+  dir: results
+  # 输出文件名前缀（会自动追加时间戳目录）
+  name: xtrainer_traj
+  add_timestamp: true

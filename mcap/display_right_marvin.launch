@@ -1,0 +1,15 @@
+<launch>
+  <arg name="rviz_config" default="$(eval env('HOME') + '/workspace/curobo/mcap/display_robot.rviz')"/>
+  <arg name="urdf_file" default="$(eval env('HOME') + '/workspace/curobo/src/curobo/content/assets/robot/marvin_description/urdf/right_marvin.urdf')"/>
+  <arg name="mesh_dir" default="$(eval 'file://' + env('HOME') + '/workspace/curobo/src/curobo/content/assets/robot/marvin_description/meshes')"/>
+
+  <param name="robot_description"
+         command="sed -e 's|package://robotics/drivers/marvin/description/third_party/marvin/meshes|$(arg mesh_dir)|g' -e 's|../meshes|$(arg mesh_dir)|g' -e 's|filename=&quot;meshes/|filename=&quot;$(arg mesh_dir)/|g' $(arg urdf_file)"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+    <param name="publish_frequency" value="50"/>
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz"
+        args="-d $(arg rviz_config)" output="screen"/>
+</launch>

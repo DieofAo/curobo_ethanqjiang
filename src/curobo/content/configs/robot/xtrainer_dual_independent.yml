@@ -1,0 +1,154 @@
+# !!! 本文件由 xtrainer_plan/scripts/build_dual_robot_yml.py 自动生成, 请勿手改 !!!
+# independent 双臂联合模型, 12 DOF (xtrainer_dual_independent.urdf), 第二臂前缀 = "second_"
+robot_cfg:
+  kinematics:
+    use_usd_kinematics: false
+    urdf_path: robot/ur_description/xtrainer_dual_independent.urdf
+    asset_root_path: robot/ur_description
+    isaac_usd_path: null
+    usd_robot_root: null
+    usd_path: null
+    base_link: LINK_0
+    ee_link: gripper_link
+    link_names: null
+    collision_link_names:
+    - LINK_0
+    - LINK_1
+    - LINK_2
+    - LINK_3
+    - LINK_4
+    - LINK_5
+    - LINK_6
+    - second_LINK_0
+    - second_LINK_1
+    - second_LINK_2
+    - second_LINK_3
+    - second_LINK_4
+    - second_LINK_5
+    - second_LINK_6
+    collision_spheres: spheres/xtrainer_dual_independent.yml
+    collision_sphere_buffer: 0.0
+    self_collision_ignore:
+      LINK_0:
+      - LINK_1
+      LINK_1:
+      - LINK_2
+      LINK_2:
+      - LINK_1
+      - LINK_3
+      LINK_3:
+      - LINK_2
+      - LINK_4
+      LINK_4:
+      - LINK_3
+      - LINK_5
+      LINK_5:
+      - LINK_4
+      - LINK_6
+      LINK_6:
+      - LINK_5
+      second_LINK_0:
+      - second_LINK_1
+      second_LINK_1:
+      - second_LINK_2
+      second_LINK_2:
+      - second_LINK_1
+      - second_LINK_3
+      second_LINK_3:
+      - second_LINK_2
+      - second_LINK_4
+      second_LINK_4:
+      - second_LINK_3
+      - second_LINK_5
+      second_LINK_5:
+      - second_LINK_4
+      - second_LINK_6
+      second_LINK_6:
+      - second_LINK_5
+    self_collision_buffer:
+      LINK_0: 0
+      LINK_1: 0
+      LINK_2: 0
+      LINK_3: 0
+      LINK_4: 0
+      LINK_5: 0
+      LINK_6: 0
+      second_LINK_0: 0
+      second_LINK_1: 0
+      second_LINK_2: 0
+      second_LINK_3: 0
+      second_LINK_4: 0
+      second_LINK_5: 0
+      second_LINK_6: 0
+    mesh_link_names:
+    - LINK_0
+    - LINK_1
+    - LINK_2
+    - LINK_3
+    - LINK_4
+    - LINK_5
+    - LINK_6
+    - second_LINK_0
+    - second_LINK_1
+    - second_LINK_2
+    - second_LINK_3
+    - second_LINK_4
+    - second_LINK_5
+    - second_LINK_6
+    lock_joints: null
+    cspace:
+      joint_names:
+      - J_1
+      - J_2
+      - J_3
+      - J_4
+      - J_5
+      - J_6
+      - second_J_1
+      - second_J_2
+      - second_J_3
+      - second_J_4
+      - second_J_5
+      - second_J_6
+      retract_config:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+      null_space_weight:
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      cspace_distance_weight:
+      - 2.5
+      - 1.75
+      - 1.5
+      - 1.25
+      - 0.7
+      - 0.4
+      - 2.5
+      - 1.75
+      - 1.5
+      - 1.25
+      - 0.7
+      - 0.4
+      max_jerk: 500.0
+      max_acceleration: 12.0
+      position_limit_clip: 0.1

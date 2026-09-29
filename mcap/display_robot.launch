@@ -1,0 +1,22 @@
+<launch>
+  <arg name="robot" default="marvin"/>
+  <arg name="rviz_config" default="$(eval env('HOME') + '/workspace/curobo/mcap/display_robot_jaka.rviz' if arg('robot') == 'jaka' else env('HOME') + '/workspace/curobo/mcap/display_robot.rviz')"/>
+
+  <!-- URDF文件路径 -->
+  <arg name="urdf_file" default="$(eval env('HOME') + '/workspace/curobo/jaka/left_jaka.urdf' if arg('robot') == 'jaka' else env('HOME') + '/workspace/curobo/src/curobo/content/assets/robot/marvin_description/urdf/marvin_robot.urdf')"/>
+  <!-- mesh目录绝对路径 -->
+  <arg name="mesh_dir" default="$(eval 'file://' + env('HOME') + ('/workspace/curobo/jaka/meshes' if arg('robot') == 'jaka' else '/workspace/curobo/src/curobo/content/assets/robot/marvin_description/meshes'))"/>
+
+  <!-- 加载URDF到参数服务器，将相对mesh路径替换为绝对路径 -->
+  <param name="robot_description"
+         command="sed -e 's|../meshes|$(arg mesh_dir)|g' -e 's|filename=&quot;meshes/|filename=&quot;$(arg mesh_dir)/|g' $(arg urdf_file)"/>
+
+  <!-- 启动robot_state_publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+    <param name="publish_frequency" value="50"/>
+  </node>
+
+  <!-- 启动rviz -->
+  <node name="rviz" pkg="rviz" type="rviz"
+        args="-d $(arg rviz_config)" output="screen"/>
+</launch>

@@ -8,7 +8,7 @@ robot_cfg:
     urdf_path: "robot/jaka_description/left_jaka.urdf"
     asset_root_path: "robot/jaka_description"
     base_link: "LINK_BASE"
-    ee_link: "LINK_7"
+    ee_link: "gripper_link"
     link_names: null
 
     collision_link_names:

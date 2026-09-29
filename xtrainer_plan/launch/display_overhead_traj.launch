@@ -1,0 +1,73 @@
+<launch>
+  <!-- Single-arm overhead preview/playback.  Deliberately contains no dual-arm
+       scene builder, dual place TF publisher, mirror joints or scan cloud. -->
+  <arg name="repo_root" default="$(eval env('HOME') + '/workspace/curobo')"/>
+  <arg name="task_root" default="$(arg repo_root)/xtrainer_plan"/>
+  <arg name="traj" default="$(arg task_root)/results/latest"/>
+  <arg name="urdf_file"/>
+  <arg name="mesh_dir"
+       default="file://$(arg repo_root)/src/curobo/content/assets/robot/ur_description/meshes"/>
+  <arg name="rviz_config" default="$(arg task_root)/config/xtrainer_overhead.rviz"/>
+
+  <!-- Trajectory arrays/metadata remain in the real robot base frame. -->
+  <arg name="base_frame" default="LINK_0"/>
+  <!-- RViz observes the unchanged task/world coordinates added by the
+       generated URDF: task_world -> LINK_0 = robot.mount_transform. -->
+  <arg name="task_frame" default="task_world"/>
+  <arg name="joint_topic" default="/joint_states"/>
+  <arg name="speed" default="1.0"/>
+  <arg name="rate_hz" default="0.0"/>
+  <arg name="loop" default="false"/>
+  <arg name="hold" default="2.0"/>
+  <arg name="start_hold" default="1.5"/>
+  <arg name="wall_alpha" default="0.12"/>
+  <arg name="start_rviz" default="true"/>
+  <arg name="start_player" default="true"/>
+  <arg name="player_extra_args" default=""/>
+  <arg name="preview_joint_positions" default="{}"/>
+
+  <arg name="player_common"
+       value="--traj $(arg traj)
+              --base-frame $(arg base_frame)
+              --joint-topic $(arg joint_topic)
+              --speed $(arg speed)
+              --rate-hz $(arg rate_hz)
+              --hold $(arg hold)
+              --start-hold $(arg start_hold)
+              --wall-alpha $(arg wall_alpha)
+              $(arg player_extra_args)"/>
+
+  <!-- build_overhead_scene_urdf.py has already replaced mesh package URLs;
+       retain the substitution for compatibility with hand-built scene URDFs. -->
+  <param name="robot_description"
+         command="sed -e 's|package://robotics/drivers/dobot/description/meshes|$(arg mesh_dir)|g' $(arg urdf_file)"/>
+
+  <node name="overhead_robot_state_publisher"
+        pkg="robot_state_publisher" type="robot_state_publisher" output="screen">
+    <param name="publish_frequency" value="50"/>
+  </node>
+
+  <!-- Config-only preview: show a deterministic zero-joint model and publish
+       no task/place TF beyond the two fixed frames in robot_description. -->
+  <node name="overhead_zero_joint_state"
+        pkg="joint_state_publisher" type="joint_state_publisher"
+        unless="$(arg start_player)" output="screen">
+    <param name="rate" value="30"/>
+    <rosparam param="zeros" subst_value="true">$(arg preview_joint_positions)</rosparam>
+  </node>
+
+  <group if="$(arg start_player)">
+    <node name="overhead_traj_player"
+          pkg="robot_state_publisher" type="robot_state_publisher"
+          unless="$(arg loop)" output="screen" required="true"
+          launch-prefix="python3 $(arg task_root)/scripts/play_trajectory_ros.py $(arg player_common)"/>
+    <node name="overhead_traj_player"
+          pkg="robot_state_publisher" type="robot_state_publisher"
+          if="$(arg loop)" output="screen" required="true"
+          launch-prefix="python3 $(arg task_root)/scripts/play_trajectory_ros.py $(arg player_common) --loop"/>
+  </group>
+
+  <node name="overhead_rviz" pkg="rviz" type="rviz"
+        if="$(arg start_rviz)"
+        args="-d $(arg rviz_config) -f $(arg task_frame)" output="screen"/>
+</launch>

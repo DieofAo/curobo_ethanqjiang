@@ -1,0 +1,58 @@
+<launch>
+  <arg name="repo_root" default="$(eval env('HOME') + '/workspace/curobo')"/>
+  <arg name="rviz_config" default="$(arg repo_root)/mcap/display_robot.rviz"/>
+  <arg name="mcap_file" default="$(arg repo_root)/mcap/data/20260702-191242_optimized.mcap"/>
+  <arg name="urdf_file" default="$(arg repo_root)/src/curobo/content/assets/robot/marvin_description/urdf/right_marvin.urdf"/>
+  <arg name="mesh_dir" default="file://$(arg repo_root)/src/curobo/content/assets/robot/marvin_description/meshes"/>
+
+  <arg name="action_topic" default="/robot/data/marvin_arm_right/action"/>
+  <arg name="publish_topic" default="/joint_states"/>
+  <arg name="speed" default="1.0"/>
+  <arg name="publish_rate_hz" default="0.0"/>
+  <arg name="position_threshold" default="0.001"/>
+  <arg name="rotation_threshold" default="0.01"/>
+  <arg name="num_seeds" default="64"/>
+  <arg name="max_iterations" default="600"/>
+  <arg name="output_dir" default="$(arg repo_root)/mcap/results/right_marvin_action_ik_publish"/>
+  <arg name="start_publisher" default="true"/>
+  <arg name="start_rviz" default="true"/>
+  <arg name="publisher_extra_args" default=""/>
+
+  <param name="robot_description"
+         command="sed -e 's|package://robotics/drivers/marvin/description/third_party/marvin/meshes|$(arg mesh_dir)|g' -e 's|../meshes|$(arg mesh_dir)|g' -e 's|filename=&quot;meshes/|filename=&quot;$(arg mesh_dir)/|g' $(arg urdf_file)"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+    <param name="publish_frequency" value="50"/>
+  </node>
+
+  <!-- robot_state_publisher is only a resolvable placeholder; launch-prefix runs the local Python JointState publisher. -->
+  <node name="right_marvin_action_ik_joint_state_publisher"
+        pkg="robot_state_publisher"
+        type="robot_state_publisher"
+        if="$(arg start_publisher)"
+        output="screen"
+        launch-prefix="python3 $(arg repo_root)/mcap/publish_right_marvin_action_ik.py
+                       --mcap $(arg mcap_file)
+                       --action-topic $(arg action_topic)
+                       --urdf $(arg urdf_file)
+                       --base-link Base
+                       --ee-link Link7
+                       --joint-names 'Joint1 Joint2 Joint3 Joint4 Joint5 Joint6 Joint7'
+                       --left-translation '0 -0.061 0'
+                       --left-rotation-xyzw '0.68304129 0.18291100 0.18291033 0.68303878'
+                       --right-translation '0 -0.3202976292452259 0'
+                       --right-rotation-xyzw '0.5 -0.5 0.5 0.5'
+                       --position-threshold $(arg position_threshold)
+                       --rotation-threshold $(arg rotation_threshold)
+                       --num-seeds $(arg num_seeds)
+                       --max-iterations $(arg max_iterations)
+                       --publish-topic $(arg publish_topic)
+                       --speed $(arg speed)
+                       --publish-rate-hz $(arg publish_rate_hz)
+                       --output-dir $(arg output_dir)
+                       $(arg publisher_extra_args)"/>
+
+  <node name="rviz" pkg="rviz" type="rviz"
+        if="$(arg start_rviz)"
+        args="-d $(arg rviz_config)" output="screen"/>
+</launch>

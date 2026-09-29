@@ -1,0 +1,1277 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 0
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /TF1/Frames1
+      Splitter Ratio: 0.5
+    Tree Height: 1108
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+Preferences:
+  PromptSaveOnExit: true
+Toolbars:
+  toolButtonStyle: 2
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 0.10000000149011612
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 20
+      Reference Frame: LINK_0
+      Value: true
+    - Alpha: 1
+      Class: rviz/RobotModel
+      Collision Enabled: false
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        LINK_0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        LINK_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        LINK_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        LINK_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        LINK_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        LINK_5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        LINK_6:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        Link Tree Style: Links in Alphabetic Order
+        TCP_LINK:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        gripper_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        scene_root:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        static_LINK_0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        static_LINK_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        static_LINK_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        static_LINK_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        static_LINK_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        static_LINK_5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        static_LINK_6:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        static_TCP_LINK:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        static_gripper_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        workbench:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+      Name: XTrainer
+      Robot Description: robot_description
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Class: rviz/TF
+      Enabled: true
+      Filter (blacklist): ""
+      Filter (whitelist): ""
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+        LINK_0:
+          Value: true
+        LINK_1:
+          Value: true
+        LINK_2:
+          Value: true
+        LINK_3:
+          Value: true
+        LINK_4:
+          Value: true
+        LINK_5:
+          Value: true
+        LINK_6:
+          Value: true
+        TCP_LINK:
+          Value: true
+        gripper_link:
+          Value: true
+        scene_root:
+          Value: true
+        static_LINK_0:
+          Value: true
+        static_LINK_1:
+          Value: true
+        static_LINK_2:
+          Value: true
+        static_LINK_3:
+          Value: true
+        static_LINK_4:
+          Value: true
+        static_LINK_5:
+          Value: true
+        static_LINK_6:
+          Value: true
+        static_TCP_LINK:
+          Value: true
+        static_gripper_link:
+          Value: true
+        workbench:
+          Value: true
+        xtrainer_ee_cmd:
+          Value: true
+        xtrainer_ee_planned:
+          Value: true
+        xtrainer_arm1_place:
+          Value: true
+        xtrainer_arm2_place:
+          Value: true
+        xtrainer_wp_i0_g_lift_in:
+          Value: true
+        xtrainer_wp_i0_g_lift_out:
+          Value: true
+        xtrainer_wp_i0_grasp:
+          Value: true
+        xtrainer_wp_i0_p_lift_in:
+          Value: true
+        xtrainer_wp_i0_p_lift_out:
+          Value: true
+        xtrainer_wp_i0_place:
+          Value: true
+        xtrainer_wp_i10_g_lift_in:
+          Value: true
+        xtrainer_wp_i10_g_lift_out:
+          Value: true
+        xtrainer_wp_i10_grasp:
+          Value: true
+        xtrainer_wp_i10_p_lift_in:
+          Value: true
+        xtrainer_wp_i10_p_lift_out:
+          Value: true
+        xtrainer_wp_i10_place:
+          Value: true
+        xtrainer_wp_i11_g_lift_in:
+          Value: true
+        xtrainer_wp_i11_g_lift_out:
+          Value: true
+        xtrainer_wp_i11_grasp:
+          Value: true
+        xtrainer_wp_i11_p_lift_in:
+          Value: true
+        xtrainer_wp_i11_p_lift_out:
+          Value: true
+        xtrainer_wp_i11_place:
+          Value: true
+        xtrainer_wp_i12_g_lift_in:
+          Value: true
+        xtrainer_wp_i12_g_lift_out:
+          Value: true
+        xtrainer_wp_i12_grasp:
+          Value: true
+        xtrainer_wp_i12_p_lift_in:
+          Value: true
+        xtrainer_wp_i12_p_lift_out:
+          Value: true
+        xtrainer_wp_i12_place:
+          Value: true
+        xtrainer_wp_i13_g_lift_in:
+          Value: true
+        xtrainer_wp_i13_g_lift_out:
+          Value: true
+        xtrainer_wp_i13_grasp:
+          Value: true
+        xtrainer_wp_i13_p_lift_in:
+          Value: true
+        xtrainer_wp_i13_p_lift_out:
+          Value: true
+        xtrainer_wp_i13_place:
+          Value: true
+        xtrainer_wp_i14_g_lift_in:
+          Value: true
+        xtrainer_wp_i14_g_lift_out:
+          Value: true
+        xtrainer_wp_i14_grasp:
+          Value: true
+        xtrainer_wp_i14_p_lift_in:
+          Value: true
+        xtrainer_wp_i14_p_lift_out:
+          Value: true
+        xtrainer_wp_i14_place:
+          Value: true
+        xtrainer_wp_i15_g_lift_in:
+          Value: true
+        xtrainer_wp_i15_g_lift_out:
+          Value: true
+        xtrainer_wp_i15_grasp:
+          Value: true
+        xtrainer_wp_i15_p_lift_in:
+          Value: true
+        xtrainer_wp_i15_p_lift_out:
+          Value: true
+        xtrainer_wp_i15_place:
+          Value: true
+        xtrainer_wp_i16_g_lift_in:
+          Value: true
+        xtrainer_wp_i16_g_lift_out:
+          Value: true
+        xtrainer_wp_i16_grasp:
+          Value: true
+        xtrainer_wp_i16_p_lift_in:
+          Value: true
+        xtrainer_wp_i16_p_lift_out:
+          Value: true
+        xtrainer_wp_i16_place:
+          Value: true
+        xtrainer_wp_i17_g_lift_in:
+          Value: true
+        xtrainer_wp_i17_g_lift_out:
+          Value: true
+        xtrainer_wp_i17_grasp:
+          Value: true
+        xtrainer_wp_i17_p_lift_in:
+          Value: true
+        xtrainer_wp_i17_p_lift_out:
+          Value: true
+        xtrainer_wp_i17_place:
+          Value: true
+        xtrainer_wp_i18_g_lift_in:
+          Value: true
+        xtrainer_wp_i18_g_lift_out:
+          Value: true
+        xtrainer_wp_i18_grasp:
+          Value: true
+        xtrainer_wp_i18_p_lift_in:
+          Value: true
+        xtrainer_wp_i18_p_lift_out:
+          Value: true
+        xtrainer_wp_i18_place:
+          Value: true
+        xtrainer_wp_i19_g_lift_in:
+          Value: true
+        xtrainer_wp_i19_g_lift_out:
+          Value: true
+        xtrainer_wp_i19_grasp:
+          Value: true
+        xtrainer_wp_i19_p_lift_in:
+          Value: true
+        xtrainer_wp_i19_p_lift_out:
+          Value: true
+        xtrainer_wp_i19_place:
+          Value: true
+        xtrainer_wp_i1_g_lift_in:
+          Value: true
+        xtrainer_wp_i1_g_lift_out:
+          Value: true
+        xtrainer_wp_i1_grasp:
+          Value: true
+        xtrainer_wp_i1_p_lift_in:
+          Value: true
+        xtrainer_wp_i1_p_lift_out:
+          Value: true
+        xtrainer_wp_i1_place:
+          Value: true
+        xtrainer_wp_i20_g_lift_in:
+          Value: true
+        xtrainer_wp_i20_g_lift_out:
+          Value: true
+        xtrainer_wp_i20_grasp:
+          Value: true
+        xtrainer_wp_i20_p_lift_in:
+          Value: true
+        xtrainer_wp_i20_p_lift_out:
+          Value: true
+        xtrainer_wp_i20_place:
+          Value: true
+        xtrainer_wp_i21_g_lift_in:
+          Value: true
+        xtrainer_wp_i21_g_lift_out:
+          Value: true
+        xtrainer_wp_i21_grasp:
+          Value: true
+        xtrainer_wp_i21_p_lift_in:
+          Value: true
+        xtrainer_wp_i21_p_lift_out:
+          Value: true
+        xtrainer_wp_i21_place:
+          Value: true
+        xtrainer_wp_i22_g_lift_in:
+          Value: true
+        xtrainer_wp_i22_g_lift_out:
+          Value: true
+        xtrainer_wp_i22_grasp:
+          Value: true
+        xtrainer_wp_i22_p_lift_in:
+          Value: true
+        xtrainer_wp_i22_p_lift_out:
+          Value: true
+        xtrainer_wp_i22_place:
+          Value: true
+        xtrainer_wp_i23_g_lift_in:
+          Value: true
+        xtrainer_wp_i23_g_lift_out:
+          Value: true
+        xtrainer_wp_i23_grasp:
+          Value: true
+        xtrainer_wp_i23_p_lift_in:
+          Value: true
+        xtrainer_wp_i23_p_lift_out:
+          Value: true
+        xtrainer_wp_i23_place:
+          Value: true
+        xtrainer_wp_i24_g_lift_in:
+          Value: true
+        xtrainer_wp_i24_g_lift_out:
+          Value: true
+        xtrainer_wp_i24_grasp:
+          Value: true
+        xtrainer_wp_i24_p_lift_in:
+          Value: true
+        xtrainer_wp_i24_p_lift_out:
+          Value: true
+        xtrainer_wp_i24_place:
+          Value: true
+        xtrainer_wp_i25_g_lift_in:
+          Value: true
+        xtrainer_wp_i25_g_lift_out:
+          Value: true
+        xtrainer_wp_i25_grasp:
+          Value: true
+        xtrainer_wp_i25_p_lift_in:
+          Value: true
+        xtrainer_wp_i25_p_lift_out:
+          Value: true
+        xtrainer_wp_i25_place:
+          Value: true
+        xtrainer_wp_i26_g_lift_in:
+          Value: true
+        xtrainer_wp_i26_g_lift_out:
+          Value: true
+        xtrainer_wp_i26_grasp:
+          Value: true
+        xtrainer_wp_i26_p_lift_in:
+          Value: true
+        xtrainer_wp_i26_p_lift_out:
+          Value: true
+        xtrainer_wp_i26_place:
+          Value: true
+        xtrainer_wp_i27_g_lift_in:
+          Value: true
+        xtrainer_wp_i27_g_lift_out:
+          Value: true
+        xtrainer_wp_i27_grasp:
+          Value: true
+        xtrainer_wp_i27_p_lift_in:
+          Value: true
+        xtrainer_wp_i27_p_lift_out:
+          Value: true
+        xtrainer_wp_i27_place:
+          Value: true
+        xtrainer_wp_i28_g_lift_in:
+          Value: true
+        xtrainer_wp_i28_g_lift_out:
+          Value: true
+        xtrainer_wp_i28_grasp:
+          Value: true
+        xtrainer_wp_i28_p_lift_in:
+          Value: true
+        xtrainer_wp_i28_p_lift_out:
+          Value: true
+        xtrainer_wp_i28_place:
+          Value: true
+        xtrainer_wp_i29_g_lift_in:
+          Value: true
+        xtrainer_wp_i29_g_lift_out:
+          Value: true
+        xtrainer_wp_i29_grasp:
+          Value: true
+        xtrainer_wp_i29_p_lift_in:
+          Value: true
+        xtrainer_wp_i29_p_lift_out:
+          Value: true
+        xtrainer_wp_i29_place:
+          Value: true
+        xtrainer_wp_i2_g_lift_in:
+          Value: true
+        xtrainer_wp_i2_g_lift_out:
+          Value: true
+        xtrainer_wp_i2_grasp:
+          Value: true
+        xtrainer_wp_i2_p_lift_in:
+          Value: true
+        xtrainer_wp_i2_p_lift_out:
+          Value: true
+        xtrainer_wp_i2_place:
+          Value: true
+        xtrainer_wp_i30_g_lift_in:
+          Value: true
+        xtrainer_wp_i30_g_lift_out:
+          Value: true
+        xtrainer_wp_i30_grasp:
+          Value: true
+        xtrainer_wp_i30_p_lift_in:
+          Value: true
+        xtrainer_wp_i30_p_lift_out:
+          Value: true
+        xtrainer_wp_i30_place:
+          Value: true
+        xtrainer_wp_i31_g_lift_in:
+          Value: true
+        xtrainer_wp_i31_g_lift_out:
+          Value: true
+        xtrainer_wp_i31_grasp:
+          Value: true
+        xtrainer_wp_i31_p_lift_in:
+          Value: true
+        xtrainer_wp_i31_p_lift_out:
+          Value: true
+        xtrainer_wp_i31_place:
+          Value: true
+        xtrainer_wp_i32_g_lift_in:
+          Value: true
+        xtrainer_wp_i32_g_lift_out:
+          Value: true
+        xtrainer_wp_i32_grasp:
+          Value: true
+        xtrainer_wp_i32_p_lift_in:
+          Value: true
+        xtrainer_wp_i32_p_lift_out:
+          Value: true
+        xtrainer_wp_i32_place:
+          Value: true
+        xtrainer_wp_i33_g_lift_in:
+          Value: true
+        xtrainer_wp_i33_g_lift_out:
+          Value: true
+        xtrainer_wp_i33_grasp:
+          Value: true
+        xtrainer_wp_i33_p_lift_in:
+          Value: true
+        xtrainer_wp_i33_p_lift_out:
+          Value: true
+        xtrainer_wp_i33_place:
+          Value: true
+        xtrainer_wp_i34_g_lift_in:
+          Value: true
+        xtrainer_wp_i34_g_lift_out:
+          Value: true
+        xtrainer_wp_i34_grasp:
+          Value: true
+        xtrainer_wp_i34_p_lift_in:
+          Value: true
+        xtrainer_wp_i34_p_lift_out:
+          Value: true
+        xtrainer_wp_i34_place:
+          Value: true
+        xtrainer_wp_i35_g_lift_in:
+          Value: true
+        xtrainer_wp_i35_g_lift_out:
+          Value: true
+        xtrainer_wp_i35_grasp:
+          Value: true
+        xtrainer_wp_i35_p_lift_in:
+          Value: true
+        xtrainer_wp_i35_p_lift_out:
+          Value: true
+        xtrainer_wp_i35_place:
+          Value: true
+        xtrainer_wp_i36_g_lift_in:
+          Value: true
+        xtrainer_wp_i36_g_lift_out:
+          Value: true
+        xtrainer_wp_i36_grasp:
+          Value: true
+        xtrainer_wp_i36_p_lift_in:
+          Value: true
+        xtrainer_wp_i36_p_lift_out:
+          Value: true
+        xtrainer_wp_i36_place:
+          Value: true
+        xtrainer_wp_i37_g_lift_in:
+          Value: true
+        xtrainer_wp_i37_g_lift_out:
+          Value: true
+        xtrainer_wp_i37_grasp:
+          Value: true
+        xtrainer_wp_i37_p_lift_in:
+          Value: true
+        xtrainer_wp_i37_p_lift_out:
+          Value: true
+        xtrainer_wp_i37_place:
+          Value: true
+        xtrainer_wp_i3_g_lift_in:
+          Value: true
+        xtrainer_wp_i3_g_lift_out:
+          Value: true
+        xtrainer_wp_i3_grasp:
+          Value: true
+        xtrainer_wp_i3_p_lift_in:
+          Value: true
+        xtrainer_wp_i3_p_lift_out:
+          Value: true
+        xtrainer_wp_i3_place:
+          Value: true
+        xtrainer_wp_i4_g_lift_in:
+          Value: true
+        xtrainer_wp_i4_g_lift_out:
+          Value: true
+        xtrainer_wp_i4_grasp:
+          Value: true
+        xtrainer_wp_i4_p_lift_in:
+          Value: true
+        xtrainer_wp_i4_p_lift_out:
+          Value: true
+        xtrainer_wp_i4_place:
+          Value: true
+        xtrainer_wp_i5_g_lift_in:
+          Value: true
+        xtrainer_wp_i5_g_lift_out:
+          Value: true
+        xtrainer_wp_i5_grasp:
+          Value: true
+        xtrainer_wp_i5_p_lift_in:
+          Value: true
+        xtrainer_wp_i5_p_lift_out:
+          Value: true
+        xtrainer_wp_i5_place:
+          Value: true
+        xtrainer_wp_i6_g_lift_in:
+          Value: true
+        xtrainer_wp_i6_g_lift_out:
+          Value: true
+        xtrainer_wp_i6_grasp:
+          Value: true
+        xtrainer_wp_i6_p_lift_in:
+          Value: true
+        xtrainer_wp_i6_p_lift_out:
+          Value: true
+        xtrainer_wp_i6_place:
+          Value: true
+        xtrainer_wp_i7_g_lift_in:
+          Value: true
+        xtrainer_wp_i7_g_lift_out:
+          Value: true
+        xtrainer_wp_i7_grasp:
+          Value: true
+        xtrainer_wp_i7_p_lift_in:
+          Value: true
+        xtrainer_wp_i7_p_lift_out:
+          Value: true
+        xtrainer_wp_i7_place:
+          Value: true
+        xtrainer_wp_i8_g_lift_in:
+          Value: true
+        xtrainer_wp_i8_g_lift_out:
+          Value: true
+        xtrainer_wp_i8_grasp:
+          Value: true
+        xtrainer_wp_i8_p_lift_in:
+          Value: true
+        xtrainer_wp_i8_p_lift_out:
+          Value: true
+        xtrainer_wp_i8_place:
+          Value: true
+        xtrainer_wp_i9_g_lift_in:
+          Value: true
+        xtrainer_wp_i9_g_lift_out:
+          Value: true
+        xtrainer_wp_i9_grasp:
+          Value: true
+        xtrainer_wp_i9_p_lift_in:
+          Value: true
+        xtrainer_wp_i9_p_lift_out:
+          Value: true
+        xtrainer_wp_i9_place:
+          Value: true
+      Marker Alpha: 1
+      Marker Scale: 0.15000000596046448
+      Name: TF
+      Show Arrows: false
+      Show Axes: true
+      Show Names: true
+      Tree:
+        LINK_0:
+          LINK_1:
+            LINK_2:
+              LINK_3:
+                LINK_4:
+                  LINK_5:
+                    LINK_6:
+                      TCP_LINK:
+                        {}
+                      gripper_link:
+                        {}
+          scene_root:
+            static_LINK_0:
+              static_LINK_1:
+                static_LINK_2:
+                  static_LINK_3:
+                    static_LINK_4:
+                      static_LINK_5:
+                        static_LINK_6:
+                          static_TCP_LINK:
+                            {}
+                          static_gripper_link:
+                            {}
+            workbench:
+              {}
+          xtrainer_ee_cmd:
+            {}
+          xtrainer_ee_planned:
+            {}
+          xtrainer_arm1_place:
+            {}
+          xtrainer_arm2_place:
+            {}
+          xtrainer_wp_i0_g_lift_in:
+            {}
+          xtrainer_wp_i0_g_lift_out:
+            {}
+          xtrainer_wp_i0_grasp:
+            {}
+          xtrainer_wp_i0_p_lift_in:
+            {}
+          xtrainer_wp_i0_p_lift_out:
+            {}
+          xtrainer_wp_i0_place:
+            {}
+          xtrainer_wp_i10_g_lift_in:
+            {}
+          xtrainer_wp_i10_g_lift_out:
+            {}
+          xtrainer_wp_i10_grasp:
+            {}
+          xtrainer_wp_i10_p_lift_in:
+            {}
+          xtrainer_wp_i10_p_lift_out:
+            {}
+          xtrainer_wp_i10_place:
+            {}
+          xtrainer_wp_i11_g_lift_in:
+            {}
+          xtrainer_wp_i11_g_lift_out:
+            {}
+          xtrainer_wp_i11_grasp:
+            {}
+          xtrainer_wp_i11_p_lift_in:
+            {}
+          xtrainer_wp_i11_p_lift_out:
+            {}
+          xtrainer_wp_i11_place:
+            {}
+          xtrainer_wp_i12_g_lift_in:
+            {}
+          xtrainer_wp_i12_g_lift_out:
+            {}
+          xtrainer_wp_i12_grasp:
+            {}
+          xtrainer_wp_i12_p_lift_in:
+            {}
+          xtrainer_wp_i12_p_lift_out:
+            {}
+          xtrainer_wp_i12_place:
+            {}
+          xtrainer_wp_i13_g_lift_in:
+            {}
+          xtrainer_wp_i13_g_lift_out:
+            {}
+          xtrainer_wp_i13_grasp:
+            {}
+          xtrainer_wp_i13_p_lift_in:
+            {}
+          xtrainer_wp_i13_p_lift_out:
+            {}
+          xtrainer_wp_i13_place:
+            {}
+          xtrainer_wp_i14_g_lift_in:
+            {}
+          xtrainer_wp_i14_g_lift_out:
+            {}
+          xtrainer_wp_i14_grasp:
+            {}
+          xtrainer_wp_i14_p_lift_in:
+            {}
+          xtrainer_wp_i14_p_lift_out:
+            {}
+          xtrainer_wp_i14_place:
+            {}
+          xtrainer_wp_i15_g_lift_in:
+            {}
+          xtrainer_wp_i15_g_lift_out:
+            {}
+          xtrainer_wp_i15_grasp:
+            {}
+          xtrainer_wp_i15_p_lift_in:
+            {}
+          xtrainer_wp_i15_p_lift_out:
+            {}
+          xtrainer_wp_i15_place:
+            {}
+          xtrainer_wp_i16_g_lift_in:
+            {}
+          xtrainer_wp_i16_g_lift_out:
+            {}
+          xtrainer_wp_i16_grasp:
+            {}
+          xtrainer_wp_i16_p_lift_in:
+            {}
+          xtrainer_wp_i16_p_lift_out:
+            {}
+          xtrainer_wp_i16_place:
+            {}
+          xtrainer_wp_i17_g_lift_in:
+            {}
+          xtrainer_wp_i17_g_lift_out:
+            {}
+          xtrainer_wp_i17_grasp:
+            {}
+          xtrainer_wp_i17_p_lift_in:
+            {}
+          xtrainer_wp_i17_p_lift_out:
+            {}
+          xtrainer_wp_i17_place:
+            {}
+          xtrainer_wp_i18_g_lift_in:
+            {}
+          xtrainer_wp_i18_g_lift_out:
+            {}
+          xtrainer_wp_i18_grasp:
+            {}
+          xtrainer_wp_i18_p_lift_in:
+            {}
+          xtrainer_wp_i18_p_lift_out:
+            {}
+          xtrainer_wp_i18_place:
+            {}
+          xtrainer_wp_i19_g_lift_in:
+            {}
+          xtrainer_wp_i19_g_lift_out:
+            {}
+          xtrainer_wp_i19_grasp:
+            {}
+          xtrainer_wp_i19_p_lift_in:
+            {}
+          xtrainer_wp_i19_p_lift_out:
+            {}
+          xtrainer_wp_i19_place:
+            {}
+          xtrainer_wp_i1_g_lift_in:
+            {}
+          xtrainer_wp_i1_g_lift_out:
+            {}
+          xtrainer_wp_i1_grasp:
+            {}
+          xtrainer_wp_i1_p_lift_in:
+            {}
+          xtrainer_wp_i1_p_lift_out:
+            {}
+          xtrainer_wp_i1_place:
+            {}
+          xtrainer_wp_i20_g_lift_in:
+            {}
+          xtrainer_wp_i20_g_lift_out:
+            {}
+          xtrainer_wp_i20_grasp:
+            {}
+          xtrainer_wp_i20_p_lift_in:
+            {}
+          xtrainer_wp_i20_p_lift_out:
+            {}
+          xtrainer_wp_i20_place:
+            {}
+          xtrainer_wp_i21_g_lift_in:
+            {}
+          xtrainer_wp_i21_g_lift_out:
+            {}
+          xtrainer_wp_i21_grasp:
+            {}
+          xtrainer_wp_i21_p_lift_in:
+            {}
+          xtrainer_wp_i21_p_lift_out:
+            {}
+          xtrainer_wp_i21_place:
+            {}
+          xtrainer_wp_i22_g_lift_in:
+            {}
+          xtrainer_wp_i22_g_lift_out:
+            {}
+          xtrainer_wp_i22_grasp:
+            {}
+          xtrainer_wp_i22_p_lift_in:
+            {}
+          xtrainer_wp_i22_p_lift_out:
+            {}
+          xtrainer_wp_i22_place:
+            {}
+          xtrainer_wp_i23_g_lift_in:
+            {}
+          xtrainer_wp_i23_g_lift_out:
+            {}
+          xtrainer_wp_i23_grasp:
+            {}
+          xtrainer_wp_i23_p_lift_in:
+            {}
+          xtrainer_wp_i23_p_lift_out:
+            {}
+          xtrainer_wp_i23_place:
+            {}
+          xtrainer_wp_i24_g_lift_in:
+            {}
+          xtrainer_wp_i24_g_lift_out:
+            {}
+          xtrainer_wp_i24_grasp:
+            {}
+          xtrainer_wp_i24_p_lift_in:
+            {}
+          xtrainer_wp_i24_p_lift_out:
+            {}
+          xtrainer_wp_i24_place:
+            {}
+          xtrainer_wp_i25_g_lift_in:
+            {}
+          xtrainer_wp_i25_g_lift_out:
+            {}
+          xtrainer_wp_i25_grasp:
+            {}
+          xtrainer_wp_i25_p_lift_in:
+            {}
+          xtrainer_wp_i25_p_lift_out:
+            {}
+          xtrainer_wp_i25_place:
+            {}
+          xtrainer_wp_i26_g_lift_in:
+            {}
+          xtrainer_wp_i26_g_lift_out:
+            {}
+          xtrainer_wp_i26_grasp:
+            {}
+          xtrainer_wp_i26_p_lift_in:
+            {}
+          xtrainer_wp_i26_p_lift_out:
+            {}
+          xtrainer_wp_i26_place:
+            {}
+          xtrainer_wp_i27_g_lift_in:
+            {}
+          xtrainer_wp_i27_g_lift_out:
+            {}
+          xtrainer_wp_i27_grasp:
+            {}
+          xtrainer_wp_i27_p_lift_in:
+            {}
+          xtrainer_wp_i27_p_lift_out:
+            {}
+          xtrainer_wp_i27_place:
+            {}
+          xtrainer_wp_i28_g_lift_in:
+            {}
+          xtrainer_wp_i28_g_lift_out:
+            {}
+          xtrainer_wp_i28_grasp:
+            {}
+          xtrainer_wp_i28_p_lift_in:
+            {}
+          xtrainer_wp_i28_p_lift_out:
+            {}
+          xtrainer_wp_i28_place:
+            {}
+          xtrainer_wp_i29_g_lift_in:
+            {}
+          xtrainer_wp_i29_g_lift_out:
+            {}
+          xtrainer_wp_i29_grasp:
+            {}
+          xtrainer_wp_i29_p_lift_in:
+            {}
+          xtrainer_wp_i29_p_lift_out:
+            {}
+          xtrainer_wp_i29_place:
+            {}
+          xtrainer_wp_i2_g_lift_in:
+            {}
+          xtrainer_wp_i2_g_lift_out:
+            {}
+          xtrainer_wp_i2_grasp:
+            {}
+          xtrainer_wp_i2_p_lift_in:
+            {}
+          xtrainer_wp_i2_p_lift_out:
+            {}
+          xtrainer_wp_i2_place:
+            {}
+          xtrainer_wp_i30_g_lift_in:
+            {}
+          xtrainer_wp_i30_g_lift_out:
+            {}
+          xtrainer_wp_i30_grasp:
+            {}
+          xtrainer_wp_i30_p_lift_in:
+            {}
+          xtrainer_wp_i30_p_lift_out:
+            {}
+          xtrainer_wp_i30_place:
+            {}
+          xtrainer_wp_i31_g_lift_in:
+            {}
+          xtrainer_wp_i31_g_lift_out:
+            {}
+          xtrainer_wp_i31_grasp:
+            {}
+          xtrainer_wp_i31_p_lift_in:
+            {}
+          xtrainer_wp_i31_p_lift_out:
+            {}
+          xtrainer_wp_i31_place:
+            {}
+          xtrainer_wp_i32_g_lift_in:
+            {}
+          xtrainer_wp_i32_g_lift_out:
+            {}
+          xtrainer_wp_i32_grasp:
+            {}
+          xtrainer_wp_i32_p_lift_in:
+            {}
+          xtrainer_wp_i32_p_lift_out:
+            {}
+          xtrainer_wp_i32_place:
+            {}
+          xtrainer_wp_i33_g_lift_in:
+            {}
+          xtrainer_wp_i33_g_lift_out:
+            {}
+          xtrainer_wp_i33_grasp:
+            {}
+          xtrainer_wp_i33_p_lift_in:
+            {}
+          xtrainer_wp_i33_p_lift_out:
+            {}
+          xtrainer_wp_i33_place:
+            {}
+          xtrainer_wp_i34_g_lift_in:
+            {}
+          xtrainer_wp_i34_g_lift_out:
+            {}
+          xtrainer_wp_i34_grasp:
+            {}
+          xtrainer_wp_i34_p_lift_in:
+            {}
+          xtrainer_wp_i34_p_lift_out:
+            {}
+          xtrainer_wp_i34_place:
+            {}
+          xtrainer_wp_i35_g_lift_in:
+            {}
+          xtrainer_wp_i35_g_lift_out:
+            {}
+          xtrainer_wp_i35_grasp:
+            {}
+          xtrainer_wp_i35_p_lift_in:
+            {}
+          xtrainer_wp_i35_p_lift_out:
+            {}
+          xtrainer_wp_i35_place:
+            {}
+          xtrainer_wp_i36_g_lift_in:
+            {}
+          xtrainer_wp_i36_g_lift_out:
+            {}
+          xtrainer_wp_i36_grasp:
+            {}
+          xtrainer_wp_i36_p_lift_in:
+            {}
+          xtrainer_wp_i36_p_lift_out:
+            {}
+          xtrainer_wp_i36_place:
+            {}
+          xtrainer_wp_i37_g_lift_in:
+            {}
+          xtrainer_wp_i37_g_lift_out:
+            {}
+          xtrainer_wp_i37_grasp:
+            {}
+          xtrainer_wp_i37_p_lift_in:
+            {}
+          xtrainer_wp_i37_p_lift_out:
+            {}
+          xtrainer_wp_i37_place:
+            {}
+          xtrainer_wp_i3_g_lift_in:
+            {}
+          xtrainer_wp_i3_g_lift_out:
+            {}
+          xtrainer_wp_i3_grasp:
+            {}
+          xtrainer_wp_i3_p_lift_in:
+            {}
+          xtrainer_wp_i3_p_lift_out:
+            {}
+          xtrainer_wp_i3_place:
+            {}
+          xtrainer_wp_i4_g_lift_in:
+            {}
+          xtrainer_wp_i4_g_lift_out:
+            {}
+          xtrainer_wp_i4_grasp:
+            {}
+          xtrainer_wp_i4_p_lift_in:
+            {}
+          xtrainer_wp_i4_p_lift_out:
+            {}
+          xtrainer_wp_i4_place:
+            {}
+          xtrainer_wp_i5_g_lift_in:
+            {}
+          xtrainer_wp_i5_g_lift_out:
+            {}
+          xtrainer_wp_i5_grasp:
+            {}
+          xtrainer_wp_i5_p_lift_in:
+            {}
+          xtrainer_wp_i5_p_lift_out:
+            {}
+          xtrainer_wp_i5_place:
+            {}
+          xtrainer_wp_i6_g_lift_in:
+            {}
+          xtrainer_wp_i6_g_lift_out:
+            {}
+          xtrainer_wp_i6_grasp:
+            {}
+          xtrainer_wp_i6_p_lift_in:
+            {}
+          xtrainer_wp_i6_p_lift_out:
+            {}
+          xtrainer_wp_i6_place:
+            {}
+          xtrainer_wp_i7_g_lift_in:
+            {}
+          xtrainer_wp_i7_g_lift_out:
+            {}
+          xtrainer_wp_i7_grasp:
+            {}
+          xtrainer_wp_i7_p_lift_in:
+            {}
+          xtrainer_wp_i7_p_lift_out:
+            {}
+          xtrainer_wp_i7_place:
+            {}
+          xtrainer_wp_i8_g_lift_in:
+            {}
+          xtrainer_wp_i8_g_lift_out:
+            {}
+          xtrainer_wp_i8_grasp:
+            {}
+          xtrainer_wp_i8_p_lift_in:
+            {}
+          xtrainer_wp_i8_p_lift_out:
+            {}
+          xtrainer_wp_i8_place:
+            {}
+          xtrainer_wp_i9_g_lift_in:
+            {}
+          xtrainer_wp_i9_g_lift_out:
+            {}
+          xtrainer_wp_i9_grasp:
+            {}
+          xtrainer_wp_i9_p_lift_in:
+            {}
+          xtrainer_wp_i9_p_lift_out:
+            {}
+          xtrainer_wp_i9_place:
+            {}
+      Update Interval: 0
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /xtrainer_plan/markers
+      Name: PlanMarkers
+      Namespaces:
+        ee_path: true
+        poses: true
+        walls: true
+        workspace: true
+      Queue Size: 100
+      Value: true
+    - Alpha: 0.8999999761581421
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 0; 255; 128
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 0; 0; 0
+      Name: ScanTop1Cloud
+      Position Transformer: XYZ
+      Queue Size: 100
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.014999999664723873
+      Style: Points
+      Topic: /place_scan/top1_points
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Alpha: 0.699999988079071
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 255; 170; 0
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 0; 0; 0
+      Name: ScanStage12OnlyCloud
+      Position Transformer: XYZ
+      Queue Size: 100
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.014999999664723873
+      Style: Points
+      Topic: /place_scan/stage12_points
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 40; 42; 48
+    Default Light: true
+    Fixed Frame: LINK_0
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 1.372102975845337
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Field of View: 0.7853981852531433
+      Focal Point:
+        X: -0.40870797634124756
+        Y: -0.2950856387615204
+        Z: -0.1397399604320526
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 0.11500009894371033
+      Target Frame: LINK_0
+      Yaw: 2.9249935150146484
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 2088
+  Hide Left Dock: false
+  Hide Right Dock: false
+  QMainWindow State: 000000ff00000000fd000000010000000000000195000007bdfc0200000002fb000000100044006900730070006c00610079007301000000490000049d000000fb00fffffffb0000000a0056006900650077007301000004ed00000319000000c900ffffff00000d1c000007bd00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Views:
+    collapsed: false
+  Width: 3768
+  X: 72
+  Y: 35

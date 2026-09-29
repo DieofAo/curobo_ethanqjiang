@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by
+Stephen Brawner (brawner@gmail.com)
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="xtrainer_arm" urdf_version="xtrainer-origin">
+  <link name="LINK_0">
+    <inertial>
+      <origin xyz="-5.68269364273134E-05 0.00032632897525032 0.0647238264909571" rpy="0 0 0" />
+      <mass value="0.949807040300757" />
+      <inertia ixx="0.00192354647686559" ixy="-3.5569296199005E-07" ixz="7.19203207381994E-07" iyy="0.00192794885883457" iyz="7.63556074584266E-07" izz="0.00128085753842209" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotics/drivers/dobot/description/meshes/xtrainer/base_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotics/drivers/dobot/description/meshes/xtrainer/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="LINK_1">
+    <inertial>
+      <origin xyz="-5.65197192524001E-07 -0.0218721820210573 -0.0236240052195699" rpy="0 0 0" />
+      <mass value="0.803373181367942" />
+      <inertia ixx="0.00167953489998163" ixy="1.52076248134064E-07" ixz="6.71055132499376E-08" iyy="0.00146966202512486" iyz="0.000442023628303465" izz="0.00103706887056794" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotics/drivers/dobot/description/meshes/xtrainer/J1.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotics/drivers/dobot/description/meshes/xtrainer/J1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="J_1" type="revolute">
+    <origin xyz="0 0 0.2234" rpy="0 0 0" />
+    <parent link="LINK_0" />
+    <child link="LINK_1" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="100" />
+  </joint>
+  <link name="LINK_2">
+    <inertial>
+      <origin xyz="-0.150315452581084 7.53445130409325E-06 0.0931425829318985" rpy="0 0 0" />
+      <mass value="1.57800314144516" />
+      <inertia ixx="0.00156669413728986" ixy="-4.08225129063918E-07" ixz="-0.00115245047452325" iyy="0.0216390570049862" iyz="-5.62853915685086E-08" izz="0.0217356952133359" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotics/drivers/dobot/description/meshes/xtrainer/J2.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotics/drivers/dobot/description/meshes/xtrainer/J2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="J_2" type="revolute">
+    <origin xyz="0 0 0" rpy="1.5707963267949 1.5707963267949 0" />
+    <parent link="LINK_1" />
+    <child link="LINK_2" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="100" />
+  </joint>
+  <link name="LINK_3">
+    <inertial>
+      <origin xyz="-0.11829530265617 3.4913911960105E-06 0.0113001918322732" rpy="0 0 0" />
+      <mass value="0.998646227349197" />
+      <inertia ixx="0.00077569311375886" ixy="8.54864098812045E-08" ixz="0.000543541403365136" iyy="0.00938193659872665" iyz="6.41884238351191E-08" izz="0.0094010547632182" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotics/drivers/dobot/description/meshes/xtrainer/J3.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.0862745098039216 0.294117647058824 0.749019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotics/drivers/dobot/description/meshes/xtrainer/J3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="J_3" type="revolute">
+    <origin xyz="-0.28 0 0" rpy="0 0 0" />
+    <parent link="LINK_2" />
+    <child link="LINK_3" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="100" />
+  </joint>
+  <link name="LINK_4">
+    <inertial>
+      <origin xyz="-6.75890392088209E-06 -0.022667420396611 -0.0204630900415074" rpy="0 0 0" />
+      <mass value="0.441609477894635" />
+      <inertia ixx="0.000641185874043712" ixy="1.35467068924267E-08" ixz="2.62706359334601E-08" iyy="0.000455379178453104" iyz="0.000213286179389194" izz="0.000482725147812643" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotics/drivers/dobot/description/meshes/xtrainer/J4.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotics/drivers/dobot/description/meshes/xtrainer/J4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="J_4" type="revolute">
+    <origin xyz="-0.225 0 0.1175" rpy="0 0 -1.57079637654807" />
+    <parent link="LINK_3" />
+    <child link="LINK_4" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="100" />
+  </joint>
+  <link name="LINK_5">
+    <inertial>
+      <origin xyz="-1.99535969620709E-06 0.00155681600061644 -0.0074870419101597" rpy="0 0 0" />
+      <mass value="0.583814996907031" />
+      <inertia ixx="0.000666644039600493" ixy="1.15592811229631E-08" ixz="1.38509613362661E-08" iyy="0.000404278555269793" iyz="-0.000120256143942442" izz="0.000644532573491125" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotics/drivers/dobot/description/meshes/xtrainer/J5.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotics/drivers/dobot/description/meshes/xtrainer/J5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="J_5" type="revolute">
+    <origin xyz="0 -0.12 0" rpy="1.5707963267949 0 0" />
+    <parent link="LINK_4" />
+    <child link="LINK_5" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="100" />
+  </joint>
+  <link name="LINK_6">
+    <inertial>
+      <origin xyz="0.000352958226586775 -0.00670103021677548 0.0489811978556805" rpy="0 0 0" />
+      <mass value="0.44989502189887" />
+      <inertia ixx="0.000187336577585391" ixy="-7.14692383579506E-07" ixz="-2.07418530987097E-07" iyy="0.000351222028390666" iyz="1.09119051840542E-06" izz="0.000384368948985168" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotics/drivers/dobot/description/meshes/xtrainer/J6.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotics/drivers/dobot/description/meshes/xtrainer/J6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="J_6" type="revolute">
+    <origin xyz="0 0.0829999998597296 0" rpy="-1.5707963267949 0 0" />
+    <parent link="LINK_5" />
+    <child link="LINK_6" />
+    <axis xyz="0 0 1" />
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="100" />
+  </joint>
+  <link name="gripper_link"/>
+  <joint name="gripper_joint" type="fixed">
+    <origin xyz="0 0 0.19" rpy="0 0 0" />
+    <parent link="LINK_6" />
+    <child link="gripper_link" />
+  </joint>
+  <!-- TCP: 工具中心点(Tool Center Point)。
+       沿 LINK_6 局部 +Z 平移 0.19m, 无任何旋转 -> TCP 的姿态与 LINK_6 完全一致。
+       xtrainer_plan 的规划以此为 ee_link, 因此 yaml 里给的 position/rpy_deg
+       直接就是 TCP 的目标位姿, 姿态搜索的右乘也是绕 TCP 自身轴(= LINK_6 轴)。
+       本 link 无碰撞几何, 碰撞检测仍由 LINK_6 的 9 个碰撞球承担。 -->
+  <link name="TCP_LINK"/>
+  <joint name="TCP_joint" type="fixed">
+    <origin xyz="0 0 0.19" rpy="0 0 0" />
+    <parent link="LINK_6" />
+    <child link="TCP_LINK" />
+  </joint>
+
+</robot>

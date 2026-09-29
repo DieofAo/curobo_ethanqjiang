@@ -202,4 +202,13 @@ nvidia_curobo*/
 
 *.csv
 docs/*
-.torch_extensions/  
+.torch_extensions/
+
+# Local recordings and generated experiment outputs
+*.mcap
+/mcap/results/
+/relative_ee_analysis/results/
+/xtrainer_plan/backup/
+/xtrainer_plan/results*/
+/xtrainer_plan/nohup.out
+/jaka/left_jaka_collision_free_q_*.txt

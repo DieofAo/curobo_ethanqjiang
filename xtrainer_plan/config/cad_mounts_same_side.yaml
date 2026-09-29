@@ -1,0 +1,14 @@
+# 双 XTrainer 同侧安装位姿，表达在 CAD 装配体根坐标系 (scene_root) 下。
+# left_arm 保持 cad_mounts.yaml 原位；right_arm 仅把 y 移到与 left_arm 相同的
+# +0.250794 m，x/z 与倒挂姿态 [pi, 0, 0] 均保持原值。
+
+left_arm:
+  xyz: [-0.478775, 0.250794, 0.456503]
+  rpy: [3.141592653589793, 0.0, 3.141592653589793]
+
+right_arm:
+  xyz: [0.321225, 0.250794, 0.456503]
+  rpy: [3.141592653589793, 0.0, 0.0]
+
+step_filter:
+  excluded_name_contains: "DOBOT Nova 2"

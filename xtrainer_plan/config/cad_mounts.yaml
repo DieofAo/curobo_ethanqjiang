@@ -1,0 +1,31 @@
+# =============================================================================
+# 料台装配体 (table.STEP) 中两个机械臂挂载位姿
+#
+# 由 scripts/extract_cad_mounts.py 从 STEP 装配结构自动提取:
+#   python3 scripts/extract_cad_mounts.py \
+#       ../src/curobo/content/assets/robot/ur_description/meshes/xtrainer/table.STEP \
+#       --emit-yaml
+#
+# 位姿表达在「CAD 装配体根坐标系」(即 scene_root) 下, 单位: 米 / 弧度。
+# STEP 里原本装的是两台 DOBOT Nova 2, 已在 table.stl 中被剔除, 由 URDF 里可动的
+# XTrainer 顶替。DOBOT 子装配原点与 XTrainer LINK_0 原点之间的固定差量
+# (局部平移 [0, -0.002, -0.00541] m + 绕局部 Z 转 180deg) 已经并入下面的数值,
+# 该差量沿用 analysis_workspace/dual_arm_collision_demo 已验证的对齐结果。
+#
+# 两台机器人都是倒挂安装 (局部 +Z 指向世界 -Z), 两个基座相差 180deg 偏航。
+#
+# 注意: 本 STEP (2026-08-25 版) 相对旧版已把两臂沿料台长边 (X) 各向外移 40mm,
+#       x 从 {-0.43877, 0.28123} 变为 {-0.47877, 0.32123}, 无需再额外平移。
+# =============================================================================
+
+left_arm:
+  xyz: [-0.478775, 0.250794, 0.456503]
+  rpy: [3.141592653589793, 0.0, 3.141592653589793]
+
+right_arm:
+  xyz: [0.321225, -0.230206, 0.456503]
+  rpy: [3.141592653589793, 0.0, 0.0]
+
+step_filter:
+  # export_table_mesh.py 生成 table.stl 时按此子串剔除机器人本体
+  excluded_name_contains: "DOBOT Nova 2"

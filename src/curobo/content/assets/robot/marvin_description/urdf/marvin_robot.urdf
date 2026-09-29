@@ -84,12 +84,17 @@
       </geometry>
     </collision>
   </link>
+ 
   <joint
     name="Fix_Base_L"
     type="fixed">
     <origin
-      xyz="0 0.037 0.14"
-      rpy="-1.5708 0 0" />
+      xyz="0 0.087 0.14"
+
+
+      rpy="-1.57 0 -0.758" />
+      <!-- rpy="-1.57 0 0" /> -->
+
     <parent
       link="robot_stand" />
     <child
@@ -170,7 +175,7 @@
         iyy="0.00361581"
         iyz="-0.00132804"
         izz="0.01098356" />
-    </inertial>
+    </inertial>  
     <visual>
       <origin
         xyz="0 0 0"
@@ -507,6 +512,6 @@
   <joint name="gripper_joint" type="fixed">
     <parent link="Link7_L"/>
     <child link="gripper_link"/>
-    <origin xyz="0 -0.25 0" rpy="1.57 0 0"/>
+    <origin xyz="0 -0.31 0" rpy="1.57 1.57 0"/>
   </joint>
 </robot>

@@ -1,0 +1,21 @@
+<launch>
+  <arg name="rviz_config" default="$(eval env('HOME') + '/workspace/curobo/mcap/display_dual_robot.rviz')"/>
+  <arg name="generator" default="$(eval env('HOME') + '/workspace/curobo/mcap/generate_dual_robot_urdf.py')"/>
+  <arg name="marvin_urdf" default="$(eval env('HOME') + '/workspace/curobo/src/curobo/content/assets/robot/marvin_description/urdf/marvin_robot.urdf')"/>
+  <arg name="jaka_urdf" default="$(eval env('HOME') + '/workspace/curobo/jaka/left_jaka.urdf')"/>
+
+  <arg name="marvin_xyz" default="-0.6 0 0"/>
+  <arg name="jaka_xyz" default="0.6 0 0"/>
+  <arg name="marvin_rpy" default="0 0 0"/>
+  <arg name="jaka_rpy" default="0 0 0"/>
+
+  <param name="robot_description"
+         command="python3 $(arg generator) --marvin-urdf $(arg marvin_urdf) --jaka-urdf $(arg jaka_urdf) --marvin-xyz '$(arg marvin_xyz)' --jaka-xyz '$(arg jaka_xyz)' --marvin-rpy '$(arg marvin_rpy)' --jaka-rpy '$(arg jaka_rpy)'"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+    <param name="publish_frequency" value="50"/>
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz"
+        args="-d $(arg rviz_config)" output="screen"/>
+</launch>

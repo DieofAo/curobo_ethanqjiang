@@ -1,0 +1,369 @@
+{
+  "robot": {
+    "robot_yml": "xtrainer.yml",
+    "dual_arm_prefix": null,
+    "base_link": "LINK_0",
+    "ee_link": "TCP_LINK",
+    "flange_link": "LINK_6",
+    "urdf": "src/curobo/content/assets/robot/ur_description/xtrainer.urdf",
+    "retract_config": null,
+    "collision_sphere_buffer": 0.0,
+    "joint_limit_clip": 0.15,
+    "cspace_distance_weight": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "task_frame": "task_world",
+    "legacy_task_frame": "original_LINK_0",
+    "mount_transform": [
+      [
+        0.0,
+        0.0,
+        1.0,
+        -0.51
+      ],
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.4
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.5
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "pick_place": {
+    "link0_target_transform": [
+      [
+        0.0,
+        1.0,
+        0.0,
+        -0.4
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        -0.5
+      ],
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.51
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "home": {
+      "joint_deg": null,
+      "ik_seed_joint_deg": null,
+      "position": [
+        -0.31,
+        0.11,
+        0.03
+      ],
+      "rpy_deg": [
+        -180,
+        0,
+        0
+      ]
+    },
+    "grasp_grid": {
+      "x_range": [
+        -0.62,
+        -0.2
+      ],
+      "y_range": [
+        -0.1,
+        0.4
+      ],
+      "z": 0.03,
+      "rows": 3,
+      "cols": 3,
+      "order": "ring",
+      "perimeter_only": false
+    },
+    "place": {
+      "position": [
+        -0.16,
+        -0.23,
+        0.1
+      ]
+    },
+    "base_rpy": {
+      "grasp": [
+        -180,
+        0,
+        -180
+      ],
+      "place": [
+        -90,
+        0,
+        -150
+      ]
+    },
+    "angle_search": {
+      "couple_place_to_grasp": true,
+      "grasp": {
+        "axis": "x",
+        "min_deg": -30.0,
+        "max_deg": 0.0,
+        "step_deg": 2.0
+      },
+      "place": {
+        "axis": "x",
+        "min_deg": -30.0,
+        "max_deg": 30.0,
+        "step_deg": 5.0
+      },
+      "order": "abs",
+      "strategy": "coarse_to_fine",
+      "coarse_place": 3,
+      "reuse_last_success": true,
+      "max_trials": 1200,
+      "stage2": {
+        "enable": false,
+        "frame": "base",
+        "axis": "z",
+        "min_deg": -90.0,
+        "max_deg": 0.0,
+        "step_deg": 15.0,
+        "order": "abs",
+        "max_trials": 0
+      }
+    },
+    "criterion": {
+      "max_joint_delta_deg": 170.0,
+      "joints": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "min_limit_margin_deg": 0,
+      "prescreen_by_ik": true
+    },
+    "lift": {
+      "grasp_z": 0.03,
+      "place_z": 0.03,
+      "axis": "base_z"
+    },
+    "linear_move": {
+      "enable": true,
+      "kinds": [
+        "grasp",
+        "place"
+      ],
+      "free_axis": "z",
+      "hold_rotation": true,
+      "max_deviation_mm": 3.0,
+      "max_rotation_deg": 5.0
+    },
+    "on_fail": {
+      "mode": "skip"
+    }
+  },
+  "workspace": {
+    "bounds": {
+      "x": [
+        -1.7000000000000002,
+        0.9
+      ],
+      "y": [
+        -0.6,
+        1.2
+      ],
+      "z": [
+        -1.49,
+        0.51
+      ]
+    },
+    "wall": {
+      "enable": true,
+      "thickness": 0.05,
+      "bounds_override": {
+        "x": [
+          -1.7000000000000002,
+          0.9
+        ],
+        "y": [
+          -0.6,
+          1.2
+        ],
+        "z": [
+          -1.49,
+          0.61
+        ]
+      },
+      "faces": {
+        "z_min": true,
+        "z_max": true,
+        "x_min": true,
+        "x_max": true,
+        "y_min": true,
+        "y_max": true
+      },
+      "collision_link_names": [
+        "LINK_6",
+        "LINK_3"
+      ],
+      "base_clearance": {
+        "enable": false,
+        "y_half": 0.09,
+        "z_max": 0.32,
+        "x_min": -0.09
+      }
+    },
+    "check_after_plan": true,
+    "check_margin": 0.005,
+    "fail_on_violation": false,
+    "report_gripper_extent": true
+  },
+  "planner": {
+    "self_collision_check": true,
+    "self_collision_opt": true,
+    "collision_activation_distance": 0.015,
+    "interpolation_dt": 0.02,
+    "num_ik_seeds": 128,
+    "num_trajopt_seeds": 24,
+    "num_graph_seeds": 8,
+    "trajopt_tsteps": 40,
+    "max_attempts": 30,
+    "timeout": 20.0,
+    "enable_graph": false,
+    "enable_graph_attempt": 3,
+    "velocity_scale": 0.25,
+    "acceleration_scale": 0.5,
+    "jerk_scale": 1.0,
+    "position_threshold": 0.003,
+    "rotation_threshold": 0.03,
+    "collision_checker_type": "MESH",
+    "use_cuda_graph": true,
+    "limit_margin_warn_deg": 1.0
+  },
+  "output": {
+    "dir": "results_overhead/ymax_runs",
+    "add_timestamp": true
+  },
+  "overhead": {
+    "task_workspace": {
+      "bounds": {
+        "x": [
+          -2,
+          0.0
+        ],
+        "y": [
+          -1.3,
+          1.3
+        ],
+        "z": [
+          -0.1,
+          1.7
+        ]
+      },
+      "wall": {
+        "enable": true,
+        "thickness": 0.05,
+        "bounds_override": {
+          "x": [
+            -2,
+            0.1
+          ],
+          "y": [
+            -1.3,
+            1.3
+          ],
+          "z": [
+            -0.1,
+            1.7
+          ]
+        },
+        "faces": {
+          "x_max": true,
+          "x_min": true,
+          "y_max": true,
+          "y_min": true,
+          "z_max": true,
+          "z_min": true
+        },
+        "collision_link_names": [
+          "LINK_6",
+          "LINK_3"
+        ],
+        "base_clearance": {
+          "enable": false,
+          "y_half": 0.09,
+          "z_max": 0.32,
+          "x_min": -0.09
+        }
+      },
+      "check_after_plan": true,
+      "check_margin": 0.005,
+      "fail_on_violation": false,
+      "report_gripper_extent": true
+    },
+    "original_target_transform": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "mount_rpy_deg": [
+      90.0,
+      0.0,
+      90.0
+    ],
+    "height_above_grasp_m": 0.47,
+    "tcp_offset_m": 0.19,
+    "note": "Targets/rotations/lift remain in original task frame; workspace is in robot base.",
+    "urdf_sha256": "7a1b8511e64e6d7c5e43069775c5e7659a8939bf63669e04b3a7ec4fcc2d1ebc",
+    "source_config": "config/pick_place_default.yaml",
+    "derived_from": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260916/configs/v29_grasp_ym010_ymax_mount.json",
+    "variant_options": {
+      "source": "xtrainer_plan/results_overhead/20260916/configs/v29_grasp_ym010_ymax_mount.json",
+      "output": "xtrainer_plan/config/pick_place_overhead_ymax_smoke.json",
+      "run_output_dir": "results_overhead/ymax_runs",
+      "timestamp_runs": true
+    }
+  }
+}

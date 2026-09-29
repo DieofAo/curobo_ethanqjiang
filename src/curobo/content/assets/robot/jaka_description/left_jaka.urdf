@@ -220,10 +220,10 @@
 		<axis xyz="0 0 1" />
 		<limit lower="-6.196" upper="6.196" effort="0" velocity="0" />
 	</joint>
-	<link name="tool"/>
-	<joint name="tool_joint" type="fixed">
+	<link name="gripper_link"/>
+	<joint name="gripper_joint" type="fixed">
 		<origin xyz="0 0 0.14" rpy="0 0 0" />
 		<parent link="LINK_7" />
-		<child link="tool" />
+		<child link="gripper_link" />
 	</joint>
 </robot>

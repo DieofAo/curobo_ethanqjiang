@@ -1,0 +1,4 @@
+#!/bin/sh
+# Use the distribution media tools without cuRobo/ROS shared-library overrides.
+unset LD_LIBRARY_PATH LD_PRELOAD LD_AUDIT
+exec /usr/bin/ffmpeg "$@"

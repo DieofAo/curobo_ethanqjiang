@@ -1,0 +1,125 @@
+# XTrainer 独立双臂交错 pick & place 配置。
+#
+# 本文件在 pick_place_default.yaml 之上深度合并，因此未重复的
+# 姿态搜索、工作空间、关节限位和直线插拔参数均与一号臂一致。
+
+robot:
+  robot_yml: xtrainer_dual_independent.yml
+  # 离散端点 IK 使用单臂 6-DOF 模型分别枚举；连续轨迹仍使用上面的
+  # 12-DOF combined robot。两臂型号相同，因此共用这一份单臂配置。
+  single_arm_robot_yml: xtrainer.yml
+  dual_arm_prefix: second_
+  base_link: LINK_0
+  ee_link: TCP_LINK
+  second_ee_link: second_TCP_LINK
+  flange_link: LINK_6
+  second_flange_link: second_LINK_6
+  urdf: src/curobo/content/assets/robot/ur_description/xtrainer_dual_independent.urdf
+  mounts: xtrainer_plan/config/cad_mounts_same_side.yaml
+  # 12-DOF 联合 cspace：两臂使用相同的单臂权重。
+  cspace_distance_weight: [5.0, 5.0, 5.0, 5.0, 5.0, 5.0,
+                           5.0, 5.0, 5.0, 5.0, 5.0, 5.0]
+
+pick_place:
+  # 所有 skip 都发生在轨迹发布/执行前。shared_global_outside_in 布局中，
+  # 两臂分别检查分配给自己的 source；某件的 primary 抓取 prefix 无 IK 时，
+  # 只从对应手臂的队列剔除并沿该臂的扫描方向补位。完整流水中的独立 IK
+  # 组合验碰、
+  # Home、trajopt、判据、异常或碰撞失败仍 fail closed，绝不执行半条轨迹。
+  # 旧 same_local_grid 模式仍保留其成对流水 IK 唯一归因后的整线重规划逻辑。
+  on_fail:
+    mode: skip
+  criterion:
+    # false 时只忽略独立 IK 组合预筛的端点跳变；完整 MotionGen 轨迹仍按
+    # max_joint_delta_deg 验收。命令行可临时传 --no-ik-jump-check。
+    prescreen_joint_delta_check: true
+
+dual_arm:
+  # 每个离散路点先分别枚举两臂 IK，再做 Cartesian 组合。组合状态统一
+  # 交给 12-DOF 模型检查关节限位、自碰/臂间碰撞和世界碰撞。
+  # 默认 8x8 恰好覆盖 64 个组合；最终保留最靠近当前状态的 4 个安全目标。
+  ik_candidates_per_arm: 8
+  max_ik_pair_trials: 64
+  ik_goal_candidates: 4
+
+  # shared_global_outside_in 的实际 Home 不再取 pick_place.home 的笛卡尔位姿：
+  # source IK 一次性过滤/补位后，两臂分别以自己最终首件的 g_lift_in 预抓取位姿
+  # 作为联合轨迹起点；二号臂完成后也回到这一位姿。pick_place.home 仅作为
+  # 首轮 IK bootstrap seed（没有获配任务的臂也以它作为兜底）。
+
+  # 二号臂的 place 直接表达在一号臂 LINK_0 坐标系。
+  # 默认从一号臂 place 实时派生：y/z 严格沿用，只把 x 改成 second_place_x。
+  second_place_x: -0.55
+  # 非 null 时才整体覆盖；通常只在 --arm2-place-position 调试时使用。
+  second_place_position: null
+
+  # 默认只生成一份、表达在联合根坐标系（一号臂 LINK_0）下的物料网格。
+  # 以两基座的 x 中线（当前为 -0.4m）分区且不重复分配：一号臂从全局
+  # x 大端向中间，二号臂从全局 x 小端向中间。--max-items 是两臂合计
+  # 的任务数；奇数时一号臂比二号臂多一件。
+  #
+  # 兼容旧结果时可改回 same_local_grid：它给两臂复制同一份“本地”网格，
+  # 在世界坐标中形成两组镜像物料，并保留旧的成对任务语义。
+  task_layout: shared_global_outside_in
+
+  # 连续流水线的固定相位差。3 对应：一号臂完成抓取后抬升、开始
+  # 向 place 运输时，二号臂开始去自己的 g_lift。每条臂完成 6 个
+  # 工艺路点后都立即进入下一个物料，不设置逐物料同步屏障。二号臂
+  # 完成自己的最后一件后，下一 tick 在同一个 12-DOF 碰撞规划中回到
+  # home 并保持；一号臂有剩余任务时继续流水，不等待二号臂。
+  start_delay_stages: 3
+  # 保留该字段兼容命令行/旧配置；连续流水默认固定在同一个相位，
+  # 不在物料之间改节拍。
+  max_start_delay_stages: 3
+
+  # 排程中未激活的臂会被全位姿 hold metric 锁住，并在轨迹后检查
+  # 各关节相对段起点的偏移；二号臂回 Home 后固定到达时的参考，后续
+  # 所有 block 额外检查相对该参考的累计偏移。
+  inactive_joint_tolerance_deg: 1.0
+
+  # 给定某个上游关节状态时，每次 prime / rolling block 搜索最多尝试的
+  # 角度对数；回溯到新的上游状态后重新计数。全局成本另由下面的节点上限控制。
+  # 0/null = 不限。
+  max_pair_angle_trials: 24
+
+  # DFS 跨 rolling block 回溯的全局规划节点上限，防止远端失败导致组合爆炸。
+  # 每个 Home 根节点单独使用本上限；stage2 与 primary 共享该根的
+  # 预算。跨 Home 根的总成本由 max_home_root_trials 封顶。
+  # 0/null = 不限。
+  max_pipeline_search_nodes: 256
+
+  # shared 布局把首件 Home 的抓取姿态对和独立 IK 安全组合一起作为
+  # 整条流水的根节点。某根无法连续到 place 时，丢弃其全部 chunk，
+  # 从下一根的 12-DOF q_home 重新规划。三个值的 0/null 均表示不限。
+  # 12 先让当前默认的 12 个 grasp 角在双臂 Home 上各覆盖一次。
+  max_home_angle_pair_trials: 12
+  max_home_ik_branches_per_pair: 4
+  # branch-rank round-robin：先覆盖所有有解姿态的最近分支，再用剩余
+  # 根预算覆盖各姿态的第二条及更深 IK 分支。
+  max_home_root_trials: 24
+  # 首件预抓取锚点和二号臂最终回 Home 时，必须回到选中 IK 根的
+  # 同一关节分支；任一本臂关节超过该偏差就回退整个 Home 根。
+  home_branch_tolerance_deg: 1.0
+
+  # 臂间球面的规划后验收余量；0 表示只拒绝真实穿透。
+  # planner.collision_activation_distance 与 robot.collision_sphere_buffer
+  # 都不会给 self/inter-arm 优化增加净距。本值设为正会做保守后验拒绝；
+  # 若还要规划器主动留臂间余量，需在 robot yml 配正的逐 link
+  # self_collision_buffer（或实现只针对跨臂 pair 的 cost）。
+  collision_margin_mm: 0.0
+
+  # 连续跨物料模式禁止 arm1 -> arm2 串行降级；设为 true 时入口会拒绝配置。
+  sequential_fallback: false
+
+planner:
+  # 12-DOF + 双末端位姿比单臂占用更多 GPU 内存。
+  num_ik_seeds: 96
+  num_trajopt_seeds: 16
+  num_graph_seeds: 8
+  # 无 Cartesian hold/直线 metric 的重叠段会把独立 IK 选出的 12-DOF
+  # q_goal 直接交给联合 joint-space MotionGen，提前 warmup 对应 solver。
+  warmup_js_trajopt: true
+
+output:
+  dir: results_dual_pick_place
+  add_timestamp: true
