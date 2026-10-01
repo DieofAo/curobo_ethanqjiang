@@ -1,0 +1,1000 @@
+{
+  "source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260928/v66_v64_8of9_local_y_full/runs/v64_47/trajectory_meta.json",
+  "urdf": "/home/ethanqjiang/workspace/curobo/src/curobo/content/assets/robot/ur_description/xtrainer.urdf",
+  "base_link": "LINK_0",
+  "task_frame": "task_world",
+  "legacy_task_frame": "original_LINK_0",
+  "mount_transform": [
+    [
+      -7.544135389380684e-17,
+      1.0,
+      1.14261101893613e-16,
+      -0.1
+    ],
+    [
+      0.5000000000000001,
+      -6.123233995736766e-17,
+      0.8660254037844386,
+      0.15
+    ],
+    [
+      0.8660254037844386,
+      1.2246467991473532e-16,
+      -0.5000000000000001,
+      0.65
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "link0_target_transform": [
+    [
+      -7.544135389380684e-17,
+      0.5000000000000001,
+      0.8660254037844386,
+      -0.637916512459885
+    ],
+    [
+      1.0,
+      -6.123233995736764e-17,
+      1.2246467991473532e-16,
+      0.09999999999999994
+    ],
+    [
+      1.14261101893613e-16,
+      0.8660254037844385,
+      -0.5000000000000001,
+      0.19509618943233428
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "inverse_max_abs_error": 1.1102230246251565e-16,
+  "grasp_grid_center_task_world": [
+    -0.41000000000000003,
+    0.15000000000000002,
+    0.024
+  ],
+  "grasp_grid_size": [
+    0.45999999999999996,
+    0.54,
+    0.01
+  ],
+  "place_position_task_world": [
+    -0.36,
+    -0.12,
+    0.1
+  ],
+  "tcp_joint_xyz": [
+    0.0,
+    0.0,
+    0.19
+  ],
+  "assembly": {
+    "enabled": true,
+    "visual_only": true,
+    "mounts": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/config/cad_mounts_overhead_display.yaml",
+    "arm": "left",
+    "mesh": "/home/ethanqjiang/workspace/curobo/src/curobo/content/assets/robot/ur_description/meshes/xtrainer/table.stl",
+    "mesh_uri": "file:///home/ethanqjiang/workspace/curobo/src/curobo/content/assets/robot/ur_description/meshes/xtrainer/table.stl",
+    "scale": 0.001,
+    "rgba": [
+      0.48,
+      0.52,
+      0.57,
+      0.82
+    ],
+    "original_base_in_cad": [
+      [
+        -1.0,
+        1.2246467991473532e-16,
+        1.4997597826618576e-32,
+        -0.478775
+      ],
+      [
+        1.2246467991473532e-16,
+        1.0,
+        1.2246467991473532e-16,
+        0.250794
+      ],
+      [
+        -0.0,
+        1.2246467991473532e-16,
+        -1.0,
+        0.456503
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "task_world_to_scene_root": [
+      [
+        -1.0,
+        1.2246467991473532e-16,
+        6.016155777703619e-49,
+        -0.47877500000000006
+      ],
+      [
+        1.2246467991473532e-16,
+        1.0,
+        1.2246467991473532e-16,
+        -0.250794
+      ],
+      [
+        1.4997597826618576e-32,
+        1.2246467991473532e-16,
+        -1.0,
+        0.45650299999999994
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "xyz": [
+      -0.47877500000000006,
+      -0.250794,
+      0.45650299999999994
+    ],
+    "rpy": [
+      3.141592653589793,
+      -1.4997597826618576e-32,
+      3.141592653589793
+    ]
+  },
+  "display_only": true,
+  "near_joint_names": [
+    "J_1",
+    "J_2",
+    "J_3",
+    "J_4",
+    "J_5",
+    "J_6"
+  ],
+  "far_joint_names": [
+    "far_J_1",
+    "far_J_2",
+    "far_J_3",
+    "far_J_4",
+    "far_J_5",
+    "far_J_6"
+  ],
+  "far_prefix": "far_",
+  "grasp_center_task_world": [
+    -0.41000000000000003,
+    0.15000000000000002,
+    0.03
+  ],
+  "mirror_transform_task_world": [
+    [
+      -1.0,
+      0.0,
+      0.0,
+      -0.8200000000000001
+    ],
+    [
+      0.0,
+      -1.0,
+      0.0,
+      0.30000000000000004
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "near_mount_task_world": [
+    [
+      -7.544135389380684e-17,
+      1.0,
+      1.14261101893613e-16,
+      -0.1
+    ],
+    [
+      0.5000000000000001,
+      -6.123233995736766e-17,
+      0.8660254037844386,
+      0.15
+    ],
+    [
+      0.8660254037844386,
+      1.2246467991473532e-16,
+      -0.5000000000000001,
+      0.65
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "far_mount_task_world": [
+    [
+      -1.366736938511745e-16,
+      -1.0,
+      -8.203578021122333e-18,
+      -0.7200000000000001
+    ],
+    [
+      -0.5000000000000001,
+      6.123233995736766e-17,
+      0.8660254037844386,
+      0.15000000000000005
+    ],
+    [
+      -0.8660254037844386,
+      1.2246467991473532e-16,
+      -0.5000000000000001,
+      0.65
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "near_place_task_world": [
+    -0.02,
+    -0.12,
+    0.1
+  ],
+  "far_place_task_world": [
+    -0.82,
+    -0.12,
+    0.1
+  ],
+  "far_place_mode": "fixed_per_arm_window_picks_common_yz",
+  "mirrored_source_place_task_world": [
+    -0.4600000000000001,
+    0.42000000000000004,
+    0.1
+  ],
+  "workbench_frame": "scene_root",
+  "far_mount_mode": "mirror_of_original_local_y_minus_60_deg",
+  "far_mount_source_config": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260928/v67_near_zero_x_local_y_negative_smoke_retry03/configs/v67_35.json",
+  "far_mount_source_config_sha256": "a1453587eb7ad03a0c959770eeff8017644dda9cb5a27ee14583686cbb637cf4",
+  "far_mount_source_local_y_tilt_deg": -60.0,
+  "far_mount_urdf_rpy_rad": [
+    3.1415926535897927,
+    1.0471975511965974,
+    -1.5707963267948968
+  ],
+  "positive_y_source_scene": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260928/x_side_dual_arm_mirror/video/v2_matching_grasp/recording_scene.urdf",
+  "positive_y_source_scene_sha256": "e584c25e87d44721c7a321b71b2a6e53b15e12d7eb957287d16d4dbf2f0b632c",
+  "orientation_coupling_mode": "copy_near_grasp_to_place_TCP_relative_rotation",
+  "orientation_coupling_source": "V69 zero-degree near case 390 actual TCP FK",
+  "source_negative_scene_json": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260928/x_side_dual_arm_mirror/video/v3_negative_far_y/recording_scene.json",
+  "source_negative_scene_json_sha256": "d9d80bd1b7f01d74471779e4230de745f2c02470243d465259605fc5d1d08ea6",
+  "source_negative_scene_urdf": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260928/x_side_dual_arm_mirror/video/v3_negative_far_y/recording_scene.urdf",
+  "source_negative_scene_urdf_sha256": "27c3920326ac1c16e3662623b23f21ed197543c66d833f56c72f5e36e0caf666",
+  "source_v4_scene_json": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260928/x_side_dual_arm_mirror/video/v4_coupled_far_y/recording_scene.json",
+  "source_v4_scene_json_sha256": "6befb36dc223f868c3e837fbfee40aad2705b4fc0532540d35584d4f1ec365c1",
+  "source_v4_scene_urdf": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260928/x_side_dual_arm_mirror/video/v4_coupled_far_y/recording_scene.urdf",
+  "source_v4_scene_urdf_sha256": "27c3920326ac1c16e3662623b23f21ed197543c66d833f56c72f5e36e0caf666",
+  "place_tcp_plus_Z_task_world": [
+    0,
+    -1,
+    0
+  ],
+  "source_v70_scene_json": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260929/v70_v64_47_zero_first_dual_overlap/video/recording_scene.json",
+  "source_v70_scene_json_sha256": "8f1492a9ffef5a00ce30ae165d406c7176b3fad1cf9674839b2cf8a578c48c63",
+  "source_v70_scene_urdf": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260929/v70_v64_47_zero_first_dual_overlap/video/recording_scene.urdf",
+  "source_v70_scene_urdf_sha256": "a939dca5510601d2426618d483f95de24676e3b11f093fc99801f341e55a897f",
+  "near_place_slots_task_world": [
+    [
+      -0.02,
+      -0.12,
+      0.1
+    ]
+  ],
+  "far_place_slots_task_world": [
+    [
+      -0.82,
+      -0.12,
+      0.1
+    ]
+  ],
+  "near_place_tcp_plus_Z_task_world": [
+    0.90630778703665,
+    -0.4226182617406995,
+    -8.326672684688674e-17
+  ],
+  "far_place_tcp_plus_Z_task_world": [
+    -0.9238795325112867,
+    -0.38268343236508984,
+    0.0
+  ],
+  "source_v71_scene_json": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260929/v71_zminusy_simultaneous/video/recording_scene_x0619.json",
+  "source_v71_scene_json_sha256": "fbf59470ccb41c3beb8c0228de1eb5944ca9712a94d841389282d33c0bfa93e3",
+  "source_v71_scene_urdf": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260929/v71_zminusy_simultaneous/video/recording_scene_x0619.urdf",
+  "source_v71_scene_urdf_sha256": "da77d3a4f649990494075fa188ef69a4771c78e2f6986b2b05d1443927c1af78",
+  "held_items_visualized": false,
+  "near_place_tcp_plus_Z_by_pick_task_world": [
+    [
+      0.90630778703665,
+      -0.4226182617406995,
+      -8.326672684688674e-17
+    ],
+    [
+      0.90630778703665,
+      -0.4226182617406995,
+      -8.326672684688674e-17
+    ],
+    [
+      0.8660254037844387,
+      -0.5000000000000004,
+      5.551115123125783e-17
+    ]
+  ],
+  "far_place_tcp_plus_Z_by_pick_task_world": [
+    [
+      -0.9238795325112867,
+      -0.38268343236508984,
+      0.0
+    ],
+    [
+      -0.9238795325112867,
+      -0.38268343236508984,
+      0.0
+    ],
+    [
+      -0.8660254037844386,
+      -0.5000000000000001,
+      0.0
+    ]
+  ],
+  "place_yaw_varies_by_pick": true,
+  "full_video_bundle": true,
+  "source_stitched_summary": {
+    "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0181_adapter/stitched_candidate/summary.json",
+    "sha256": "7bc38cfb8fcd8f686a65636b03f52ecca19001a924871b9839e278ffdfdcfc69"
+  },
+  "source_window_scenes": [
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0001_gap85/v78_w0001_gap85_scene.json",
+      "sha256": "d77220c174af1a72b6ef2527f910f85674aff18d8d9c156eab6c88111cec3124"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0002_gap85/v78_w0002_gap85_scene.json",
+      "sha256": "2f3d44df1b7cda03ce4d11bff4327f76c87ab3a940522d7c92c3e63b0a9b5dfa"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0003_gap85/v78_w0003_gap85_scene.json",
+      "sha256": "d1c4c1cb42c2a48e6bf0c8d61aabff0df55c0391a7668f26eb96a7a691f226b4"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0004_gap85/v78_w0004_gap85_scene.json",
+      "sha256": "0fb7449ce6f1ffd00e3059cb4be6b2a61ffd468df04f0579c2720d8c9661f8d1"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0005_gap85/v78_w0005_gap85_scene.json",
+      "sha256": "fb59c943c54fcb2a7416c3c8185560034017915879afb4c8e1ab6d850f9dacfc"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0006_gap70/v78_w0006_gap70_scene.json",
+      "sha256": "1329f35df3857a7c3709d82a55c1d008c698cd0e88b97a1b6d4ab709a878dc92"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0007_gap85/v78_w0007_gap85_scene.json",
+      "sha256": "0328ebd896d476917278b58608a51b72e4f51262f2dc85d07a7faad5330a633a"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0008_gap85/v78_w0008_gap85_scene.json",
+      "sha256": "68c239d1fbb74df82f2ff6be9f5ad90aa1e1d026104429f8df4566e8c2eb617b"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0009_gap85/v78_w0009_gap85_scene.json",
+      "sha256": "32e4b748238e454528ed0d555b8402d15ba3241186b7e808ccfad55512730dab"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0010_gap85/v78_w0010_gap85_scene.json",
+      "sha256": "3ad88765e4ae522ceb5b71a733f595def8f9c74eedb760378a1943b81153df0f"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0011_gap85/v78_w0011_gap85_scene.json",
+      "sha256": "4bf3e4052127dd5d6319ff87d614fa5efa5ae22353ccef3ac9103a2b33fea578"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0012_gap85/v78_w0012_gap85_scene.json",
+      "sha256": "466524918015bd5748bf4370eac5cf7b3d79c6fac1c84beb2162e87be7d46d95"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0013_gap85/v78_w0013_gap85_scene.json",
+      "sha256": "10074c871734c8c26faa3d5a31631073b055af5896cc0cdf625c480dae478b45"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0014_gap85/v78_w0014_gap85_scene.json",
+      "sha256": "4a20301077a26e550d5f4e274db1359d4b3853552f13236cb517e5d8964a97f0"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0015_gap85/v78_w0015_gap85_scene.json",
+      "sha256": "699ec549d187ac2a5654dc6686243f37b2e9ac44531e2f703e80b271117e40e9"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0016_gap85/v78_w0016_gap85_scene.json",
+      "sha256": "a2d7fa785d2f8eeac3f79a5d0c3d0919bbe92ddb93d1f9f4a02aab571290b48c"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0017_gap55/v78_w0017_gap55_scene.json",
+      "sha256": "da6bf9ceafd5f8dab49954ed90ca361949912fc268ab16ca1c16a399f0faaef7"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0018_gap55/v78_w0018_gap55_scene.json",
+      "sha256": "1877e7a1da97d2e69df142b42522fa1afcee02195b2dc3b2465af725bdd72e99"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0019_gap70/v78_w0019_gap70_scene.json",
+      "sha256": "76fd4d492dac25e158e1df3e5caf884f1d0bd40a11b15f4d25746515f88b6c20"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0020_gap70/v78_w0020_gap70_scene.json",
+      "sha256": "da5bf6b35d06ef914a26fcca48c65cec3d8052546bc49ffe7b454f7253c7912e"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0021_pair1_gap55/v78_w0021_pair1_gap55_scene.json",
+      "sha256": "0063c41fdfc43601911a9ea05c39b6b8d2b51fdd43b17fb0a35b647abd3d59e7"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0022_gap85/v78_w0022_gap85_scene.json",
+      "sha256": "51709b6126f1f788ea871ac2cb0c682535fe6a25a0bef5409774de397c45299b"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0023_gap70/v78_w0023_gap70_scene.json",
+      "sha256": "2c3a9b9add91199d9a8431125793fce9832fc67246bf27081e729f92170f0fac"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0024_gap70/v78_w0024_gap70_scene.json",
+      "sha256": "df607e09070dd5123ac8b76a10fe578c00fa56c4f8b7e9cce8101809e538aad9"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0025_gap85/v78_w0025_gap85_scene.json",
+      "sha256": "8c527cc85564fa9efaf969462fd2135cdb7cef20c4c472d2e618ea32cac1ef70"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0026_gap70/v78_w0026_gap70_scene.json",
+      "sha256": "1d4f400c092e90ca60c21f42e3ca8d7e1af0f3965a9b2977bb0c39469eadfbf3"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0027_gap70/v78_w0027_gap70_scene.json",
+      "sha256": "f86d24c461b7e07a517e22355d2c55834ffb3951b2f5b9d3248905150ea115c2"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0028_gap70/v78_w0028_gap70_scene.json",
+      "sha256": "93ac0bcc80d55cadbe4f5620955d2198b419dd55a3f8e84e42daf47359910cbc"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0029_gap70/v78_w0029_gap70_scene.json",
+      "sha256": "d33f43707e7a10586b708856aade871cc70c6f6e1cc2ac05f9ce443ec89e244f"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0030_pair1_gap70/v78_w0030_pair1_gap70_scene.json",
+      "sha256": "95750313fb5823e0a4d6bb20ca6250617c1a99888cb924973fdec01cedf00b18"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0031_pair1_gap70/v78_w0031_pair1_gap70_scene.json",
+      "sha256": "732c7ed88d5b2ab377670bf1da59a8f2a5bca795c5160dbcca0fdb5701358ead"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0032_pair1_gap55/v78_w0032_pair1_gap55_scene.json",
+      "sha256": "8d03b41a88a49499ebd40a3c0014f2e1d15299b3f899834cfa0770537e3b0634"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/p57p5_m60_gap70/v78_p57p5_m60_gap70_scene.json",
+      "sha256": "963b69857c37cd370cac5d16a0bac062678777db0e32d3cb8ee2fa6dd76fa54f"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0034_pair1_gap55/v78_w0034_pair1_gap55_scene.json",
+      "sha256": "33c61d245dd0965e5d095958be91b03b5d918c9a141cb2fcbd8d6d94354b0e8a"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0035_pair1_gap55/v78_w0035_pair1_gap55_scene.json",
+      "sha256": "851907c397d2e72813e206f6d3d659c13e3355488b6857f06f5edc6224cca144"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0036_pair1_gap55/v78_w0036_pair1_gap55_scene.json",
+      "sha256": "5a68856f04ec2bf3fc10db8ce7b4478ec3ce09ac1fadcd8855309548af240f49"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0037_pair1_gap55/v78_w0037_pair1_gap55_scene.json",
+      "sha256": "1efb79b99346261d363e13793a6ec73a009a26406a16654f0c81ff18239ef2ae"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0038_pair1_gap55/v78_w0038_pair1_gap55_scene.json",
+      "sha256": "b80eecfbbdcc2027faa2c7b6e083f50eda5d649822f0465552da8c6c6281c7b8"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0039_pair1_gap55/v78_w0039_pair1_gap55_scene.json",
+      "sha256": "53f7a9c63a262f4f0f1547923489986c340836a6f30878e74a0a0579bc6572b9"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0040_pair1_gap70/v78_w0040_pair1_gap70_scene.json",
+      "sha256": "523210f7ef926e009402749a40fa0880c9401bcc67d34178cbc364c28641c1c2"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0041_yaw_np55_fm60_gap55/v78_w0041_yaw_np55_fm60_gap55_scene.json",
+      "sha256": "ff05d08d3299e99743ded5651bb6d572eac7c83067c1680cbc9f2298cd51ab52"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0042_pair1_gap55/v78_w0042_pair1_gap55_scene.json",
+      "sha256": "0ac8ccec3ec12d349f22d4af18b36cedb046cffa9526ebed97a6990440a334e7"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0043_yaw_np50_fm65_gap55/v78_w0043_yaw_np50_fm65_gap55_scene.json",
+      "sha256": "eb29247f6c47f7d1152f6b971e4c6a59021b70ace216dd46b6b6058a481abc16"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0044_pair1_gap70/v78_w0044_pair1_gap70_scene.json",
+      "sha256": "8bbafe76efea34706a31d2515369a8021aed9d153ce3ed59e3820660a2e63cfd"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0045_pair1_gap55/v78_w0045_pair1_gap55_scene.json",
+      "sha256": "d6feb63cf4e2ecd547dd2eecc6d0cb351b93ef0e1e9f2567265fdbd74b76ffc0"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0046_yaw_np55_fm65_gap70/v78_w0046_yaw_np55_fm65_gap70_scene.json",
+      "sha256": "4eab119216b69ae4b5c566ccfc5c3226f293d290c7ebbaabaf059627942750cc"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0047_pair1_gap55/v78_w0047_pair1_gap55_scene.json",
+      "sha256": "2fa2a3f468847ccba624cd45f3992ea63208b2c13c2e9d32437930c8ddac85d1"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0048_yaw_np57p5_fm60_gap55/v78_w0048_yaw_np57p5_fm60_gap55_scene.json",
+      "sha256": "5ea6da38bb0a0b656d8d377638a2a1f3a93c509f60d2a6e28d9d3aa257614e57"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0049_pair1_gap70/v78_w0049_pair1_gap70_scene.json",
+      "sha256": "2a361e58d42ba5cd695b489e765dd128d59e52b0b06231d73559746339efa7bb"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0050_pair1_gap70/v78_w0050_pair1_gap70_scene.json",
+      "sha256": "684166ebf5e9ac75ff44d3ad9cfa287f428ab29c86a155c8374ec9367ce4d7a7"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0051_pair1_gap70/v78_w0051_pair1_gap70_scene.json",
+      "sha256": "a1c45e4ae84035a355ea9160bdba04f877b34b3c2810bc597951eb11723a9169"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0052_pair1_gap70/v78_w0052_pair1_gap70_scene.json",
+      "sha256": "9d3f016253d360c254a09b51d156e40c607b17fc3b275b46edd961af69bb5abb"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0053_pair1_gap70/v78_w0053_pair1_gap70_scene.json",
+      "sha256": "636fd840d52f005cf8b534d3bafee6a6dea17856b0de23fbf1f0906b50c13d21"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0054_pair1_gap70/v78_w0054_pair1_gap70_scene.json",
+      "sha256": "a122b40478ba0e5a28473a01c5dd825ca798208e48070213dd2770884562416e"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0055_pair1_gap70/v78_w0055_pair1_gap70_scene.json",
+      "sha256": "a2901b2c951fea328ec5d3a6939a1a3c81571adacafd9bea4eac8d90dd35bb40"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0056_pair1_gap70/v78_w0056_pair1_gap70_scene.json",
+      "sha256": "f96b9cef6ec9eba2b9e17e2c23e882e05a58df830580db8d4b970d0952598462"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0057_pair1_gap70/v78_w0057_pair1_gap70_scene.json",
+      "sha256": "d13a4ea20ba512306db9e3f1694aa90aca1fc028dd98047b830e619c05c2792b"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0058_pair1_gap70/v78_w0058_pair1_gap70_scene.json",
+      "sha256": "892bccab5f2cc833bdef36dfa45e0333faa767306b54b5a581d51a8f0f19419c"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0059_pair1_gap70/v78_w0059_pair1_gap70_scene.json",
+      "sha256": "e2ccfb9d6e08fc6ccba3ae2458f5b984b49ce573ca76da419ff8432a95227943"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0060_pair1_gap70/v78_w0060_pair1_gap70_scene.json",
+      "sha256": "d612e036f11281f2d61366a6dbea8215cee874d0a3dfeda7d7620ff6019e5dc9"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0061_pair1_gap70/v78_w0061_pair1_gap70_scene.json",
+      "sha256": "2bce0e6fbbf7954753430ec4c17c5b33f5851dab46aff59d4883cf9af39391d1"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0062_pair1_gap55/v78_w0062_pair1_gap55_scene.json",
+      "sha256": "83329a38addf7507edf09b6d999fbf5ff9dfffefa9a1875b35b0e96f969479c8"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0063_pair1_gap55/v78_w0063_pair1_gap55_scene.json",
+      "sha256": "432ed2b3f45b7bb0c28a9385bbaa87c02a3c8f9e4e025d6f73a53ffae924ae81"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0064_pair1_gap70/v78_w0064_pair1_gap70_scene.json",
+      "sha256": "3c46a83dbf383a7e00e5d0f3bf638415de086b9b2decb71b64a024ce5f1f1cc5"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0065_pair1_gap55/v78_w0065_pair1_gap55_scene.json",
+      "sha256": "5a46198b5733bc8711ed9a482e8ca72cf2e07dbbe8cea5e76745088c9414a51b"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0066_pair1_gap70/v78_w0066_pair1_gap70_scene.json",
+      "sha256": "fde7234c5bd23f07af139121aae7bbcf64df7cc0102cfd37e573e3e8abeaae26"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0067_pair1_gap55/v78_w0067_pair1_gap55_scene.json",
+      "sha256": "8011cf3d057dc96959a69c2bd040cd009116e3348ffc68ee2c4e509e05c49061"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0068_yaw_np50_fm65_gap55/v78_w0068_yaw_np50_fm65_gap55_scene.json",
+      "sha256": "f093e9f4960611f2d8560e4865c42c1badfdd4603c0bfcb483ff7eba7cf63c5f"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0069_pair1_gap55/v78_w0069_pair1_gap55_scene.json",
+      "sha256": "ba9494595af54c167fa9ed5ef0057a7ff5c6451e83f8240b89f3abfe42786bfb"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0070_pair1_gap55/v78_w0070_pair1_gap55_scene.json",
+      "sha256": "ec0b22377e1729ec5bc2f20fcae5b5cc61b9d42f1283181dcff7849764579579"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0071_yaw_np57p5_fm60_gap55/v78_w0071_yaw_np57p5_fm60_gap55_scene.json",
+      "sha256": "fdbac37748986b6c008c9f6b687ee508b15b4450fee53d11b85e42b081378daf"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0072_yaw_np57p5_fm60_gap55/v78_w0072_yaw_np57p5_fm60_gap55_scene.json",
+      "sha256": "26d1212581c4da3b57732aad8b2114de1804e6498b72b21d4cf05a3c7ee85170"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0073_pair1_gap55/v78_w0073_pair1_gap55_scene.json",
+      "sha256": "7f3af5f0db2bbb6c6f29a60a05e4d59af4832e254eb08884311686d39bfd3da0"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0074_n45_fpark_gap70/v78_w0074_n45_fpark_gap70_scene.json",
+      "sha256": "74ff223f623c39c6149dd1417bcc4471188804d7469e10783309d8b3d87d6b10"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0075_yaw_np50_fm60_gap55/v78_w0075_yaw_np50_fm60_gap55_scene.json",
+      "sha256": "71cf0a927991bbcf36195e6e3e58ab1ca13f7e686c68cf509f1f18fed7777ad0"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0076_n50_fpark_gap70/v78_w0076_n50_fpark_gap70_scene.json",
+      "sha256": "89698a26d39253c537e937e04e5b083b82bd3a334f0160ff533f7901ae6146e8"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0077_yaw_np50_fm65_gap55/v78_w0077_yaw_np50_fm65_gap55_scene.json",
+      "sha256": "b6aa16f8af7521d0cf59a65148454c3b3cfae5981934080c52e030f5afb7a415"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0078_yaw_np55_fm60_gap55/v78_w0078_yaw_np55_fm60_gap55_scene.json",
+      "sha256": "cbf9b67a9a2868fd75eea35b6993d31899c18db56ed7edba66658ebe8f179131"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0079_yaw_np50_fm65_gap55/v78_w0079_yaw_np50_fm65_gap55_scene.json",
+      "sha256": "e78c5319b761358b3b14436e6ced0fe6f823ac23cd6d6569e2d878bb0f214b46"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0080_farpark_np45_fm60_park1_gap70/v78_w0080_farpark_np45_fm60_park1_gap70_scene.json",
+      "sha256": "01bed29ff1f632fc0e1fb85b74145b57aee802a717684448b2f8d97762d5cf1f"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0081_farpark_np50_fm65_park0_gap70/v78_w0081_farpark_np50_fm65_park0_gap70_scene.json",
+      "sha256": "0d056b4d6ac907d7cd06ac9e1b565187c848fd7cd4f2de68b711eff0a15ca256"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0082_farpark_np50_fm60_park0_gap70/v78_w0082_farpark_np50_fm60_park0_gap70_scene.json",
+      "sha256": "698db3e9d6ffb77365b6cbabe2aee489b608c4cb5eb733342f845a34cb3d78f4"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0083_farpark_np45_fm65_park1_gap70/v78_w0083_farpark_np45_fm65_park1_gap70_scene.json",
+      "sha256": "0a2634dc300004337d216a6c4b405cf6d56ffd6da9ea526a8d878454e0761b48"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0084_yaw_np50_fm65_gap55/v78_w0084_yaw_np50_fm65_gap55_scene.json",
+      "sha256": "30defc2ebdce9217504beebe89cd4ebc7722b2cc751d9544213fe4deed307fba"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0085_farpark_np45_fm65_park0_gap55/v78_w0085_farpark_np45_fm65_park0_gap55_scene.json",
+      "sha256": "3ccf82fb724afd495c09adc4dc291e2a484b53e6e1ba719dc1e2c29a90228cf1"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0086_postpark_np70_fm60_gap70/v78_w0086_postpark_np70_fm60_gap70_scene.json",
+      "sha256": "1d9b4e17d2b8336b3a958a147993d0b83f5dc00735b2c2353f0d977e2cbed456"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0087_pair1_gap55/v78_w0087_pair1_gap55_scene.json",
+      "sha256": "347d58295019e491e8ad92c7d71682b5151baff824433c5982c1576c72b4e75c"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0088_farpark_np50_fm60_park0_gap55/v78_w0088_farpark_np50_fm60_park0_gap55_scene.json",
+      "sha256": "00684ef34d60bd2ba9dd4938f24df7a17d55bb232508bf5ab5e947cc7039e112"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0089_farpost_np70_fm60_gap55/v78_w0089_farpost_np70_fm60_gap55_scene.json",
+      "sha256": "08a55607e12a808327186ae981fec38b997d52efcd95fc83b4cc0f0933288531"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0090_yaw_np50_fm60_gap55/v78_w0090_yaw_np50_fm60_gap55_scene.json",
+      "sha256": "7944dab355ab6ec5038cd85a5bec085e153f78ab1ee1d16a0e3043925f792931"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0091_pair1_gap55/v78_w0091_pair1_gap55_scene.json",
+      "sha256": "988d9892a4122ea8562f7a9410d479b4adda233e15857c2c59995413dd9bc4e0"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0092_yaw_np50_fm65_gap55/v78_w0092_yaw_np50_fm65_gap55_scene.json",
+      "sha256": "657d9be81daef28e6d208c6deaa1ecd2cead07cb00d8df6073dd3adcc5d404ff"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0093_pair1_gap55/v78_w0093_pair1_gap55_scene.json",
+      "sha256": "90d5c85d0dffb350cce3091b195a0e2146d73c0f7b1843d0016c64de7570347c"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0094_yaw_np50_fm65_gap55/v78_w0094_yaw_np50_fm65_gap55_scene.json",
+      "sha256": "085ac31b2b2f909fe9aca735c9de295f889636499245defd11cbb7c34562641d"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0095_pair1_gap55/v78_w0095_pair1_gap55_scene.json",
+      "sha256": "4bdccc42b179828434f910fde4d30e58bed68a31787746cc31391892d16e93f2"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0096_yaw_np50_fm65_gap55/v78_w0096_yaw_np50_fm65_gap55_scene.json",
+      "sha256": "16ec7c30fc811ae8ce1edfa92bef7e744404582034cce70be962f3d3a46fb06b"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0097_farpark_np50_fm60_park1_gap70/v78_w0097_farpark_np50_fm60_park1_gap70_scene.json",
+      "sha256": "f00127e71d2cd0d571408924fd72f6c101799b3565d8e0911595b05dd335c37d"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0098_farpark_np45_fm60_park0_gap70/v78_w0098_farpark_np45_fm60_park0_gap70_scene.json",
+      "sha256": "bd3f315c346e040ff3018412069bfd6c733250cc9811a3c56737862c45c23ce9"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0099_farpark_np50_fm60_park0_gap70/v78_w0099_farpark_np50_fm60_park0_gap70_scene.json",
+      "sha256": "8f89e245bdbbeac859358e6b05da762657598c89f65a930771ba510c017df32f"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0100_farpark_np50_fm60_park0_gap70/v78_w0100_farpark_np50_fm60_park0_gap70_scene.json",
+      "sha256": "c6ec72d583d76546d940adc895e87e6a2e868463b3976f9da45179c005dbe93e"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0101_farpark_np50_fm60_park0_gap70/v78_w0101_farpark_np50_fm60_park0_gap70_scene.json",
+      "sha256": "8c922bf034b2c1d62ca32eaee6a15988613055af1ce46769de52f6e32abad4b3"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0102_farpark_np50_fm60_park0_gap70/v78_w0102_farpark_np50_fm60_park0_gap70_scene.json",
+      "sha256": "e363afcc7871b40bb9399d8ed77bb1fd4db5381e08a2d8388cd518ebc1687062"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0103_farpark_np50_fm60_park0_gap85/v78_w0103_farpark_np50_fm60_park0_gap85_scene.json",
+      "sha256": "1eb22d259283e643bc287f1a0ba23c7081288e6795d45cfdbcf4f7b888a092a9"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0104_farpark_np50_fm60_park0_gap85/v78_w0104_farpark_np50_fm60_park0_gap85_scene.json",
+      "sha256": "abad219d50ef27f3a08fae9d7c33a0dc0fb08d17c76baa0d71223377e3fd67e6"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0105_farpark_np45_fm60_park0_gap70/v78_w0105_farpark_np45_fm60_park0_gap70_scene.json",
+      "sha256": "816c4a2a106787ae3c9c493204476d8e6e6e34b42a46880f717b3efc6ed7f26e"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0106_yaw_np57p5_fm60_gap55/v78_w0106_yaw_np57p5_fm60_gap55_scene.json",
+      "sha256": "75cfb1ab394079da60d331bcf905c1d2d1340620c570c70498d42040b4b965d5"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0107_farpark_np50_fm60_park0_gap70/v78_w0107_farpark_np50_fm60_park0_gap70_scene.json",
+      "sha256": "bb8e9b64e728e7f8f49ec7670c1a00eeb2bb5d1e2b6579270eb62cd2381ea233"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0108_farpark_np50_fm60_park0_gap70/v78_w0108_farpark_np50_fm60_park0_gap70_scene.json",
+      "sha256": "7c68175d09dc1b7de91ded4def597363317b254568a535c610b26981432c2f6c"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0109_yaw_np50_fm65_gap55/v78_w0109_yaw_np50_fm65_gap55_scene.json",
+      "sha256": "f391661c7359e718a3ce80e6e3169fc12000a5666db5b7e8547ede8938921bf6"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0110_farpark_np45_fm60_park0_gap70/v78_w0110_farpark_np45_fm60_park0_gap70_scene.json",
+      "sha256": "e1de820bcedb7e3b7790a4244921bd5e366cce96bd88a9222cdc63b349f1dc7e"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0111_farpark_np45_fm60_park0_gap70/v78_w0111_farpark_np45_fm60_park0_gap70_scene.json",
+      "sha256": "48f41a30acbc7fb5db9d04110337615860a2ec437a969eb55913d65a5ab4b4b2"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0112_farpark_np45_fm60_park0_gap55/v78_w0112_farpark_np45_fm60_park0_gap55_scene.json",
+      "sha256": "a4d2c9dc6e8f27de86d0020a4602158036cb62216d0bc61b54ec8fb9934a6e8b"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0113_farpark_np45_fm60_park0_gap55/v78_w0113_farpark_np45_fm60_park0_gap55_scene.json",
+      "sha256": "1709f7fefd0e0d3cbaaeecd01c8be3c1d6cd8711e80e210cef962bcf0de79cc8"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0114_np19_j3m15_fm65_g70/v78_w0114_np19_j3m15_fm65_g70_scene.json",
+      "sha256": "1fe14c7fdebc50f83aa70ffe468fb10814d7aa459e7af1177fe2d3ec5ab020ae"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0115_nearpost_yaw_p50_j2p19_j3m15_park0_m65_gap70/v78_w0115_nearpost_yaw_p50_j2p19_j3m15_park0_m65_gap70_scene.json",
+      "sha256": "fd6e6e1a70507be28d015f52ad3b011c335b340801fe500a8dc3a5a5069ce869"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0116_nearpost_farpark_p45_j2p19_j3m15_park0_m65_gap70/v78_w0116_nearpost_farpark_p45_j2p19_j3m15_park0_m65_gap70_scene.json",
+      "sha256": "348f55ef640f8b3e06ab7738915edde75c35e1e8b6d4c2fcacd797b160bb9c9b"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0117_nearpost_farpark_p45_j2p19_j3m15_park0_m60_gap70/v78_w0117_nearpost_farpark_p45_j2p19_j3m15_park0_m60_gap70_scene.json",
+      "sha256": "65496a92df621263cad8cb9f2989ee3b4c9073836decdc00eacbeb7d2ef4033b"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0118_nearpost_yaw_p50_j2p19_j3m15_park0_m65_gap55/v78_w0118_nearpost_yaw_p50_j2p19_j3m15_park0_m65_gap55_scene.json",
+      "sha256": "5827edadef2da4ea6307b4984be66fdb8f90d74c97caffc39e702d6219843122"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0119_nearpost_yaw_p50_j2p19_j3m15_park0_m60_gap55/v78_w0119_nearpost_yaw_p50_j2p19_j3m15_park0_m60_gap55_scene.json",
+      "sha256": "6d1b184456ff0df72ebedb884991f9c012a78f8aa92a5927d606781556ca6346"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0120_farpark_np45_fm65_park0_gap55/v78_w0120_farpark_np45_fm65_park0_gap55_scene.json",
+      "sha256": "acdc9bacf8521ae71f3673c522fa3b5333f588e015ff65669d9d7058328f8c87"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0121_nearpost_farpark_p45_j2p10_j3m10_park0_m65_gap55/v78_w0121_nearpost_farpark_p45_j2p10_j3m10_park0_m65_gap55_scene.json",
+      "sha256": "6e61b32292a5d2b0363c700fbe099014b45027b85e8048c014fbd6184580a54b"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0122_farpark_np45_fm60_park0_gap55/v78_w0122_farpark_np45_fm60_park0_gap55_scene.json",
+      "sha256": "3bd618a7c55a369aff2f8af22ff36a1fca7e390e46b45e48099383b1a12e6c82"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0123_farpost_np70_fm60_gap55/v78_w0123_farpost_np70_fm60_gap55_scene.json",
+      "sha256": "e2412bcb288642377ac6bb85dad0cc4adbf16281733df38e3037ba7aca95f58d"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0124_nearpost_yaw_p50_j2p22_yaw_m65_gap55/v78_w0124_nearpost_yaw_p50_j2p22_yaw_m65_gap55_scene.json",
+      "sha256": "e06725cb29f7530235f823cc6f1fcca3c427c937c084bd512bd4b04070a70ce5"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0125_transfer_route1_gap55/v78_w0125_transfer_route1_gap55_scene.json",
+      "sha256": "32fa2b9f82a0483a9d380e8d3f7cf2deb07b83a1fb85d6b4c62860cad1ede6e1"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0126_transfer_np50_route1_gap55/v78_w0126_transfer_np50_route1_gap55_scene.json",
+      "sha256": "8dc64ede8bfbf8aa9e5808716d817ce7887d45a08f627ebc5c7b1f64955c541e"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0127_transfer_np50_route_3f36335d6540_gap55/v78_w0127_transfer_np50_route_3f36335d6540_gap55_scene.json",
+      "sha256": "1ad1a1952d660c534ba7e1df167fdeaafa51e22ee3bb602deba347c3122890ef"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0128_guided_np65_retreatC_transfer_route_gap55/v78_w0128_guided_np65_retreatC_transfer_route_gap55_scene.json",
+      "sha256": "c6ad6708af27e1426321f66b0a822e4004ce0662bef8ef3de7dc5d8b48e544ee"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0129_farpost_np70_fm65_gap55/v78_w0129_farpost_np70_fm65_gap55_scene.json",
+      "sha256": "98cb2568c23b1f8528a9385aaa4dade6e3faec7377ca5f43a203ce8823b7da66"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0130_guided_np65_retreatC_transfer_route_gap55/v78_w0130_guided_np65_retreatC_transfer_route_gap55_scene.json",
+      "sha256": "3fb117ac7958ff02789d6fa4214afb744717e29d0541bbcb9659fb8a7dfd63a2"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/w0131_transfer_np55_route_3f36335d6540_gap55/v78_w0131_transfer_np55_route_3f36335d6540_gap55_scene.json",
+      "sha256": "8c72515abb651b2451ee01537efdee8533683fce91cee0106fe5f546f386f997"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/recovery_b0001_n224_f193_np70_retreat_CJ2m10J3p10_route_gap55/v78_recovery_b0001_n224_f193_np70_retreat_CJ2m10J3p10_route_gap55_scene.json",
+      "sha256": "85deee18c17119992f631741ae63e6a11a6c8addda6d3c06c34f2052c91e7a15"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/recovery_b0002_n226_f192_np70_retreat_D_route_gap55/v78_recovery_b0002_n226_f192_np70_retreat_D_route_gap55_scene.json",
+      "sha256": "89d71f0c9a15659920f60f3b314adc681ac9b1822bc2dacac69ed25b2c4d4ec8"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_near_park/v78_takeover_near_park_scene.json",
+      "sha256": "23c625d236a32a48cfa836544a6b1fa58154ec9a67f3682854aad9c49b720c1e"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0400/v78_takeover_far_case0400_scene.json",
+      "sha256": "dfcb1901c06886aecc4d7601d614d626e164f20021032bbcd944f9af6318e6cd"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0399/v78_takeover_far_case0399_scene.json",
+      "sha256": "c45855cf7c2b797434c6c830373bffbebc55f649fe1fa22332f78d088477048f"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0398/v78_takeover_far_case0398_scene.json",
+      "sha256": "4200872c51d834301175f1b066e8c70875da726880efa6d311b6b36cf8025cb5"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0378/v78_takeover_far_case0378_scene.json",
+      "sha256": "051b3c97a83ee481b49ef94fa6af416f2772ff9b9ea32d509735b871ff92076b"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0379/v78_takeover_far_case0379_scene.json",
+      "sha256": "94294646922f9f13814b77f4f116f6d349954e1a753e98e4dfcdb242afa35634"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0380/v78_takeover_far_case0380_scene.json",
+      "sha256": "d7903c8a74996f1ccf384ca940aeb98d9b43445d5b5ea3ad593217b3b508dcc8"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0360/v78_takeover_far_case0360_scene.json",
+      "sha256": "651dba502417b0046fd5f2bbf992485b38583b392911f0b0aeb1db27ca2b67db"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0359/v78_takeover_far_case0359_scene.json",
+      "sha256": "43f1b3d1d428dc3ec46276f72d69c81688a28a5e78e94a96c5db1d30730a0d85"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0339/v78_takeover_far_case0339_scene.json",
+      "sha256": "11a497703fc75d324e960b7596584152b95c9ef63c68855a1c060bb57f208360"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0340/v78_takeover_far_case0340_scene.json",
+      "sha256": "a4cf1c187bbf9d9117f736cd136a73a5280baa4ce3ecf49d0656be6c457c5523"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0320/v78_takeover_far_case0320_scene.json",
+      "sha256": "2cf93769ba136256692e9fd7b7ccf36e90acb3bd5d473f5d4ddd15bf0bd809f7"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0191/v78_takeover_far_case0191_scene.json",
+      "sha256": "2c2f7afbf69c83b0a56bec9bab08879d60e6a363c59311a4b2243a4aa218dfd8"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0190/v78_takeover_far_case0190_scene.json",
+      "sha256": "38bc6fb1e6398ee9ced57a1f9790e7967f170db5084bab1a48142c3fc6c2104c"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0189/v78_takeover_far_case0189_scene.json",
+      "sha256": "47e3f92540449aafc4c77982df4a795d27495b8897d103469eb6d962725a7469"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0188/v78_takeover_far_case0188_scene.json",
+      "sha256": "6799c6eead82e09c2197b1c991102b682c63ec0ed20e021c030fc0914dc5e67b"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0187/v78_takeover_far_case0187_scene.json",
+      "sha256": "5f3535f6b8411ecffa4f18f9033c73303722eec66e7640058a23b360e7edc491"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0186/v78_takeover_far_case0186_scene.json",
+      "sha256": "bc6fca77056db07ece2daec3b77318f37177e8b7f754e24a0c5fab5b5a10775b"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0185/v78_takeover_far_case0185_scene.json",
+      "sha256": "1c42dac3634eda13a93834cd421fed4ae4c841265870ebe4f622bf23d3a3f6a3"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0184/v78_takeover_far_case0184_scene.json",
+      "sha256": "34e6344cc0925f086fb234f50a6b2aaca210b64ebc143d833139a105d8cf6f16"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0183/v78_takeover_far_case0183_scene.json",
+      "sha256": "af9863ce8c1aec6599fb95fc7f536a6b149b4d2b9f09d1542716b5838022aa7f"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0182/v78_takeover_far_case0182_scene.json",
+      "sha256": "7d6391ef750bca7f7cb07fb8e5ea76978285c538388a0dbff66d6fb2bcb69875"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/windows/takeover_far_case0181/v78_takeover_far_case0181_scene.json",
+      "sha256": "8dd77df9b5da5c7a46df669bca8c7f05565e3c0b994deb5a0c610eaaa904b807"
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "published_date": "2026-10-01",
+  "result": "V78 full tray, 400 cells",
+  "source_result_root": "xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm",
+  "files": {
+    "README.md": "3df1fbb5ac7531530d8af31fade94830e2c4e6f0cdbafba50797170132627ac3",
+    "audits/chain_report.json": "95d9515960932941ba3cbb8743efa4bf1e5d35ecfc05a282cf01cca95e9603d7",
+    "audits/independent_final_400_check.json": "1bb55443fd5fe6811044dfd7465ce279ec8161b33fe4f59cc435d0a9f655b0d9",
+    "audits/video_cpu_validation.json": "90b4be34d7f384a5f03bcea7622f13400801a6294c57d356283349173a4fcee2",
+    "audits/video_render_audit.json": "5ae707b6a93d6afb9fcc2309902f18a19d23224051b892b2d24d71ebe8f687f6",
+    "data/full_trajectory.npz": "ee38e974f84495d0454c91fb76c90e722038a02a5741b642b1d9a5f46dee454b",
+    "data/summary.json": "7bc38cfb8fcd8f686a65636b03f52ecca19001a924871b9839e278ffdfdcfc69",
+    "data/video_timeline.json": "360045e088e897fdf4590889a70dd1e56db3b374d6f136c8b69e1245d271c40b",
+    "data/video_timeline.npz": "fd044d3e954349b49f7256bbe44b7baff35f225c7ece09b1a6271c5d355ba339",
+    "distributions/README.md": "f5f82f83be9fb5886288fb0771ca25a70c611504454b35401afb36f924b11cf1",
+    "distributions/cell_metrics.csv": "e6ee3cb60781ffc880c5a97989b8179407d1d6e9239008d2a1b6f0cbb0485de3",
+    "distributions/coverage_summary.json": "1456cf23dc5c97c80ce5ad573f586a0720bacbea84397a7b0db13c9437191372",
+    "distributions/executing_arm_cell_map.png": "0054b90fec965de590fa151a994ff79c857827abf8c69cd45fab9f373fde99b3",
+    "distributions/max_joint_cumulative_cell_map.png": "15953b8928f92ea50bfefd6fb7ca14864278905ceafb0c7cb322cefc65ef6ea9",
+    "distributions/max_joint_span_cell_map.png": "0d46a49aacf9187ea05f6a9adf1472351ae5e55e26e9ab0c484ce62150b16338",
+    "distributions/min_effective_margin_cell_map.png": "c2e928a9505ac5e258fa6f5c4a1b76930ec15d80c7351918bea8ed9f3ae40b63",
+    "ee_paths/README.md": "80378533da223cf3e0533bf5b516e051dcfcd5320048460cb278275621f138dd",
+    "ee_paths/data_validation.json": "a9b963930f75942dc55e7c0c8b8459d2e3b7ad54c01b44204981a744e7c0b982",
+    "ee_paths/ee_paths_3d.png": "1611313a3563c7f17df4c4bc60e02bedfb8627f15f9a713810ff31ad97dfdc67",
+    "ee_paths/ee_paths_3d_projections.png": "a789bf8e1a9604877bf3f1746e47b3e89ec009f339c3081f8515e1e514d49770",
+    "ee_paths/ee_paths_excluding_first_pieces.npz": "d0265b670f7a78a605973fbe6c624891af4807f167b02b4cef73da0705a4e922",
+    "ee_paths/ee_paths_top.png": "888af43ed1b5c4372b075079df58b8f639a013c9a523516d6ecc1fb024b1c76c",
+    "ee_paths/source_and_exclusion.json": "c9bb18ae506c80477fe47ae62869c08ff131999c20539278681c6548d6dcf432",
+    "play_in_rviz.py": "6b24dab532cc0e18ad4adfe7a85054c3fe65aa005ed9f2ba893007d827c65382",
+    "scene/dual_arm.urdf": "d7213f7875a11576bb4526640d7f2d5d63718eb9788bde64fc0939e632c8aa76",
+    "scene/ee_paths.rviz": "598f96c624fddcbbe0034520c5e7fc64f8b8502c187c3bfef2f626da366c0c2a",
+    "scene/scene.json": "e92861c2d80dd71f1342cf175575f9bce8a56ca666b2c0a0257b731e52fb4649",
+    "scene/video_visual.urdf": "523e99e46509cf183545fb15fd13006202d89ee03f93e7ceb618363b59a690d0",
+    "scene/view.rviz": "1631a869c8d955a94482fa02a930c62fb0df5375fcfcae0784f5a43b7b50736d",
+    "video/v78_full_400_40x.mp4": "e324b8f949875ac304dfa3bbe00faad5c48d4e9d3d301705e3478e4d74afd1a5"
+  },
+  "assets": {
+    "src/curobo/content/assets/robot/ur_description/meshes/xtrainer/base_link.STL": "f7150dfb4a5210ccd9aa7c7c4766a6fd34ffbf5ced4ab9ccebb0caae74e2745f",
+    "src/curobo/content/assets/robot/ur_description/meshes/xtrainer/J1.STL": "f85c8471a6adf39f68a0b190d50c303275670b4148dd3f2ad29c268b72cfea6f",
+    "src/curobo/content/assets/robot/ur_description/meshes/xtrainer/J2.STL": "aabf7468365e38b8287308aee6058e71844a123f1df45322ed7ecdc45cd32b3e",
+    "src/curobo/content/assets/robot/ur_description/meshes/xtrainer/J3.STL": "502473c5781d1171ccbd507b539bd2bf951ad75e86dfa3f2b9d148804fb2acc5",
+    "src/curobo/content/assets/robot/ur_description/meshes/xtrainer/J4.STL": "894a7a6a5d06ba03fc592b73bcdb2c32dd8824492a0fb10e346370a37c5033e0",
+    "src/curobo/content/assets/robot/ur_description/meshes/xtrainer/J5.STL": "bdab029ae3d3ce104f97e8acd567f307a19b557ef476806c877ae4cbe8820707",
+    "src/curobo/content/assets/robot/ur_description/meshes/xtrainer/J6.STL": "b60b15243f46a57784e65d068d63cd55707079b73eec7e580e8191e78d39d657",
+    "src/curobo/content/assets/robot/ur_description/meshes/xtrainer/table.stl": "0b2e1e8735f0b4391b5610bd3d77fbf9a07520093ca0ecb859fa926da1a364df"
+  },
+  "original_artifact_sources": {
+    "data/full_trajectory.npz": "runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0181_adapter/stitched_candidate/full_trajectory.npz",
+    "data/summary.json": "runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0181_adapter/stitched_candidate/summary.json",
+    "data/video_timeline.npz": "video/final_400_v1/v78_final_400_timeline.npz",
+    "data/video_timeline.json": "video/final_400_v1/v78_final_400_timeline.json",
+    "video/v78_full_400_40x.mp4": "video/final_400_v1/v78_full_400_40x.mp4",
+    "audits/video_render_audit.json": "video/final_400_v1/v78_full_400_40x.render_audit.json",
+    "audits/independent_final_400_check.json": "analysis/final_400_independent_check.json",
+    "audits/chain_report.json": "runs/far_takeover_high_y_from_378/remaining_15_after_cache/chain_report.json",
+    "audits/video_cpu_validation.json": "video/final_400_v1/cpu_validation.json",
+    "scene/dual_arm.urdf": "video/final_400_v1/v78_final_400_scene.urdf",
+    "scene/scene.json": "video/final_400_v1/v78_final_400_scene.json",
+    "scene/ee_paths.rviz": "video/final_400_v1/v78_final_400_ee_paths.rviz",
+    "scene/view.rviz": "video/final_400_v1/v78_final_400_view.rviz",
+    "scene/video_visual.urdf": "video/final_400_v1/v78_full_400_40x.visual_scene.urdf",
+    "distributions/executing_arm_cell_map.png": "final_400/distributions/executing_arm_cell_map.png",
+    "distributions/max_joint_cumulative_cell_map.png": "final_400/distributions/max_joint_cumulative_cell_map.png",
+    "distributions/min_effective_margin_cell_map.png": "final_400/distributions/min_effective_margin_cell_map.png",
+    "distributions/max_joint_span_cell_map.png": "final_400/distributions/max_joint_span_cell_map.png",
+    "distributions/cell_metrics.csv": "final_400/distributions/cell_metrics.csv",
+    "distributions/coverage_summary.json": "final_400/distributions/coverage_summary.json",
+    "ee_paths/ee_paths_3d_projections.png": "final_400/ee_path_distribution/ee_paths_3d_projections.png",
+    "ee_paths/ee_paths_3d.png": "final_400/ee_path_distribution/ee_paths_3d.png",
+    "ee_paths/ee_paths_top.png": "final_400/ee_path_distribution/ee_paths_top.png",
+    "ee_paths/ee_paths_excluding_first_pieces.npz": "final_400/ee_path_distribution/ee_paths_excluding_first_pieces.npz",
+    "ee_paths/source_and_exclusion.json": "final_400/ee_path_distribution/source_and_exclusion.json",
+    "ee_paths/data_validation.json": "final_400/ee_path_distribution/data_validation.json"
+  },
+  "stats": {
+    "samples": 145141,
+    "duration_s": 2902.8,
+    "sample_period_s": 0.02,
+    "windows": 156,
+    "unique_cases": 400,
+    "events": 800,
+    "counts_by_executing_arm": {
+      "near": 189,
+      "far": 211
+    },
+    "aggregate": {
+      "schedule_inserted_wait_s": {
+        "near": 1002.28,
+        "far": 660.14
+      },
+      "schedule_inserted_wait_before_source_end_s": {
+        "near": 685.64,
+        "far": 659.38
+      },
+      "longest_consecutive_joint_stationary_s": {
+        "near": 316.66,
+        "far": 15.44
+      },
+      "actual_joint_stationary_s": {
+        "near": 1098.6,
+        "far": 773.2
+      },
+      "simultaneous_joint_motion_s": 1143.98,
+      "both_joint_stationary_s": 112.98,
+      "minimum_interarm_mm": 55.00342520313632,
+      "minimum_interarm_window": "w0038_pair1_gap55",
+      "minimum_self_mm": 5.749631287503138,
+      "minimum_effective_limit_margin_deg": 16.387317705774752,
+      "maximum_single_item_cumulative_joint_deg": 209.51920150734838,
+      "maximum_single_item_joint_span_deg": 114.75402873595174
+    }
+  },
+  "thresholds": {
+    "maximum_single_item_cumulative_joint_deg": 210.0,
+    "maximum_single_item_joint_span_deg": 150.0,
+    "minimum_effective_limit_margin_deg": 15.0,
+    "minimum_interarm_mm": 55.0,
+    "minimum_self_mm": 3.0
+  },
+  "scene": {
+    "coordinate_frame": "task_world",
+    "grasp_bounds_task_world": {
+      "minimum": [
+        -0.62,
+        -0.1,
+        0.03
+      ],
+      "maximum": [
+        -0.2,
+        0.4,
+        0.03
+      ]
+    },
+    "near_base_task_world": [
+      -0.1,
+      0.15,
+      0.65
+    ],
+    "far_base_task_world": [
+      -0.7200000000000001,
+      0.15000000000000005,
+      0.65
+    ],
+    "near_place_task_world": [
+      -0.02,
+      -0.12,
+      0.1
+    ],
+    "far_place_task_world": [
+      -0.82,
+      -0.12,
+      0.1
+    ]
+  },
+  "ee_path_exclusion": {
+    "near": {
+      "case_1based": 381,
+      "first_piece_end_source_sample": 521,
+      "retained_start_global_sample": 716,
+      "retained_start_time_s": 14.32,
+      "excluded_global_samples": [
+        0,
+        715
+      ],
+      "shared_end_boundary_retained": true
+    },
+    "far": {
+      "case_1based": 1,
+      "first_piece_end_source_sample": 480,
+      "retained_start_global_sample": 488,
+      "retained_start_time_s": 9.76,
+      "excluded_global_samples": [
+        0,
+        487
+      ],
+      "shared_end_boundary_retained": true
+    }
+  },
+  "validation_scope": "Publication file hashes, original states/event coverage and EE slice consistency. Original independent collision audit is preserved as evidence; this manifest does not rerun it.",
+  "model_limit": "V77 24 proxy spheres/arm and configured walls; no held/released material, full tool shell, cables or continuous swept-volume proof"
+}

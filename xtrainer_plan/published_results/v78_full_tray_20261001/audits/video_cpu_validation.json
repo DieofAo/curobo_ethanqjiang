@@ -1,0 +1,127 @@
+{
+  "passed": true,
+  "status": "FINAL_400_CPU_VIDEO_BUNDLE_VALIDATED_NO_GUI",
+  "chain_report": {
+    "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/chain_report.json",
+    "sha256": "95d9515960932941ba3cbb8743efa4bf1e5d35ecfc05a282cf01cca95e9603d7"
+  },
+  "source_summary": {
+    "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0181_adapter/stitched_candidate/summary.json",
+    "sha256": "7bc38cfb8fcd8f686a65636b03f52ecca19001a924871b9839e278ffdfdcfc69"
+  },
+  "source_trajectory": {
+    "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0181_adapter/stitched_candidate/full_trajectory.npz",
+    "sha256": "ee38e974f84495d0454c91fb76c90e722038a02a5741b642b1d9a5f46dee454b"
+  },
+  "unique_grasp_cases": 400,
+  "grasp_place_events": 800,
+  "all_joint_states_exactly_preserved": true,
+  "timeline": {
+    "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/v78_final_400_timeline.npz",
+    "sha256": "fd044d3e954349b49f7256bbe44b7baff35f225c7ece09b1a6271c5d355ba339"
+  },
+  "urdf": {
+    "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/v78_final_400_scene.urdf",
+    "sha256": "d7213f7875a11576bb4526640d7f2d5d63718eb9788bde64fc0939e632c8aa76"
+  },
+  "rviz": {
+    "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/v78_final_400_view.rviz",
+    "sha256": "1631a869c8d955a94482fa02a930c62fb0df5375fcfcae0784f5a43b7b50736d"
+  },
+  "bundle": {
+    "windows": 156,
+    "joint_samples": 145141,
+    "events": 800,
+    "duration_s": 2902.8,
+    "minimum_interarm_mm": 55.00342520313632,
+    "timeline": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/v78_final_400_timeline.npz",
+    "metadata": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/v78_final_400_timeline.json",
+    "display_urdf": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/v78_final_400_scene.urdf"
+  },
+  "renderer_validation": {
+    "passed": true,
+    "timeline_samples": 145141,
+    "selected_frames": 2502,
+    "event_count": 800,
+    "full_timeline": true,
+    "clip_start_sample": 0,
+    "clip_end_sample": 145140,
+    "all_source_events": 800,
+    "windows": 156,
+    "grasp_slots": {
+      "near": [
+        [
+          -0.2,
+          -0.1,
+          0.03
+        ],
+        [
+          -0.2,
+          -0.0736842105263158,
+          0.03
+        ],
+        [
+          -0.2,
+          -0.04736842105263159,
+          0.03
+        ]
+      ],
+      "far": [
+        [
+          -0.62,
+          -0.1,
+          0.03
+        ],
+        [
+          -0.62,
+          -0.0736842105263158,
+          0.03
+        ],
+        [
+          -0.62,
+          -0.04736842105263159,
+          0.03
+        ]
+      ]
+    },
+    "near_place": [
+      -0.02,
+      -0.12,
+      0.1
+    ],
+    "far_place": [
+      -0.82,
+      -0.12,
+      0.1
+    ]
+  },
+  "selected_frames_step80": 2502,
+  "render_validation_command": [
+    "/usr/bin/python3",
+    "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/render_continuous_full_video.py",
+    "--timeline",
+    "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/v78_final_400_timeline.npz",
+    "--urdf",
+    "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/v78_final_400_scene.urdf",
+    "--output",
+    "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/v78_full_400_40x.mp4",
+    "--sample-step",
+    "80",
+    "--fps",
+    "25",
+    "--validate-only"
+  ],
+  "player_validation_command": [
+    "/usr/bin/python3",
+    "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/play_full_in_rviz.py",
+    "--timeline",
+    "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/v78_final_400_timeline.npz",
+    "--urdf",
+    "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/v78_final_400_scene.urdf",
+    "--rviz-config",
+    "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/v78_final_400_view.rviz",
+    "--validate-only"
+  ],
+  "gui_started": false,
+  "gpu_started": false
+}

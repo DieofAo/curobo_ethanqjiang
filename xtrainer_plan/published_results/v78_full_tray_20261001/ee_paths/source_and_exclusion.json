@@ -1,0 +1,158 @@
+{
+  "passed": true,
+  "coordinate_frame": "task_world",
+  "position_unit": "m",
+  "joint_angle_unit": "rad",
+  "source_timeline": {
+    "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/v78_final_400_timeline.npz",
+    "sha256": "fd044d3e954349b49f7256bbe44b7baff35f225c7ece09b1a6271c5d355ba339"
+  },
+  "source_metadata": {
+    "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/v78_final_400_timeline.json",
+    "sha256": "360045e088e897fdf4590889a70dd1e56db3b374d6f136c8b69e1245d271c40b"
+  },
+  "source_scene": {
+    "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/v78_final_400_scene.json",
+    "sha256": "e92861c2d80dd71f1342cf175575f9bce8a56ca666b2c0a0257b731e52fb4649"
+  },
+  "source_urdf": {
+    "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/final_400_v1/v78_final_400_scene.urdf",
+    "sha256": "d7213f7875a11576bb4526640d7f2d5d63718eb9788bde64fc0939e632c8aa76"
+  },
+  "source_summary": {
+    "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0181_adapter/stitched_candidate/summary.json",
+    "sha256": "7bc38cfb8fcd8f686a65636b03f52ecca19001a924871b9839e278ffdfdcfc69"
+  },
+  "fk_helper": {
+    "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/video/ee_paths.py",
+    "sha256": "3c6850d99afe99486e56e84825c512321b8a8ae8b89fccad8f90901de5cb6bb4"
+  },
+  "exclusion": {
+    "near": {
+      "case_1based": 381,
+      "first_piece_end_source_sample": 521,
+      "retained_start_global_sample": 716,
+      "retained_start_time_s": 14.32,
+      "excluded_global_samples": [
+        0,
+        715
+      ],
+      "shared_end_boundary_retained": true
+    },
+    "far": {
+      "case_1based": 1,
+      "first_piece_end_source_sample": 480,
+      "retained_start_global_sample": 488,
+      "retained_start_time_s": 9.76,
+      "excluded_global_samples": [
+        0,
+        487
+      ],
+      "shared_end_boundary_retained": true
+    }
+  },
+  "retained_grasp_counts": {
+    "near": 188,
+    "far": 210
+  },
+  "source_samples": 145141,
+  "retained_samples": {
+    "near": 144425,
+    "far": 144653
+  },
+  "plotted_moving_samples": {
+    "near": 89716,
+    "far": 106026
+  },
+  "plot_removes_only_consecutive_stationary_duplicates": true,
+  "joint_samples_exactly_preserved": true,
+  "data_file_exact_roundtrip_verified": true,
+  "independent_3d_focus_omits_bases_above_plot": true,
+  "tcp_bounds_task_world": {
+    "near": {
+      "minimum": [
+        -0.3998812051191484,
+        -0.2691032506200495,
+        0.0004754703618397582
+      ],
+      "maximum": [
+        -0.002776180102292497,
+        0.4005242912948656,
+        0.21188686495448664
+      ]
+    },
+    "far": {
+      "minimum": [
+        -0.9089323577955457,
+        -0.21456463534165313,
+        -0.033564753803316486
+      ],
+      "maximum": [
+        -0.19990998351727665,
+        0.4000042876565069,
+        0.3168803012752192
+      ]
+    }
+  },
+  "grasp_centers_bounds_task_world": {
+    "minimum": [
+      -0.62,
+      -0.1,
+      0.03
+    ],
+    "maximum": [
+      -0.2,
+      0.4,
+      0.03
+    ]
+  },
+  "base_task_world": {
+    "near": [
+      -0.1,
+      0.15,
+      0.65
+    ],
+    "far": [
+      -0.7200000000000001,
+      0.15000000000000005,
+      0.65
+    ]
+  },
+  "place_task_world": {
+    "near": [
+      -0.02,
+      -0.12,
+      0.1
+    ],
+    "far": [
+      -0.82,
+      -0.12,
+      0.1
+    ]
+  },
+  "colors": {
+    "near": "#1769CC",
+    "far": "#E9B900"
+  },
+  "data": {
+    "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/final_400/ee_path_distribution/ee_paths_excluding_first_pieces.npz",
+    "sha256": "d0265b670f7a78a605973fbe6c624891af4807f167b02b4cef73da0705a4e922"
+  },
+  "images": [
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/final_400/ee_path_distribution/ee_paths_3d_projections.png",
+      "sha256": "a789bf8e1a9604877bf3f1746e47b3e89ec009f339c3081f8515e1e514d49770"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/final_400/ee_path_distribution/ee_paths_3d.png",
+      "sha256": "1611313a3563c7f17df4c4bc60e02bedfb8627f15f9a713810ff31ad97dfdc67"
+    },
+    {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/final_400/ee_path_distribution/ee_paths_top.png",
+      "sha256": "888af43ed1b5c4372b075079df58b8f639a013c9a523516d6ecc1fb024b1c76c"
+    }
+  ],
+  "all_original_800_events_validated": true,
+  "gpu_started": false,
+  "gui_started": false
+}

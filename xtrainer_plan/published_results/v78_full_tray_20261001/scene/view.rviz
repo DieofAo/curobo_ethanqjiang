@@ -1,0 +1,152 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 0
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /Overhead XTrainer1
+      Splitter Ratio: 0.52
+    Tree Height: 720
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+Preferences:
+  PromptSaveOnExit: true
+Toolbars:
+  toolButtonStyle: 2
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.55
+      Cell Size: 0.02
+      Class: rviz/Grid
+      Color: 125; 130; 138
+      Enabled: true
+      Line Style:
+        Line Width: 0.019999999552965164
+        Value: Lines
+      Name: Task grid (2 cm)
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 60
+      Reference Frame: task_world
+      Value: true
+    - Alpha: 1
+      Class: rviz/RobotModel
+      Collision Enabled: false
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+      Name: Overhead XTrainer
+      Robot Description: robot_description
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Class: rviz/Axes
+      Enabled: true
+      Length: 0.16
+      Name: Original task frame
+      Radius: 0.008
+      Reference Frame: original_LINK_0
+      Value: true
+    - Class: rviz/Axes
+      Enabled: true
+      Length: 0.13
+      Name: Mounted robot LINK_0
+      Radius: 0.007
+      Reference Frame: LINK_0
+      Value: true
+    - Class: rviz/TF
+      Enabled: false
+      Filter (blacklist): ""
+      Filter (whitelist): ""
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+        LINK_0:
+          Value: true
+        TCP_LINK:
+          Value: true
+        original_LINK_0:
+          Value: true
+        task_world:
+          Value: true
+      Marker Alpha: 1
+      Marker Scale: 0.12
+      Name: Key frames
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree: {}
+      Update Interval: 0
+      Value: false
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /xtrainer_plan/markers
+      Name: Planned path / workspace
+      Namespaces:
+        ee_path: true
+        poses: true
+        walls: true
+        workspace: true
+      Queue Size: 100
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 36; 38; 44
+    Default Light: true
+    Fixed Frame: task_world
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 1.65
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Field of View: 0.7853981852531433
+      Focal Point:
+        X: -0.41
+        Y: 0.10
+        Z: 0.24
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.01
+      Pitch: 0.42
+      Target Frame: task_world
+      Yaw: 2.35
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 900
+  Hide Left Dock: false
+  Hide Right Dock: false
+  Width: 1440
+  X: 80
+  Y: 50

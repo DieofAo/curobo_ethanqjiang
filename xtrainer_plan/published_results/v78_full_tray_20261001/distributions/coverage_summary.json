@@ -1,0 +1,54 @@
+{
+  "status": "ALL_400_AUDITED",
+  "summary": {
+    "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0181_adapter/stitched_candidate/summary.json",
+    "sha256": "7bc38cfb8fcd8f686a65636b03f52ecca19001a924871b9839e278ffdfdcfc69"
+  },
+  "unique_cases": 400,
+  "events": 800,
+  "counts_by_executing_arm": {
+    "far": 211,
+    "near": 189
+  },
+  "reassigned_cases": [
+    320,
+    339,
+    340,
+    359,
+    360,
+    378,
+    379,
+    380,
+    398,
+    399,
+    400
+  ],
+  "pending_cases": [],
+  "duration_s": 2902.8,
+  "aggregate": {
+    "schedule_inserted_wait_s": {
+      "near": 1002.28,
+      "far": 660.14
+    },
+    "schedule_inserted_wait_before_source_end_s": {
+      "near": 685.64,
+      "far": 659.38
+    },
+    "longest_consecutive_joint_stationary_s": {
+      "near": 316.66,
+      "far": 15.44
+    },
+    "actual_joint_stationary_s": {
+      "near": 1098.6,
+      "far": 773.2
+    },
+    "simultaneous_joint_motion_s": 1143.98,
+    "both_joint_stationary_s": 112.98,
+    "minimum_interarm_mm": 55.00342520313632,
+    "minimum_interarm_window": "w0038_pair1_gap55",
+    "minimum_self_mm": 5.749631287503138,
+    "minimum_effective_limit_margin_deg": 16.387317705774752,
+    "maximum_single_item_cumulative_joint_deg": 209.51920150734838,
+    "maximum_single_item_joint_span_deg": 114.75402873595174
+  }
+}

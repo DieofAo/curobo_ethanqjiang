@@ -1,0 +1,483 @@
+{
+  "diagnostic_only": true,
+  "formal_manifest_modified": false,
+  "original_grid_modified": false,
+  "mode": "GPU_AND_INDEPENDENT_ADAPTER",
+  "status": "ISOLATED_CHAIN_AUDITED",
+  "cases_requested": [
+    359,
+    339,
+    340,
+    320,
+    191,
+    190,
+    189,
+    188,
+    187,
+    186,
+    185,
+    184,
+    183,
+    182,
+    181
+  ],
+  "original_NEAR_override_cases": [
+    359,
+    339,
+    340,
+    320
+  ],
+  "initial_inputs": {
+    "near_source": {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+      "sha256": "7fbab8d2bcc35511f5203a973d92202acbeb3d986c43c508f98d18a9b9696061"
+    },
+    "far_source": {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_21/case0360_adapter_after_cache/far_case0360/result.json",
+      "sha256": "c238f9f9af2e625170db28d92c6f48841725cc9a3c65b5658deff7fde128a0e8"
+    },
+    "prefix_summary": {
+      "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_21/case0360_adapter_after_cache/stitched_candidate/summary.json",
+      "sha256": "cf7e03b04e01fc15c27ed20b3cc2c6ef196f426a048a3aae6f07437db014de6c"
+    }
+  },
+  "first_near_already_parked": true,
+  "steps": [
+    {
+      "index_1based": 1,
+      "case_1based": 359,
+      "status": "GPU_AND_ADAPTER_ACCEPTED",
+      "cpu_input_status": "GPU_INPUTS_PREPARED_READY",
+      "planner_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/analysis/far_takeover_high_y_pose_screen/plan_takeover_diagnostic.py --run --near-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json --far-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_21/case0360_adapter_after_cache/far_case0360/result.json --case 359 --no-return-near --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0359_gpu --attempts-per-park 2 --planning-world original-walls-only --hold-near-current",
+      "adapter_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/adapt_takeover_diagnostic.py --write --diagnostic-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0359_gpu/park_current --prefix-summary /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_21/case0360_adapter_after_cache/stitched_candidate/summary.json --flat-tail --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0359_adapter --ownership-override /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+      "expected_far_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0359_adapter/far_case0359/result.json",
+      "expected_near_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+      "elapsed_s": 69.16157401399687,
+      "actual_next_sources": {
+        "near": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+          "sha256": "7fbab8d2bcc35511f5203a973d92202acbeb3d986c43c508f98d18a9b9696061"
+        },
+        "far": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0359_adapter/far_case0359/result.json",
+          "sha256": "f5a85702611a86768696831397f1edffb526da30d76db5f4a1fee986962e2fc9"
+        },
+        "prefix": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0359_adapter/stitched_candidate/summary.json",
+          "sha256": "d08221a2d769ad71ce103d6eba9c1c2371c5b40cbc10455b3e92ebaf3f21027d"
+        },
+        "ownership": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+          "sha256": "cb1e254606c9eae0861f4a80839a2807238ae1404e28e4e034036fa2a605b83b"
+        }
+      }
+    },
+    {
+      "index_1based": 2,
+      "case_1based": 339,
+      "status": "GPU_AND_ADAPTER_ACCEPTED",
+      "cpu_input_status": "GPU_INPUTS_PREPARED_READY",
+      "planner_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/analysis/far_takeover_high_y_pose_screen/plan_takeover_diagnostic.py --run --near-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json --far-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0359_adapter/far_case0359/result.json --case 339 --no-return-near --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0339_gpu --attempts-per-park 2 --planning-world original-walls-only --hold-near-current",
+      "adapter_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/adapt_takeover_diagnostic.py --write --diagnostic-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0339_gpu/park_current --prefix-summary /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0359_adapter/stitched_candidate/summary.json --flat-tail --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0339_adapter --ownership-override /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+      "expected_far_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0339_adapter/far_case0339/result.json",
+      "expected_near_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+      "elapsed_s": 81.29366883600596,
+      "actual_next_sources": {
+        "near": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+          "sha256": "7fbab8d2bcc35511f5203a973d92202acbeb3d986c43c508f98d18a9b9696061"
+        },
+        "far": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0339_adapter/far_case0339/result.json",
+          "sha256": "0caa6522c3523a6b28598cf9b250ab5bb44972f41f44904753caf5883ba69225"
+        },
+        "prefix": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0339_adapter/stitched_candidate/summary.json",
+          "sha256": "d39f9d0a439df4c892ae0b326f16c6d1966c68a5e67ea7bcdb0b9192dec8be16"
+        },
+        "ownership": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+          "sha256": "cb1e254606c9eae0861f4a80839a2807238ae1404e28e4e034036fa2a605b83b"
+        }
+      }
+    },
+    {
+      "index_1based": 3,
+      "case_1based": 340,
+      "status": "GPU_AND_ADAPTER_ACCEPTED",
+      "cpu_input_status": "GPU_INPUTS_PREPARED_READY",
+      "planner_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/analysis/far_takeover_high_y_pose_screen/plan_takeover_diagnostic.py --run --near-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json --far-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0339_adapter/far_case0339/result.json --case 340 --no-return-near --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0340_gpu --attempts-per-park 2 --planning-world original-walls-only --hold-near-current",
+      "adapter_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/adapt_takeover_diagnostic.py --write --diagnostic-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0340_gpu/park_current --prefix-summary /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0339_adapter/stitched_candidate/summary.json --flat-tail --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0340_adapter --ownership-override /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+      "expected_far_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0340_adapter/far_case0340/result.json",
+      "expected_near_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+      "elapsed_s": 93.34222936499282,
+      "actual_next_sources": {
+        "near": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+          "sha256": "7fbab8d2bcc35511f5203a973d92202acbeb3d986c43c508f98d18a9b9696061"
+        },
+        "far": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0340_adapter/far_case0340/result.json",
+          "sha256": "d429974810819982c690e00ef59a83b401ba0ef8a7c34e886b51bdf78531f1f1"
+        },
+        "prefix": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0340_adapter/stitched_candidate/summary.json",
+          "sha256": "86b0056b24e0a451851f8b93d94ece0d7713fa43462de7166a22ed38aeb5e9cd"
+        },
+        "ownership": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+          "sha256": "cb1e254606c9eae0861f4a80839a2807238ae1404e28e4e034036fa2a605b83b"
+        }
+      }
+    },
+    {
+      "index_1based": 4,
+      "case_1based": 320,
+      "status": "GPU_AND_ADAPTER_ACCEPTED",
+      "cpu_input_status": "GPU_INPUTS_PREPARED_READY",
+      "planner_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/analysis/far_takeover_high_y_pose_screen/plan_takeover_diagnostic.py --run --near-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json --far-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0340_adapter/far_case0340/result.json --case 320 --no-return-near --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0320_gpu --attempts-per-park 2 --planning-world original-walls-only --hold-near-current",
+      "adapter_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/adapt_takeover_diagnostic.py --write --diagnostic-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0320_gpu/park_current --prefix-summary /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0340_adapter/stitched_candidate/summary.json --flat-tail --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0320_adapter --ownership-override /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+      "expected_far_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0320_adapter/far_case0320/result.json",
+      "expected_near_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+      "elapsed_s": 107.29552682299982,
+      "actual_next_sources": {
+        "near": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+          "sha256": "7fbab8d2bcc35511f5203a973d92202acbeb3d986c43c508f98d18a9b9696061"
+        },
+        "far": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0320_adapter/far_case0320/result.json",
+          "sha256": "32472e6623feb82534b9516e62a186b9c888396d44f3bdc8e2aeb43d4c3af94c"
+        },
+        "prefix": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0320_adapter/stitched_candidate/summary.json",
+          "sha256": "342a60e2f08b208b2a7d12669157916e9ee75beb4af7c9e0b9d17e54395cdf8f"
+        },
+        "ownership": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+          "sha256": "cb1e254606c9eae0861f4a80839a2807238ae1404e28e4e034036fa2a605b83b"
+        }
+      }
+    },
+    {
+      "index_1based": 5,
+      "case_1based": 191,
+      "status": "GPU_AND_ADAPTER_ACCEPTED",
+      "cpu_input_status": "GPU_INPUTS_PREPARED_READY",
+      "planner_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/analysis/far_takeover_high_y_pose_screen/plan_takeover_diagnostic.py --run --near-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json --far-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0320_adapter/far_case0320/result.json --case 191 --no-return-near --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0191_gpu --attempts-per-park 2 --planning-world original-walls-only --hold-near-current",
+      "adapter_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/adapt_takeover_diagnostic.py --write --diagnostic-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0191_gpu/park_current --prefix-summary /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0320_adapter/stitched_candidate/summary.json --flat-tail --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0191_adapter --ownership-override /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+      "expected_far_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0191_adapter/far_case0191/result.json",
+      "expected_near_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+      "elapsed_s": 122.62862350899377,
+      "actual_next_sources": {
+        "near": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+          "sha256": "7fbab8d2bcc35511f5203a973d92202acbeb3d986c43c508f98d18a9b9696061"
+        },
+        "far": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0191_adapter/far_case0191/result.json",
+          "sha256": "27441d2b0ef62dbef8119e09625aee330a6968284a8d51454ef2f2f5f1282f27"
+        },
+        "prefix": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0191_adapter/stitched_candidate/summary.json",
+          "sha256": "76c63e4db9ab41fd81eff1974dce4d306f6e6e9e72a9eb418060788eb21975c5"
+        },
+        "ownership": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+          "sha256": "cb1e254606c9eae0861f4a80839a2807238ae1404e28e4e034036fa2a605b83b"
+        }
+      }
+    },
+    {
+      "index_1based": 6,
+      "case_1based": 190,
+      "status": "GPU_AND_ADAPTER_ACCEPTED",
+      "cpu_input_status": "GPU_INPUTS_PREPARED_READY",
+      "planner_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/analysis/far_takeover_high_y_pose_screen/plan_takeover_diagnostic.py --run --near-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json --far-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0191_adapter/far_case0191/result.json --case 190 --no-return-near --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0190_gpu --attempts-per-park 2 --planning-world original-walls-only --hold-near-current",
+      "adapter_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/adapt_takeover_diagnostic.py --write --diagnostic-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0190_gpu/park_current --prefix-summary /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0191_adapter/stitched_candidate/summary.json --flat-tail --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0190_adapter --ownership-override /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+      "expected_far_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0190_adapter/far_case0190/result.json",
+      "expected_near_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+      "elapsed_s": 137.11602842500724,
+      "actual_next_sources": {
+        "near": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+          "sha256": "7fbab8d2bcc35511f5203a973d92202acbeb3d986c43c508f98d18a9b9696061"
+        },
+        "far": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0190_adapter/far_case0190/result.json",
+          "sha256": "dbc14b76ffd740b85a118060543b1f4187b970079e3f125a19b2f49b2151ca63"
+        },
+        "prefix": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0190_adapter/stitched_candidate/summary.json",
+          "sha256": "0b81821f42a55f3f92690e760e8a8e7f3e8266fc814ae4946c6bbe5aa8e1e906"
+        },
+        "ownership": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+          "sha256": "cb1e254606c9eae0861f4a80839a2807238ae1404e28e4e034036fa2a605b83b"
+        }
+      }
+    },
+    {
+      "index_1based": 7,
+      "case_1based": 189,
+      "status": "GPU_AND_ADAPTER_ACCEPTED",
+      "cpu_input_status": "GPU_INPUTS_PREPARED_READY",
+      "planner_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/analysis/far_takeover_high_y_pose_screen/plan_takeover_diagnostic.py --run --near-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json --far-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0190_adapter/far_case0190/result.json --case 189 --no-return-near --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0189_gpu --attempts-per-park 2 --planning-world original-walls-only --hold-near-current",
+      "adapter_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/adapt_takeover_diagnostic.py --write --diagnostic-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0189_gpu/park_current --prefix-summary /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0190_adapter/stitched_candidate/summary.json --flat-tail --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0189_adapter --ownership-override /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+      "expected_far_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0189_adapter/far_case0189/result.json",
+      "expected_near_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+      "elapsed_s": 152.272326145001,
+      "actual_next_sources": {
+        "near": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+          "sha256": "7fbab8d2bcc35511f5203a973d92202acbeb3d986c43c508f98d18a9b9696061"
+        },
+        "far": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0189_adapter/far_case0189/result.json",
+          "sha256": "8fc9e89c7fa6b353aa2d5f56987f271cc07d10c3df64c60503b422b7cd1d366a"
+        },
+        "prefix": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0189_adapter/stitched_candidate/summary.json",
+          "sha256": "08282954413c185535b382eed56219814a8df976aa52de1d0ff30843a9c4c0ca"
+        },
+        "ownership": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+          "sha256": "cb1e254606c9eae0861f4a80839a2807238ae1404e28e4e034036fa2a605b83b"
+        }
+      }
+    },
+    {
+      "index_1based": 8,
+      "case_1based": 188,
+      "status": "GPU_AND_ADAPTER_ACCEPTED",
+      "cpu_input_status": "GPU_INPUTS_PREPARED_READY",
+      "planner_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/analysis/far_takeover_high_y_pose_screen/plan_takeover_diagnostic.py --run --near-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json --far-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0189_adapter/far_case0189/result.json --case 188 --no-return-near --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0188_gpu --attempts-per-park 2 --planning-world original-walls-only --hold-near-current",
+      "adapter_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/adapt_takeover_diagnostic.py --write --diagnostic-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0188_gpu/park_current --prefix-summary /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0189_adapter/stitched_candidate/summary.json --flat-tail --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0188_adapter --ownership-override /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+      "expected_far_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0188_adapter/far_case0188/result.json",
+      "expected_near_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+      "elapsed_s": 163.8506609890028,
+      "actual_next_sources": {
+        "near": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+          "sha256": "7fbab8d2bcc35511f5203a973d92202acbeb3d986c43c508f98d18a9b9696061"
+        },
+        "far": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0188_adapter/far_case0188/result.json",
+          "sha256": "e1028564977181684b262a1993bc0eb831fd71cb8a8fe9ffb9d422cbba1528a0"
+        },
+        "prefix": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0188_adapter/stitched_candidate/summary.json",
+          "sha256": "f0fbd4832859226af55571c47c3b0605548b894174166d0f72d015c6587e44ac"
+        },
+        "ownership": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+          "sha256": "cb1e254606c9eae0861f4a80839a2807238ae1404e28e4e034036fa2a605b83b"
+        }
+      }
+    },
+    {
+      "index_1based": 9,
+      "case_1based": 187,
+      "status": "GPU_AND_ADAPTER_ACCEPTED",
+      "cpu_input_status": "GPU_INPUTS_PREPARED_READY",
+      "planner_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/analysis/far_takeover_high_y_pose_screen/plan_takeover_diagnostic.py --run --near-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json --far-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0188_adapter/far_case0188/result.json --case 187 --no-return-near --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0187_gpu --attempts-per-park 2 --planning-world original-walls-only --hold-near-current",
+      "adapter_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/adapt_takeover_diagnostic.py --write --diagnostic-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0187_gpu/park_current --prefix-summary /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0188_adapter/stitched_candidate/summary.json --flat-tail --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0187_adapter --ownership-override /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+      "expected_far_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0187_adapter/far_case0187/result.json",
+      "expected_near_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+      "elapsed_s": 73.40318556199782,
+      "actual_next_sources": {
+        "near": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+          "sha256": "7fbab8d2bcc35511f5203a973d92202acbeb3d986c43c508f98d18a9b9696061"
+        },
+        "far": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0187_adapter/far_case0187/result.json",
+          "sha256": "2f544d839da8e9db9d74fcbde1ee2d2c00a81f784e95ddcb98dee2d19ab9edd1"
+        },
+        "prefix": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0187_adapter/stitched_candidate/summary.json",
+          "sha256": "3c78dbabb9808600a808eef35b07f77642db97de6349506b66921b0e3237b26e"
+        },
+        "ownership": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+          "sha256": "cb1e254606c9eae0861f4a80839a2807238ae1404e28e4e034036fa2a605b83b"
+        }
+      }
+    },
+    {
+      "index_1based": 10,
+      "case_1based": 186,
+      "status": "GPU_AND_ADAPTER_ACCEPTED",
+      "cpu_input_status": "GPU_INPUTS_PREPARED_READY",
+      "planner_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/analysis/far_takeover_high_y_pose_screen/plan_takeover_diagnostic.py --run --near-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json --far-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0187_adapter/far_case0187/result.json --case 186 --no-return-near --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0186_gpu --attempts-per-park 2 --planning-world original-walls-only --hold-near-current",
+      "adapter_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/adapt_takeover_diagnostic.py --write --diagnostic-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0186_gpu/park_current --prefix-summary /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0187_adapter/stitched_candidate/summary.json --flat-tail --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0186_adapter --ownership-override /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+      "expected_far_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0186_adapter/far_case0186/result.json",
+      "expected_near_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+      "elapsed_s": 77.97303752599692,
+      "actual_next_sources": {
+        "near": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+          "sha256": "7fbab8d2bcc35511f5203a973d92202acbeb3d986c43c508f98d18a9b9696061"
+        },
+        "far": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0186_adapter/far_case0186/result.json",
+          "sha256": "17cf6756060447f18d9f81f30a9677fb4d1ba6a209f20a1b7c85c1721bb0d3c0"
+        },
+        "prefix": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0186_adapter/stitched_candidate/summary.json",
+          "sha256": "b4c9af7b9682b71a63f1eb525c1d1ef67fd05dbb2ffbeca5f75e95c04815ddce"
+        },
+        "ownership": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+          "sha256": "cb1e254606c9eae0861f4a80839a2807238ae1404e28e4e034036fa2a605b83b"
+        }
+      }
+    },
+    {
+      "index_1based": 11,
+      "case_1based": 185,
+      "status": "GPU_AND_ADAPTER_ACCEPTED",
+      "cpu_input_status": "GPU_INPUTS_PREPARED_READY",
+      "planner_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/analysis/far_takeover_high_y_pose_screen/plan_takeover_diagnostic.py --run --near-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json --far-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0186_adapter/far_case0186/result.json --case 185 --no-return-near --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0185_gpu --attempts-per-park 2 --planning-world original-walls-only --hold-near-current",
+      "adapter_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/adapt_takeover_diagnostic.py --write --diagnostic-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0185_gpu/park_current --prefix-summary /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0186_adapter/stitched_candidate/summary.json --flat-tail --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0185_adapter --ownership-override /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+      "expected_far_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0185_adapter/far_case0185/result.json",
+      "expected_near_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+      "elapsed_s": 83.33609284598788,
+      "actual_next_sources": {
+        "near": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+          "sha256": "7fbab8d2bcc35511f5203a973d92202acbeb3d986c43c508f98d18a9b9696061"
+        },
+        "far": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0185_adapter/far_case0185/result.json",
+          "sha256": "a6de4a24a670321f0d28a41afccecbc382c2ff7ab10a661dc88ddd144a7d358d"
+        },
+        "prefix": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0185_adapter/stitched_candidate/summary.json",
+          "sha256": "2b05f658abee67754029c83c11ee58822b1f4e8a80085c4f322fab514144a711"
+        },
+        "ownership": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+          "sha256": "cb1e254606c9eae0861f4a80839a2807238ae1404e28e4e034036fa2a605b83b"
+        }
+      }
+    },
+    {
+      "index_1based": 12,
+      "case_1based": 184,
+      "status": "GPU_AND_ADAPTER_ACCEPTED",
+      "cpu_input_status": "GPU_INPUTS_PREPARED_READY",
+      "planner_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/analysis/far_takeover_high_y_pose_screen/plan_takeover_diagnostic.py --run --near-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json --far-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0185_adapter/far_case0185/result.json --case 184 --no-return-near --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0184_gpu --attempts-per-park 2 --planning-world original-walls-only --hold-near-current",
+      "adapter_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/adapt_takeover_diagnostic.py --write --diagnostic-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0184_gpu/park_current --prefix-summary /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0185_adapter/stitched_candidate/summary.json --flat-tail --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0184_adapter --ownership-override /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+      "expected_far_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0184_adapter/far_case0184/result.json",
+      "expected_near_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+      "elapsed_s": 86.35415598099644,
+      "actual_next_sources": {
+        "near": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+          "sha256": "7fbab8d2bcc35511f5203a973d92202acbeb3d986c43c508f98d18a9b9696061"
+        },
+        "far": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0184_adapter/far_case0184/result.json",
+          "sha256": "84983dbd153bac8e462874b5bf2fa707b1e51fec964e65de9f21c2f28192cc41"
+        },
+        "prefix": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0184_adapter/stitched_candidate/summary.json",
+          "sha256": "7937af94c22edef87bb6858423ad06baf5c87a70745d014804143ff108d0d4f4"
+        },
+        "ownership": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+          "sha256": "cb1e254606c9eae0861f4a80839a2807238ae1404e28e4e034036fa2a605b83b"
+        }
+      }
+    },
+    {
+      "index_1based": 13,
+      "case_1based": 183,
+      "status": "GPU_AND_ADAPTER_ACCEPTED",
+      "cpu_input_status": "GPU_INPUTS_PREPARED_READY",
+      "planner_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/analysis/far_takeover_high_y_pose_screen/plan_takeover_diagnostic.py --run --near-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json --far-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0184_adapter/far_case0184/result.json --case 183 --no-return-near --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0183_gpu --attempts-per-park 2 --planning-world original-walls-only --hold-near-current",
+      "adapter_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/adapt_takeover_diagnostic.py --write --diagnostic-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0183_gpu/park_current --prefix-summary /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0184_adapter/stitched_candidate/summary.json --flat-tail --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0183_adapter --ownership-override /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+      "expected_far_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0183_adapter/far_case0183/result.json",
+      "expected_near_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+      "elapsed_s": 90.7300707349932,
+      "actual_next_sources": {
+        "near": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+          "sha256": "7fbab8d2bcc35511f5203a973d92202acbeb3d986c43c508f98d18a9b9696061"
+        },
+        "far": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0183_adapter/far_case0183/result.json",
+          "sha256": "b989bcf5d4083cfdb990011bb29a6d2ccc2e95b7751edac658a0d1e47962763c"
+        },
+        "prefix": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0183_adapter/stitched_candidate/summary.json",
+          "sha256": "4820a05b2635fad32907457e7bcfddbb593e03b24782347e6a25f581a881b952"
+        },
+        "ownership": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+          "sha256": "cb1e254606c9eae0861f4a80839a2807238ae1404e28e4e034036fa2a605b83b"
+        }
+      }
+    },
+    {
+      "index_1based": 14,
+      "case_1based": 182,
+      "status": "GPU_AND_ADAPTER_ACCEPTED",
+      "cpu_input_status": "GPU_INPUTS_PREPARED_READY",
+      "planner_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/analysis/far_takeover_high_y_pose_screen/plan_takeover_diagnostic.py --run --near-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json --far-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0183_adapter/far_case0183/result.json --case 182 --no-return-near --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0182_gpu --attempts-per-park 2 --planning-world original-walls-only --hold-near-current",
+      "adapter_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/adapt_takeover_diagnostic.py --write --diagnostic-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0182_gpu/park_current --prefix-summary /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0183_adapter/stitched_candidate/summary.json --flat-tail --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0182_adapter --ownership-override /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+      "expected_far_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0182_adapter/far_case0182/result.json",
+      "expected_near_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+      "elapsed_s": 98.4303951030015,
+      "actual_next_sources": {
+        "near": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+          "sha256": "7fbab8d2bcc35511f5203a973d92202acbeb3d986c43c508f98d18a9b9696061"
+        },
+        "far": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0182_adapter/far_case0182/result.json",
+          "sha256": "be6e00f709c3cc6256077c66746b3ef40b7a5057be78e08eaf46fc598dbe626c"
+        },
+        "prefix": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0182_adapter/stitched_candidate/summary.json",
+          "sha256": "760d33ab9a725960d0372cbcf7e28b37a409527199ff92e0d329921102fe43c5"
+        },
+        "ownership": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+          "sha256": "cb1e254606c9eae0861f4a80839a2807238ae1404e28e4e034036fa2a605b83b"
+        }
+      }
+    },
+    {
+      "index_1based": 15,
+      "case_1based": 181,
+      "status": "GPU_AND_ADAPTER_ACCEPTED",
+      "cpu_input_status": "GPU_INPUTS_PREPARED_READY",
+      "planner_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/analysis/far_takeover_high_y_pose_screen/plan_takeover_diagnostic.py --run --near-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json --far-source /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0182_adapter/far_case0182/result.json --case 181 --no-return-near --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0181_gpu --attempts-per-park 2 --planning-world original-walls-only --hold-near-current",
+      "adapter_command": "/home/ethanqjiang/miniconda3/envs/curobo/bin/python /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/adapt_takeover_diagnostic.py --write --diagnostic-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0181_gpu/park_current --prefix-summary /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0182_adapter/stitched_candidate/summary.json --flat-tail --out-dir /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0181_adapter --ownership-override /home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+      "expected_far_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0181_adapter/far_case0181/result.json",
+      "expected_near_next_source": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+      "elapsed_s": 98.01394344000437,
+      "actual_next_sources": {
+        "near": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/near_park/charged_next_source.json",
+          "sha256": "7fbab8d2bcc35511f5203a973d92202acbeb3d986c43c508f98d18a9b9696061"
+        },
+        "far": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0181_adapter/far_case0181/result.json",
+          "sha256": "9e0dde5bdda8ae4264f2633d32f21d93e891e79e1f76a74f27d449e259ebc3aa"
+        },
+        "prefix": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0181_adapter/stitched_candidate/summary.json",
+          "sha256": "7bc38cfb8fcd8f686a65636b03f52ecca19001a924871b9839e278ffdfdcfc69"
+        },
+        "ownership": {
+          "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/case0400_adapter/ownership_override.json",
+          "sha256": "cb1e254606c9eae0861f4a80839a2807238ae1404e28e4e034036fa2a605b83b"
+        }
+      }
+    }
+  ],
+  "final_prefix_summary": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/runs/far_takeover_high_y_from_378/remaining_15_after_cache/case0181_adapter/stitched_candidate/summary.json"
+}

@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "source_and_exclusion": {
+    "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/final_400/ee_path_distribution/source_and_exclusion.json",
+    "sha256": "c9bb18ae506c80477fe47ae62869c08ff131999c20539278681c6548d6dcf432"
+  },
+  "exact_dataset": {
+    "path": "/home/ethanqjiang/workspace/curobo/xtrainer_plan/results_overhead/20260930/v78_full_tray_dual_arm/final_400/ee_path_distribution/ee_paths_excluding_first_pieces.npz",
+    "sha256": "d0265b670f7a78a605973fbe6c624891af4807f167b02b4cef73da0705a4e922"
+  },
+  "arms": {
+    "near": {
+      "start_sample": 716,
+      "samples": 144425,
+      "moving_samples": 89716,
+      "joint_and_time_exactly_match_original": true
+    },
+    "far": {
+      "start_sample": 488,
+      "samples": 144653,
+      "moving_samples": 106026,
+      "joint_and_time_exactly_match_original": true
+    }
+  },
+  "all_output_hashes_match": true,
+  "visual_review": "Chinese titles, 188/210 retained counts, three projections and standalone plots checked; no overlapping labels observed."
+}
